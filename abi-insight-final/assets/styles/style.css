@@ -146,3 +146,22 @@ footer a:hover {
     width: 120px;
     margin-bottom: 0.5rem;
 }
+/* TABLE STYLING FOR WEAPON SPECS */
+.table-dark {
+    --bs-table-bg: #121212;
+    --bs-table-border-color: #333;
+    --bs-table-striped-bg: #1a1a1a;
+    color: #f1f1f1;
+}
+
+.table-bordered {
+    border-color: #333;
+}
+
+.table-bordered th, .table-bordered td {
+    border-color: #333;
+}
+
+.table-dark thead th {
+    color: #ffd700;
+}
