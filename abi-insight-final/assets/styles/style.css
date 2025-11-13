@@ -49,3 +49,40 @@ body {
     padding-bottom: 0.5rem;
     border-bottom: 2px solid #333;
 }
+/* CARD SYSTEM STYLING */
+.card-scroll-container {
+    display: flex;
+    overflow-x: scroll; 
+    padding-bottom: 1rem; 
+    gap: 1.5rem; 
+    -webkit-overflow-scrolling: touch; 
+    scrollbar-width: none; 
+}
+
+.card-scroll-container::-webkit-scrollbar {
+    display: none; 
+}
+
+/* Base Card Styling */
+.card {
+    min-width: 20rem; 
+    border: 1px solid #444;
+    background-color: #1e1e1e; 
+    color: #f1f1f1;
+    flex-shrink: 0; 
+}
+
+.card-title {
+    color: #ffd700; 
+    font-weight: 600;
+}
+
+.btn-outline-warning {
+    color: #ffd700;
+    border-color: #ffd700;
+}
+
+.btn-outline-warning:hover {
+    background-color: #ffd700;
+    color: #1e1e1e;
+}
