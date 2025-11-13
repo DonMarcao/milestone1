@@ -100,3 +100,32 @@ footer a {
 footer a:hover {
     color: #fff !important;
 }
+/* RESPONSIVE STYLING (Mobile-First Adjustments) */
+@media (max-width: 991.98px) {
+        
+    #hero {
+        padding-top: 4rem !important;
+        padding-bottom: 4rem !important;
+    }
+
+    
+    #hero h1 {
+        font-size: 2rem;
+    }
+
+    
+    #content-sections .container {
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+    }
+
+    
+    .card {
+        min-width: 15rem; 
+    }
+
+    
+    .card-scroll-container {
+        gap: 1rem;
+    }
+}
