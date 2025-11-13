@@ -129,3 +129,20 @@ footer a:hover {
         gap: 1rem;
     }
 }
+/* WEAPONS PAGE STYLING */
+.bg-dark {
+    background-color: #1e1e1e !important;
+    border: 1px solid #333;
+}
+
+.text-warning {
+    color: #ffd700 !important;
+}
+
+/* Specific styling for stats section */
+.performance-stats strong {
+    color: #f1f1f1;
+    display: inline-block;
+    width: 120px;
+    margin-bottom: 0.5rem;
+}
