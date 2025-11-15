@@ -3,46 +3,85 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Best Weapons - ABI Insight</title>   
+        <title>Best Weapons - ABI Insight</title>
+        
+        <!-- FAVICON - Arcade Joystick Icon (Data URI - Inline SVG) -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2032%2032'%20fill='none'%3E%3Ccircle%20cx='16'%20cy='16'%20r='16'%20fill='%2328a745'/%3E%3Cpath%20d='M7%2020%20L16%2027%20L25%2020'%20fill='none'%20stroke='white'%20stroke-width='2'%20stroke-linejoin='miter'/%3E%3Cpath%20d='M7%2020%20L13%2017'%20fill='none'%20stroke='white'%20stroke-width='2'%20stroke-linejoin='miter'/%3E%3Cpath%20d='M25%2020%20L19%2017'%20fill='none'%20stroke='white'%20stroke-width='2'%20stroke-linejoin='miter'/%3E%3Cellipse%20cx='16'%20cy='20.35'%20rx='2'%20ry='0.9'%20fill='white'%20opacity='0.95'/%3E%3Crect%20x='15.2'%20y='4'%20width='1.6'%20height='16.35'%20fill='white'/%3E%3Ccircle%20cx='16'%20cy='4'%20r='2.875'%20fill='white'/%3E%3Ccircle%20cx='16.9'%20cy='3.2'%20r='0.9'%20fill='rgba(255,255,255,0.5)'/%3E%3C/svg%3E">
 
         <!-- Bootstrap CSS v5.3.8 -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+        <!-- Custom Stylesheet -->
         <link rel="stylesheet" href="/abi-insight-final/assets/styles/style.css">
     </head>
 
     <body>
-        <header>
-            <nav class="navbar navbar-expand-lg bg-body-tertiary">
-                <div class="container-fluid">
-                    <a class="navbar-brand" href="index.html">ABI Insight</a>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="collapse navbar-collapse" id="navbarNav">
-                        <ul class="navbar-nav ms-auto">
-                            <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="index.html">HOME</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="best-weapons.html">Best Weapons</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="extraction-maps.html">Maps</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="tactical-gear.html">Best Gear</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="latest-intel.html">Intel</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="media-gallery.html">Pics&Gameplays</a>
-                            </li>
-                            </ul>
-                    </div>
+        <!-- Hidden checkbox for CSS-only menu toggle -->
+        <input type="checkbox" id="menu-toggle" class="menu-checkbox">
+
+        <!-- Navigation -->
+        <nav class="navbar navbar-dark">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="index.html">
+                    <!-- ✅ ARCADE JOYSTICK ICON - Inline SVG -->
+                    <span class="brand-icon">
+                        <svg width="24" height="24" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <!-- Green circular background -->
+                            <circle cx="16" cy="16" r="16" fill="#28a745"/>
+                            <!-- Diamond base with open top -->
+                            <path d="M7 20 L16 27 L25 20" fill="none" stroke="white" stroke-width="2" stroke-linejoin="miter"/>
+                            <path d="M7 20 L13 17" fill="none" stroke="white" stroke-width="2" stroke-linejoin="miter"/>
+                            <path d="M25 20 L19 17" fill="none" stroke="white" stroke-width="2" stroke-linejoin="miter"/>
+                            <!-- Base connector -->
+                            <ellipse cx="16" cy="20.35" rx="2" ry="0.9" fill="white" opacity="0.95"/>
+                            <!-- Pin -->
+                            <rect x="15.2" y="4" width="1.6" height="16.35" fill="white"/>
+                            <!-- Ball on top -->
+                            <circle cx="16" cy="4" r="2.875" fill="white"/>
+                            <!-- Highlight on ball -->
+                            <circle cx="16.9" cy="3.2" r="0.9" fill="rgba(255,255,255,0.5)"/>
+                        </svg>
+                    </span>
+                    ABI INSIGHT
+                </a>
+                <div class="nav-icons">
+                    <!-- Hamburger menu icon (label for checkbox) -->
+                    <label for="menu-toggle" class="btn-icon hamburger-icon" aria-label="Toggle menu">
+                        <svg width="28" height="28" fill="currentColor" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
+                        </svg>
+                    </label>
                 </div>
-            </nav>
-        </header>
+            </div>
+        </nav>
+
+        <!-- Hero Section -->
+        <section class="hero-section" style="height: 40vh;">
+            <div class="hero-content">
+                <h1 class="hero-title">BEST WEAPONS</h1>
+                <p class="hero-subtitle">ARSENAL BREAKDOWN & STATS</p>
+            </div>
+        </section>
+
+        <!-- ✅ FIXED HOME BUTTON - INVERTED COLORS (White BG, Green Joystick) -->
+        <a href="index.html" class="icon-btn-home" title="Back to Home">
+            <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <!-- White background circle -->
+                <circle cx="16" cy="16" r="16" fill="white"/>
+                <!-- Green diamond base with open top -->
+                <path d="M7 20 L16 27 L25 20" fill="none" stroke="#28a745" stroke-width="2" stroke-linejoin="miter"/>
+                <path d="M7 20 L13 17" fill="none" stroke="#28a745" stroke-width="2" stroke-linejoin="miter"/>
+                <path d="M25 20 L19 17" fill="none" stroke="#28a745" stroke-width="2" stroke-linejoin="miter"/>
+                <!-- Green base connector -->
+                <ellipse cx="16" cy="20.35" rx="2" ry="0.9" fill="#28a745" opacity="0.95"/>
+                <!-- Green pin -->
+                <rect x="15.2" y="4" width="1.6" height="16.35" fill="#28a745"/>
+                <!-- Green ball -->
+                <circle cx="16" cy="4" r="2.875" fill="#28a745"/>
+                <!-- White highlight -->
+                <circle cx="16.9" cy="3.2" r="0.9" fill="rgba(255,255,255,0.4)"/>
+            </svg>
+        </a>
+
 
         <main>
             <div class="container py-5">
@@ -569,6 +608,26 @@
                     <hr class="text-secondary">
                 </div>
             </section>
+
+            <!-- Menu Overlay (clicking closes menu via label) -->
+            <label for="menu-toggle" class="menu-overlay" id="menu-overlay"></label>
+            
+            <!-- Mobile Menu -->
+            <div class="mobile-menu" id="mobile-menu">
+                <div class="mobile-menu-header">
+                    <div class="mobile-menu-title">MENU</div>
+                    <!-- Close button as label for checkbox -->
+                    <label for="menu-toggle" class="mobile-menu-close">×</label>
+                </div>
+                <nav class="mobile-menu-nav">
+                    <a href="index.html" class="active">Home</a>
+                    <a href="best-weapons.html">Best Weapons</a>
+                    <a href="tactical-gear.html">Tactical Gear</a>
+                    <a href="extraction-maps.html">Extraction Maps</a>
+                    <a href="latest-intel.html">Latest Intel</a>
+                    <a href="media-gallery.html">Media Gallery</a>
+                </nav>
+            </div>
         </main>
         <footer class="bg-dark text-white text-center py-3 mt-5">
             <div class="container">
