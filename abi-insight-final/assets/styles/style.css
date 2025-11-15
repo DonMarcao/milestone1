@@ -229,3 +229,82 @@ article.bg-dark {
 #gallery-grid .border-warning {
     border: 1px solid #ffd700 !important; /* Borda dourada para destaque */
 }
+/* Estrutura da Grid */
+.video-gallery-grid {
+    /* Exemplo usando CSS Grid */
+    display: grid;
+    /* 3 Colunas na maioria dos tamanhos */
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px; /* Espaço entre os vídeos */
+    padding: 20px;
+}
+
+/* Responsividade (Ajuste para telas menores) */
+@media (max-width: 900px) {
+    .video-gallery-grid {
+        /* 2 Colunas em tablets */
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .video-gallery-grid {
+        /* 1 Coluna em celulares */
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Tornando o iFrame Responsivo (Regra essencial!) */
+.video-responsive {
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 Aspect Ratio (9/16 * 100) */
+    height: 0;
+    overflow: hidden;
+    width: 100%;
+}
+
+.video-responsive iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+}/* 1. The dark background/overlay */
+.lightbox-overlay {
+    position: fixed; /* Fixes the element to the viewport */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9); /* Semi-transparent black background */
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    z-index: 1000; /* Ensures it sits above all other content */
+}
+
+/* 2. The inner content wrapper */
+.lightbox-content-wrapper {
+    position: relative;
+    max-width: 90%;
+    max-height: 90%;
+}
+
+/* 3. The close button (X) */
+.lightbox-close-btn {
+    position: absolute;
+    top: -30px; /* Positioned above the content wrapper */
+    right: 0px; 
+    color: #fff;
+    background: none;
+    border: none;
+    font-size: 3rem;
+    cursor: pointer;
+    line-height: 1;
+}
+
+/* 4. The media container (where the image/video will appear) */
+.lightbox-media-container {
+    text-align: center;
+}
