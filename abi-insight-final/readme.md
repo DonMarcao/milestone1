@@ -90,3 +90,11 @@ media-gallery.html : Document checking completed. No errors or warnings to show.
 latest-intel.html : Document checking completed. No errors or warnings to show.
 
 tactical-gear.html : Document checking completed. No errors or warnings to show.
+
+style.css : Document checking completed. no errors found.
+    Warnings:
+    line 226 "Some "background-color" and "border-color" properties
+    243 The -webkit-overflow-scrolling property is an unknown proprietary property
+    246 ::-webkit-scrollbar is not recognized as a valid proprietary pseudo-element
+    250 ::-webkit-scrollbar-track is not recognized as a valid proprietary pseudo-element
+    255 ::-webkit-scrollbar-thumb is not recognized as a valid proprietary pseudo-element"""
