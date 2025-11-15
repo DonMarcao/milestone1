@@ -1,79 +1,103 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Meta tags for character encoding and responsive design -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Page title displayed in browser tab -->
     <title>Media Gallery - ABI Insight</title>
     
-    <!-- ✅ FAVICON - Arcade Joystick Icon (Data URI - Inline SVG) -->
+    <!-- Favicon: Custom arcade joystick icon using inline SVG data URI -->
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2032%2032'%20fill='none'%3E%3Ccircle%20cx='16'%20cy='16'%20r='16'%20fill='%2328a745'/%3E%3Cpath%20d='M7%2020%20L16%2027%20L25%2020'%20fill='none'%20stroke='white'%20stroke-width='2'%20stroke-linejoin='miter'/%3E%3Cpath%20d='M7%2020%20L13%2017'%20fill='none'%20stroke='white'%20stroke-width='2'%20stroke-linejoin='miter'/%3E%3Cpath%20d='M25%2020%20L19%2017'%20fill='none'%20stroke='white'%20stroke-width='2'%20stroke-linejoin='miter'/%3E%3Cellipse%20cx='16'%20cy='20.35'%20rx='2'%20ry='0.9'%20fill='white'%20opacity='0.95'/%3E%3Crect%20x='15.2'%20y='4'%20width='1.6'%20height='16.35'%20fill='white'/%3E%3Ccircle%20cx='16'%20cy='4'%20r='2.875'%20fill='white'/%3E%3Ccircle%20cx='16.9'%20cy='3.2'%20r='0.9'%20fill='rgba(255,255,255,0.5)'/%3E%3C/svg%3E">
     
+    <!-- External CSS: Bootstrap 5.3.0 framework for responsive grid and components -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Custom CSS: Main stylesheet for site-specific styling -->
     <link rel="stylesheet" href="assets/styles/style.css">
+    
+    <!-- ========================================
+         PAGE-SPECIFIC INTERNAL CSS STYLES
+         Custom styling for media gallery with lightbox functionality
+         ======================================== -->
     <style>
+        /* ===== GALLERY SECTION ===== */
+        /* Main container for gallery section */
         .gallery-section {
             padding: 3rem 1rem;
             border-bottom: 1px solid #2a2a2a;
         }
 
+        /* ===== GALLERY GRID ===== */
+        /* Responsive CSS Grid layout for gallery items */
         .gallery-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); /* Auto-fill creates responsive columns */
             gap: 1.5rem;
             margin: 2rem 0;
         }
 
+        /* ===== GALLERY ITEM ===== */
+        /* Individual gallery item (image or video thumbnail) */
         .gallery-item {
-            position: relative;
-            aspect-ratio: 16 / 9;
+            position: relative; /* Required for absolute positioning of child elements */
+            aspect-ratio: 16 / 9; /* Maintains 16:9 video aspect ratio */
             background: linear-gradient(135deg, #2a2a2a 0%, #1f1f1f 100%);
             border-radius: 8px;
-            overflow: hidden;
-            cursor: pointer;
-            transition: all 0.3s ease;
+            overflow: hidden; /* Clips content to border radius */
+            cursor: pointer; /* Indicates clickable element */
+            transition: all 0.3s ease; /* Smooth transition for all properties */
             border: 2px solid #2a2a2a;
         }
 
+        /* Gallery item hover effect */
         .gallery-item:hover {
-            transform: translateY(-5px);
-            border-color: #28a745;
-            box-shadow: 0 8px 25px rgba(40, 167, 69, 0.3);
+            transform: translateY(-5px); /* Lift effect on hover */
+            border-color: #28a745; /* Green border on hover */
+            box-shadow: 0 8px 25px rgba(40, 167, 69, 0.3); /* Green glow shadow */
         }
 
+        /* Gallery item image container */
         .gallery-item-image {
             width: 100%;
             height: 100%;
-            object-fit: cover;
+            object-fit: cover; /* Maintains aspect ratio while filling container */
             background: linear-gradient(135deg, #2a2a2a 0%, #3a3a3a 100%);
             display: flex;
             align-items: center;
             justify-content: center;
         }
 
+        /* Placeholder icon for gallery items without images */
         .gallery-item-placeholder {
             font-size: 4rem;
-            opacity: 0.3;
+            opacity: 0.3; /* Semi-transparent placeholder */
         }
 
+        /* ===== GALLERY ITEM OVERLAY ===== */
+        /* Information overlay that appears on hover */
         .gallery-item-overlay {
-            position: absolute;
+            position: absolute; /* Positioned absolutely within gallery-item */
             top: 0;
             left: 0;
             right: 0;
             bottom: 0;
-            background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, transparent 50%);
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, transparent 50%); /* Gradient fade from bottom */
             display: flex;
             flex-direction: column;
-            justify-content: flex-end;
+            justify-content: flex-end; /* Align content to bottom */
             padding: 1rem;
-            opacity: 0;
-            transition: opacity 0.3s ease;
+            opacity: 0; /* Hidden by default */
+            transition: opacity 0.3s ease; /* Smooth fade transition */
         }
 
+        /* Show overlay on hover */
         .gallery-item:hover .gallery-item-overlay {
-            opacity: 1;
+            opacity: 1; /* Fully visible on hover */
         }
 
+        /* Gallery item title in overlay */
         .gallery-item-title {
             color: #ffffff;
             font-size: 0.9rem;
@@ -82,22 +106,25 @@
             margin-bottom: 0.3rem;
         }
 
+        /* Gallery item type/category label */
         .gallery-item-type {
-            color: #28a745;
+            color: #28a745; /* Green accent */
             font-size: 0.75rem;
             text-transform: uppercase;
             font-weight: 600;
         }
 
+        /* ===== PLAY ICON ===== */
+        /* Play button icon for video items */
         .play-icon {
             position: absolute;
             top: 50%;
             left: 50%;
-            transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%); /* Center positioning */
             width: 60px;
             height: 60px;
-            background: rgba(40, 167, 69, 0.9);
-            border-radius: 50%;
+            background: rgba(40, 167, 69, 0.9); /* Semi-transparent green */
+            border-radius: 50%; /* Circular shape */
             display: flex;
             align-items: center;
             justify-content: center;
@@ -106,46 +133,52 @@
             transition: all 0.3s ease;
         }
 
+        /* Play icon hover effect */
         .gallery-item:hover .play-icon {
-            background: rgba(40, 167, 69, 1);
-            transform: translate(-50%, -50%) scale(1.1);
+            background: rgba(40, 167, 69, 1); /* Fully opaque on hover */
+            transform: translate(-50%, -50%) scale(1.1); /* Slightly larger on hover */
         }
 
-        /* Lightbox Styles */
+        /* ===== LIGHTBOX MODAL ===== */
+        /* Full-screen overlay for viewing images/videos */
         .lightbox {
-            display: none;
-            position: fixed;
+            display: none; /* Hidden by default */
+            position: fixed; /* Fixed positioning for overlay */
             top: 0;
             left: 0;
             right: 0;
             bottom: 0;
-            background: rgba(0, 0, 0, 0.95);
-            z-index: 9999;
+            background: rgba(0, 0, 0, 0.95); /* Almost black overlay */
+            z-index: 9999; /* Highest z-index to appear above all content */
             align-items: center;
             justify-content: center;
             padding: 2rem;
         }
 
+        /* Active state for lightbox (controlled by JavaScript) */
         .lightbox.active {
-            display: flex;
+            display: flex; /* Show as flexbox when active */
         }
 
+        /* Lightbox content container */
         .lightbox-content {
-            max-width: 90%;
-            max-height: 90%;
+            max-width: 90%; /* Responsive width */
+            max-height: 90%; /* Responsive height */
             position: relative;
         }
 
+        /* Media (image or video) inside lightbox */
         .lightbox-media {
             max-width: 100%;
-            max-height: 85vh;
+            max-height: 85vh; /* Maximum 85% of viewport height */
             border-radius: 8px;
-            box-shadow: 0 8px 40px rgba(40, 167, 69, 0.3);
+            box-shadow: 0 8px 40px rgba(40, 167, 69, 0.3); /* Green glow effect */
         }
 
+        /* Lightbox close button */
         .lightbox-close {
             position: absolute;
-            top: -40px;
+            top: -40px; /* Positioned above content */
             right: 0;
             background: transparent;
             border: none;
@@ -160,81 +193,96 @@
             transition: all 0.3s ease;
         }
 
+        /* Close button hover effect */
         .lightbox-close:hover {
-            color: #28a745;
-            transform: rotate(90deg);
+            color: #28a745; /* Green on hover */
+            transform: rotate(90deg); /* Rotate animation */
         }
 
+        /* Lightbox title displayed below media */
         .lightbox-title {
             position: absolute;
-            bottom: -50px;
+            bottom: -50px; /* Positioned below content */
             left: 0;
-            right: 0;
             color: #ffffff;
-            text-align: center;
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             font-weight: 700;
             text-transform: uppercase;
         }
 
+        /* ===== RESPONSIVE DESIGN ===== */
+        /* Tablet breakpoint (768px and above) */
         @media (min-width: 768px) {
             .gallery-section {
-                padding: 3rem 2rem;
+                padding: 3rem 2rem; /* Increased horizontal padding */
             }
 
             .gallery-grid {
-                grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+                grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); /* Larger minimum column width */
             }
         }
 
+        /* Desktop breakpoint (1024px and above) */
         @media (min-width: 1024px) {
             .gallery-section {
-                padding: 4rem;
+                padding: 4rem; /* Maximum padding for large screens */
             }
 
             .gallery-grid {
-                grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+                grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); /* Even larger columns */
             }
         }
     </style>
 </head>
 <body>
+    <!-- ========================================
+         TOP DISCLAIMER BANNER
+         Fixed banner at top of page for educational disclaimer
+         ======================================== -->
     <div class="top-disclaimer-banner">
         <p>
             <span class="warning-icon">⚠️</span> 
-            THIS IS A SCHOOL PROJECT UTILIZING THIRD-PARTY GAME IMAGES AND VIDEOS FOR SKILL/PURPOSES ONLY, WITH FAN MADE DESIGN. IT IS INTENDED USE ON GITHUB ONLY.<span class="warning-icon">⚠️</span>
+            THIS IS A SCHOOL PROJECT UTILIZING THIRD-PARTY GAME IMAGES AND VIDEOS FOR SKILL/PURPOSES ONLY, WITH FAN MADE DESIGN. IT IS INTENDED USE ON GITHUB ONLY.
+            <span class="warning-icon">⚠️</span>
         </p>
     </div>
-    <!-- Hidden checkbox for CSS-only menu toggle -->
+    
+    <!-- Hidden checkbox for CSS-only mobile menu toggle (no JavaScript required) -->
     <input type="checkbox" id="menu-toggle" class="menu-checkbox">
 
-    <!-- Navigation -->
+    <!-- ========================================
+         NAVIGATION BAR
+         Responsive navbar with logo and hamburger menu
+         ======================================== -->
     <nav class="navbar navbar-dark">
         <div class="container-fluid">
+            <!-- Brand logo with custom arcade joystick icon -->
             <a class="navbar-brand" href="index.html">
-                <!-- ✅ ARCADE JOYSTICK ICON - Inline SVG -->
+                <!-- Inline SVG for brand icon (arcade joystick design) -->
                 <span class="brand-icon">
                     <svg width="24" height="24" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <!-- Green circular background -->
                         <circle cx="16" cy="16" r="16" fill="#28a745"/>
-                        <!-- Diamond base with open top -->
+                        <!-- Diamond base with open top (3 sides) -->
                         <path d="M7 20 L16 27 L25 20" fill="none" stroke="white" stroke-width="2" stroke-linejoin="miter"/>
                         <path d="M7 20 L13 17" fill="none" stroke="white" stroke-width="2" stroke-linejoin="miter"/>
                         <path d="M25 20 L19 17" fill="none" stroke="white" stroke-width="2" stroke-linejoin="miter"/>
                         <!-- Base connector -->
                         <ellipse cx="16" cy="20.35" rx="2" ry="0.9" fill="white" opacity="0.95"/>
-                        <!-- Pin -->
+                        <!-- Joystick pin -->
                         <rect x="15.2" y="4" width="1.6" height="16.35" fill="white"/>
                         <!-- Ball on top -->
                         <circle cx="16" cy="4" r="2.875" fill="white"/>
-                        <!-- Highlight on ball -->
+                        <!-- Highlight reflection on ball -->
                         <circle cx="16.9" cy="3.2" r="0.9" fill="rgba(255,255,255,0.5)"/>
                     </svg>
                 </span>
                 ABI INSIGHT
             </a>
+            
+            <!-- Navigation icons container -->
             <div class="nav-icons">
-                <!-- Hamburger menu icon (label for checkbox) -->
+                <!-- Hamburger menu icon (label triggers hidden checkbox for menu toggle) -->
                 <label for="menu-toggle" class="btn-icon hamburger-icon" aria-label="Toggle menu">
                     <svg width="28" height="28" fill="currentColor" viewBox="0 0 16 16">
                         <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
@@ -244,124 +292,133 @@
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section class="hero-section" style="height: 40vh;">
+    <!-- ========================================
+         PAGE HERO SECTION
+         Introduction banner for Media Gallery page
+         ======================================== -->
+    <section class="hero-section" style="height: 30vh;">
+        <!-- Background video with tactical shooter gameplay -->
         <video class="hero-video" autoplay muted loop playsinline poster="assets/media/images/gallery/abi-poster.jpg">
             <source src="assets/media/video/abi-video.webm" type="video/webm">
             Your browser does not support the video tag.
         </video>
+        
+        <!-- Hero content overlay -->
         <div class="hero-content">
             <h1 class="hero-title">MEDIA GALLERY</h1>
-            <p class="hero-subtitle">BEST GAMEPLAYS & HIGHLIGHTS</p>
+            <p class="hero-subtitle">EPIC MOMENTS</p>
         </div>
     </section>
 
-    <!-- ✅ FIXED HOME BUTTON - INVERTED COLORS (White BG, Green Joystick) -->
-    <a href="index.html" class="icon-btn-home" title="Back to Home">
-        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <!-- White background circle -->
-            <circle cx="16" cy="16" r="16" fill="white"/>
-            <!-- Green diamond base with open top -->
-            <path d="M7 20 L16 27 L25 20" fill="none" stroke="#28a745" stroke-width="2" stroke-linejoin="miter"/>
-            <path d="M7 20 L13 17" fill="none" stroke="#28a745" stroke-width="2" stroke-linejoin="miter"/>
-            <path d="M25 20 L19 17" fill="none" stroke="#28a745" stroke-width="2" stroke-linejoin="miter"/>
-            <!-- Green base connector -->
-            <ellipse cx="16" cy="20.35" rx="2" ry="0.9" fill="#28a745" opacity="0.95"/>
-            <!-- Green pin -->
-            <rect x="15.2" y="4" width="1.6" height="16.35" fill="#28a745"/>
-            <!-- Green ball -->
-            <circle cx="16" cy="4" r="2.875" fill="#28a745"/>
-            <!-- White highlight -->
-            <circle cx="16.9" cy="3.2" r="0.9" fill="rgba(255,255,255,0.4)"/>
-        </svg>
-    </a>
-
-    <!-- Video Gallery -->
+    <!-- ========================================
+         VIDEO GALLERY SECTION
+         Grid of video thumbnails with lightbox functionality
+         ======================================== -->
     <section class="gallery-section">
-        <h2 class="section-title">VIDEO GALLERY</h2>
+        <h2 class="section-title">Video Gallery</h2>
+        
+        <!-- Responsive grid container for video items -->
         <div class="gallery-grid">
-            <div class="gallery-item" onclick="openLightbox('video', 'Epic 1v5 Clutch', 'assets/media/video/abi-video.webm')">
+            
+            <!-- Video Item 1: Epic Gameplay -->
+            <!-- onclick triggers JavaScript function to open lightbox -->
+            <div class="gallery-item" onclick="openLightbox('video', 'Epic Gameplay Highlight', 'assets/media/video/abi-video.webm')">
                 <div class="gallery-item-image">
-                    <span class="gallery-item-placeholder">🎬</span>
+                    <span class="gallery-item-placeholder">🎮</span>
                 </div>
+                <!-- Play icon overlay for video items -->
                 <div class="play-icon">▶</div>
+                <!-- Information overlay (visible on hover) -->
                 <div class="gallery-item-overlay">
-                    <div class="gallery-item-title">Epic 1v5 Clutch</div>
-                    <div class="gallery-item-type">Gameplay Highlight</div>
+                    <div class="gallery-item-title">Epic Gameplay Highlight</div>
+                    <div class="gallery-item-type">PvP Combat</div>
                 </div>
             </div>
 
-            <div class="gallery-item" onclick="openLightbox('video', 'Farm Map Speed Run', 'assets/media/video/abi-video.webm')">
+            <!-- Video Item 2: Extraction Success -->
+            <div class="gallery-item" onclick="openLightbox('video', 'Successful Extraction', 'assets/media/video/abi-video.webm')">
                 <div class="gallery-item-image">
-                    <span class="gallery-item-placeholder">🎬</span>
+                    <span class="gallery-item-placeholder">🎮</span>
                 </div>
                 <div class="play-icon">▶</div>
                 <div class="gallery-item-overlay">
-                    <div class="gallery-item-title">Farm Map Speed Run</div>
-                    <div class="gallery-item-type">World Record Attempt</div>
+                    <div class="gallery-item-title">Successful Extraction</div>
+                    <div class="gallery-item-type">Victory</div>
                 </div>
             </div>
 
-            <div class="gallery-item" onclick="openLightbox('video', 'Legendary Loot Extraction', 'assets/media/video/abi-video.webm')">
+            <!-- Video Item 3: Squad Wipe -->
+            <div class="gallery-item" onclick="openLightbox('video', 'Squad Wipe', 'assets/media/video/abi-video.webm')">
                 <div class="gallery-item-image">
-                    <span class="gallery-item-placeholder">🎬</span>
+                    <span class="gallery-item-placeholder">🎮</span>
                 </div>
                 <div class="play-icon">▶</div>
                 <div class="gallery-item-overlay">
-                    <div class="gallery-item-title">Legendary Loot Extraction</div>
-                    <div class="gallery-item-type">Perfect Run</div>
+                    <div class="gallery-item-title">Squad Wipe</div>
+                    <div class="gallery-item-type">Team Play</div>
                 </div>
             </div>
 
-            <div class="gallery-item" onclick="openLightbox('video', 'Squad Wipe Montage', 'assets/media/video/abi-video.webm')">
+            <!-- Video Item 4: Clutch Moment -->
+            <div class="gallery-item" onclick="openLightbox('video', 'Clutch Moment', 'assets/media/video/abi-video.webm')">
                 <div class="gallery-item-image">
-                    <span class="gallery-item-placeholder">🎬</span>
+                    <span class="gallery-item-placeholder">🎮</span>
                 </div>
                 <div class="play-icon">▶</div>
                 <div class="gallery-item-overlay">
-                    <div class="gallery-item-title">Squad Wipe Montage</div>
-                    <div class="gallery-item-type">Best Plays</div>
+                    <div class="gallery-item-title">Clutch Moment</div>
+                    <div class="gallery-item-type">1v5 Victory</div>
                 </div>
             </div>
 
-            <div class="gallery-item" onclick="openLightbox('video', 'Sniper Compilation', 'assets/media/video/abi-video.webm')">
+            <!-- Video Item 5: Tactical Breach -->
+            <div class="gallery-item" onclick="openLightbox('video', 'Tactical Breach', 'assets/media/video/abi-video.webm')">
                 <div class="gallery-item-image">
-                    <span class="gallery-item-placeholder">🎬</span>
+                    <span class="gallery-item-placeholder">🎮</span>
                 </div>
                 <div class="play-icon">▶</div>
                 <div class="gallery-item-overlay">
-                    <div class="gallery-item-title">Sniper Compilation</div>
-                    <div class="gallery-item-type">Long Range Eliminations</div>
+                    <div class="gallery-item-title">Tactical Breach</div>
+                    <div class="gallery-item-type">CQB Tactics</div>
                 </div>
             </div>
 
-            <div class="gallery-item" onclick="openLightbox('video', 'Underground Bunker Raid', 'assets/media/video/abi-video.webm')">
+            <!-- Video Item 6: Long Range Snipe -->
+            <div class="gallery-item" onclick="openLightbox('video', 'Long Range Snipe', 'assets/media/video/abi-video.webm')">
                 <div class="gallery-item-image">
-                    <span class="gallery-item-placeholder">🎬</span>
+                    <span class="gallery-item-placeholder">🎮</span>
                 </div>
                 <div class="play-icon">▶</div>
                 <div class="gallery-item-overlay">
-                    <div class="gallery-item-title">Underground Bunker Raid</div>
-                    <div class="gallery-item-type">Tactical Showcase</div>
+                    <div class="gallery-item-title">Long Range Snipe</div>
+                    <div class="gallery-item-type">Precision Shot</div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Image Gallery -->
+    <!-- ========================================
+         IMAGE GALLERY SECTION
+         Grid of image thumbnails with lightbox functionality
+         ======================================== -->
     <section class="gallery-section">
-        <h2 class="section-title">IMAGE GALLERY</h2>
+        <h2 class="section-title">Screenshots Gallery</h2>
+        
+        <!-- Responsive grid container for image items -->
         <div class="gallery-grid">
-            <div class="gallery-item" onclick="openLightbox('image', 'Tactical Positioning', 'assets/media/images/gallery/abi-poster.jpg')">
+            
+            <!-- Image Item 1: Intense Firefight -->
+            <div class="gallery-item" onclick="openLightbox('image', 'Intense Firefight', 'assets/media/images/gallery/abi-poster.jpg')">
                 <div class="gallery-item-image">
                     <span class="gallery-item-placeholder">📸</span>
                 </div>
                 <div class="gallery-item-overlay">
-                    <div class="gallery-item-title">Tactical Positioning</div>
-                    <div class="gallery-item-type">Strategy Screenshot</div>
+                    <div class="gallery-item-title">Intense Firefight</div>
+                    <div class="gallery-item-type">Combat Screenshot</div>
                 </div>
             </div>
 
+            <!-- Image Item 2: Rare Loot Find -->
             <div class="gallery-item" onclick="openLightbox('image', 'Rare Loot Find', 'assets/media/images/gallery/abi-poster.jpg')">
                 <div class="gallery-item-image">
                     <span class="gallery-item-placeholder">📸</span>
@@ -372,6 +429,7 @@
                 </div>
             </div>
 
+            <!-- Image Item 3: Squad Formation -->
             <div class="gallery-item" onclick="openLightbox('image', 'Squad Formation', 'assets/media/images/gallery/abi-poster.jpg')">
                 <div class="gallery-item-image">
                     <span class="gallery-item-placeholder">📸</span>
@@ -382,6 +440,7 @@
                 </div>
             </div>
 
+            <!-- Image Item 4: Map Overview -->
             <div class="gallery-item" onclick="openLightbox('image', 'Map Overview', 'assets/media/images/gallery/abi-poster.jpg')">
                 <div class="gallery-item-image">
                     <span class="gallery-item-placeholder">📸</span>
@@ -392,6 +451,7 @@
                 </div>
             </div>
 
+            <!-- Image Item 5: Weapon Loadout -->
             <div class="gallery-item" onclick="openLightbox('image', 'Weapon Loadout', 'assets/media/images/gallery/abi-poster.jpg')">
                 <div class="gallery-item-image">
                     <span class="gallery-item-placeholder">📸</span>
@@ -402,6 +462,7 @@
                 </div>
             </div>
 
+            <!-- Image Item 6: Extraction Success -->
             <div class="gallery-item" onclick="openLightbox('image', 'Extraction Success', 'assets/media/images/gallery/abi-poster.jpg')">
                 <div class="gallery-item-image">
                     <span class="gallery-item-placeholder">📸</span>
@@ -414,16 +475,25 @@
         </div>
     </section>
 
-    <!-- Menu Overlay (clicking closes menu via label) -->
+    <!-- ========================================
+         MOBILE MENU OVERLAY
+         Dark overlay when mobile menu is open (clicking closes menu)
+         ======================================== -->
     <label for="menu-toggle" class="menu-overlay" id="menu-overlay"></label>
     
-    <!-- Mobile Menu -->
+    <!-- ========================================
+         MOBILE MENU
+         Slide-in navigation menu for mobile devices (CSS-only toggle)
+         ======================================== -->
     <div class="mobile-menu" id="mobile-menu">
+        <!-- Menu header with title and close button -->
         <div class="mobile-menu-header">
             <div class="mobile-menu-title">MENU</div>
-            <!-- Close button as label for checkbox -->
+            <!-- Close button (label triggers checkbox to close menu) -->
             <label for="menu-toggle" class="mobile-menu-close">×</label>
         </div>
+        
+        <!-- Navigation links -->
         <nav class="mobile-menu-nav">
             <a href="index.html">Home</a>
             <a href="best-weapons.html">Best Weapons</a>
@@ -434,97 +504,153 @@
         </nav>
     </div>
 
-    <!-- Lightbox -->
+    <!-- ========================================
+         LIGHTBOX MODAL
+         Full-screen popup for viewing images and videos
+         Controlled by JavaScript functions below
+         ======================================== -->
     <div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
         <div class="lightbox-content">
+            <!-- Close button -->
             <button class="lightbox-close" onclick="closeLightbox(event)">×</button>
+            
+            <!-- Image element (hidden when displaying video) -->
             <img class="lightbox-media" id="lightbox-image" style="display: none;" alt="Lightbox content" src="about:blank">
+            
+            <!-- Video element (hidden when displaying image) -->
             <video class="lightbox-media" id="lightbox-video" controls style="display: none;">
                 <source src="about:blank" type="video/webm">
                 Your browser does not support the video tag.
             </video>
+            
+            <!-- Media title displayed below image/video -->
             <div class="lightbox-title" id="lightbox-title"></div>
         </div>
     </div>
 
-    <!-- Bootstrap JavaScript (part of Bootstrap framework) -->
+    <!-- Bootstrap JavaScript: Required for Bootstrap interactive components -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     
-    <!-- ✅ LIGHTBOX JAVASCRIPT (Required for image/video popup) -->
+    <!-- ========================================
+         LIGHTBOX JAVASCRIPT FUNCTIONALITY
+         Custom JavaScript for interactive lightbox modal
+         ======================================== -->
     <script>
+        /**
+         * Opens the lightbox modal with specified media
+         * @param {string} type - Media type ('image' or 'video')
+         * @param {string} title - Title to display for the media
+         * @param {string} src - Source URL/path for the media file
+         */
         function openLightbox(type, title, src) {
+            // Get DOM elements
             const lightbox = document.getElementById('lightbox');
             const lightboxImage = document.getElementById('lightbox-image');
             const lightboxVideo = document.getElementById('lightbox-video');
             const lightboxTitle = document.getElementById('lightbox-title');
 
+            // Set the title text
             lightboxTitle.textContent = title;
 
+            // Display appropriate media type
             if (type === 'image') {
+                // Show image, hide video
                 lightboxImage.src = src;
                 lightboxImage.style.display = 'block';
                 lightboxVideo.style.display = 'none';
-                lightboxVideo.pause();
+                lightboxVideo.pause(); // Pause video if it was playing
             } else if (type === 'video') {
+                // Show video, hide image
                 lightboxVideo.querySelector('source').src = src;
-                lightboxVideo.load();
+                lightboxVideo.load(); // Load the new video source
                 lightboxVideo.style.display = 'block';
                 lightboxImage.style.display = 'none';
             }
 
+            // Show lightbox and prevent body scrolling
             lightbox.classList.add('active');
-            document.body.style.overflow = 'hidden';
+            document.body.style.overflow = 'hidden'; // Disable scrolling when lightbox is open
         }
 
+        /**
+         * Closes the lightbox modal
+         * @param {Event} event - Click event object
+         */
         function closeLightbox(event) {
+            // Only close if clicking on overlay or close button
             if (event.target.id === 'lightbox' || event.target.classList.contains('lightbox-close')) {
                 const lightbox = document.getElementById('lightbox');
                 const lightboxVideo = document.getElementById('lightbox-video');
                 
+                // Hide lightbox and re-enable scrolling
                 lightbox.classList.remove('active');
-                lightboxVideo.pause();
-                document.body.style.overflow = '';
+                lightboxVideo.pause(); // Stop video playback
+                document.body.style.overflow = ''; // Re-enable body scrolling
             }
         }
 
-        // Close lightbox on Escape key
+        /**
+         * Keyboard event listener for Escape key
+         * Allows users to close lightbox by pressing Escape
+         */
         document.addEventListener('keydown', function(event) {
             if (event.key === 'Escape') {
                 const lightbox = document.getElementById('lightbox');
                 if (lightbox.classList.contains('active')) {
+                    // Close lightbox
                     lightbox.classList.remove('active');
                     document.getElementById('lightbox-video').pause();
-                    document.body.style.overflow = '';
+                    document.body.style.overflow = ''; // Re-enable scrolling
                 }
             }
         });
     </script>
+
+    <!-- ========================================
+         FOOTER
+         Site footer with social media links and copyright information
+         ======================================== -->
     <footer class="site-footer">
         <div class="footer-content">
+            
+            <!-- Social media icons (circular badges with hover effects) -->
             <div class="social-icons">
-                    <a href="https://discord.com/" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Discord">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M20.211 4.223A.954.954 0 0 0 19.38 4H4.62a.954.954 0 0 0-.83 4.887c.21 1.77 1.05 3.3 2.37 4.542 1.32 1.242 3.018 1.933 4.84 2.124v3.193l.02.046a.5.5 0 0 0 .82 0l.02-.046v-3.193c1.822-.191 3.52-.882 4.84-2.124 1.32-1.242 2.16-2.772 2.37-4.542a.954.954 0 0 0-.17-4.887zm-4.322 3.86a1.59 1.59 0 0 1-1.6 1.6c-.88 0-1.6-.72-1.6-1.6s.72-1.6 1.6-1.6c.88 0 1.6.72 1.6 1.6zm-8.58 0a1.59 1.59 0 0 1-1.6 1.6c-.88 0-1.6-.72-1.6-1.6s.72-1.6 1.6-1.6c.88 0 1.6.72 1.6 1.6z"/></svg>
-                    </a>
-                    <a href="https://x.com/" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="X (Twitter)">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M18.244 2.25h3.308l-7.227 8.25L21.602 22H0V20.13l7.989-8.62L0 2.25h8.34L13.88 9.42l4.364-7.17zM20.29 20h-1.89L7.747 4H9.72L20.29 20z"/></svg>
-                    </a>
-                    <a href="https://youtube.com/" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="YouTube">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M21.543 6.486c-.192-.727-.775-1.31-1.502-1.502C18.667 4 12 4 12 4s-6.667 0-8.041.984c-.727.192-1.31.775-1.502 1.502C2 7.84 2 12 2 12s0 4.16.457 5.514c.192.727.775 1.31 1.502 1.502C5.333 20 12 20 12 20s6.667 0 8.041-.984c.727-.192 1.31-.775 1.502-1.502C22 16.16 22 12 22 12s0-4.16-.457-5.514zM10 15.5V8.5l6 3.5-6 3.5z"/></svg>
-                    </a>
-                    <a href="https://twitch.com/" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Twitch">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M3.504 19.382V2.618H20.49V16.62L16.002 21H5.748L3.504 19.382zM17.027 15.77H17.035V7.23h-2.188v8.54h2.18zM12.87 15.77H12.878V7.23h-2.188v8.54h2.18z"/></svg>
-                    </a>
-                    <a href="https://instagram.com/" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Instagram">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M7.8 2h8.4C17.61 2 19 3.39 19 5.06v13.88C19 20.61 17.61 22 15.6 22H7.8C5.79 22 4.4 20.61 4.4 18.94V5.06C4.4 3.39 5.79 2 7.8 2zm10.79 4.31c.42 0 .7.28.7.7s-.28.7-.7.7h-1.4c-.42 0-.7-.28-.7-.7s.28-.7.7-.7h1.4zM12.1 8c2.2 0 4 1.8 4 4s-1.8 4-4 4-4-1.8-4-4 1.8-4 4-4zm0 6.6c1.43 0 2.6-1.17 2.6-2.6s-1.17-2.6-2.6-2.6-2.6 1.17-2.6 2.6 1.17 2.6 2.6 2.6z"/></svg>
-                    </a>
-                </div>
+                
+                <!-- Discord link -->
+                <a href="https://discord.com/" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Discord">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M20.211 4.223A.954.954 0 0 0 19.38 4H4.62a.954.954 0 0 0-.83 4.887c.21 1.77 1.05 3.3 2.37 4.542 1.32 1.242 3.018 1.933 4.84 2.124v3.193l.02.046a.5.5 0 0 0 .82 0l.02-.046v-3.193c1.822-.191 3.52-.882 4.84-2.124 1.32-1.242 2.16-2.772 2.37-4.542a.954.954 0 0 0-.17-4.887zm-4.322 3.86a1.59 1.59 0 0 1-1.6 1.6c-.88 0-1.6-.72-1.6-1.6s.72-1.6 1.6-1.6c.88 0 1.6.72 1.6 1.6zm-8.58 0a1.59 1.59 0 0 1-1.6 1.6c-.88 0-1.6-.72-1.6-1.6s.72-1.6 1.6-1.6c.88 0 1.6.72 1.6 1.6z"/></svg>
+                </a>
+                
+                <!-- X (Twitter) link -->
+                <a href="https://x.com/" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="X (Twitter)">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M18.244 2.25h3.308l-7.227 8.25L21.602 22H0V20.13l7.989-8.62L0 2.25h8.34L13.88 9.42l4.364-7.17zM20.29 20h-1.89L7.747 4H9.72L20.29 20z"/></svg>
+                </a>
+                
+                <!-- YouTube link -->
+                <a href="https://youtube.com/" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="YouTube">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M21.543 6.486c-.192-.727-.775-1.31-1.502-1.502C18.667 4 12 4 12 4s-6.667 0-8.041.984c-.727.192-1.31.775-1.502 1.502C2 7.84 2 12 2 12s0 4.16.457 5.514c.192.727.775 1.31 1.502 1.502C5.333 20 12 20 12 20s6.667 0 8.041-.984c.727-.192 1.31-.775 1.502-1.502C22 16.16 22 12 22 12s0-4.16-.457-5.514zM10 15.5V8.5l6 3.5-6 3.5z"/></svg>
+                </a>
+                
+                <!-- Twitch link -->
+                <a href="https://twitch.com/" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Twitch">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M3.504 19.382V2.618H20.49V16.62L16.002 21H5.748L3.504 19.382zM17.027 15.77H17.035V7.23h-2.188v8.54h2.18zM12.87 15.77H12.878V7.23h-2.188v8.54h2.18z"/></svg>
+                </a>
+                
+                <!-- Instagram link -->
+                <a href="https://instagram.com/" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Instagram">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M7.8 2h8.4C17.61 2 19 3.39 19 5.06v13.88C19 20.61 17.61 22 15.6 22H7.8C5.79 22 4.4 20.61 4.4 18.94V5.06C4.4 3.39 5.79 2 7.8 2zm10.79 4.31c.42 0 .7.28.7.7s-.28.7-.7.7h-1.4c-.42 0-.7-.28-.7-.7s.28-.7.7-.7h1.4zM12.1 8c2.2 0 4 1.8 4 4s-1.8 4-4 4-4-1.8-4-4 1.8-4 4-4zm0 6.6c1.43 0 2.6-1.17 2.6-2.6s-1.17-2.6-2.6-2.6-2.6 1.17-2.6 2.6 1.17 2.6 2.6 2.6z"/></svg>
+                </a>
+            </div>
 
+            <!-- Copyright and disclaimer text -->
             <div class="footer-text">
                 <p>
                     &copy; 2025 ABI INSIGHT. BY MMARCUSMACHADO ALL RIGHTS RESERVED. NOT AFFILIATED WITH TENCENT GAMES OR MOREFUN STUDIOS.
                 </p>
-                <p class="project-note"><span class="warning-icon">⚠️</span>
-                    THIS IS A SCHOOL PROJECT UTILIZING THIRD-PARTY GAME IMAGES AND VIDEOS FOR SKILL/PURPOSES ONLY<span class="warning-icon">⚠️</span> <span class="warning-icon">⚠️</span>WITH FAN MADE DESIGN. IT IS INTENDED USE ON GITHUB ONLY.<span class="warning-icon">⚠️</span>
+                <p class="project-note">
+                    <span class="warning-icon">⚠️</span>
+                    THIS IS A SCHOOL PROJECT UTILIZING THIRD-PARTY GAME IMAGES AND VIDEOS FOR SKILL/PURPOSES ONLY WITH FAN MADE DESIGN. IT IS INTENDED USE ON GITHUB ONLY.
+                    <span class="warning-icon">⚠️</span>
                 </p>
             </div>
         </div>
