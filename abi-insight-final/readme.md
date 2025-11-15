@@ -25,3 +25,56 @@ Level 5 Full Stack Web Development
 * **Safari/Mobile Simulation**: failed. Not All links and core features are working.
 
 **Conclusion**: The core project structure still needs work and favicon/icon/home button display consistently across major browsers.
+
+# 🧪 Project Testing Plan - ABI Insight
+
+## 1. Scope
+This plan covers the validation of all core features, navigation, and stylistic consistency across the ABI Insight website before final submission.
+
+## 2. Test Scenarios (Functional)
+
+| ID | Feature | Test Description | Expected Result |
+|----|---------|------------------|-----------------|
+| F-01 | **Primary Navigation** | Click all links in Navbar and Footer. | Links navigate to the correct page (`*.html`). |
+| F-02 | **Anchors** | Test all internal section links (e.g., weapon jump links). | Page scrolls smoothly to the correct `id`. |
+| F-03 | **External Links** | Test Social Media icons and any external links. | Links open correctly (preferably in a new tab). |
+| F-04 | **Mobile Menu** | Click the hamburger icon on mobile view. | Menu slides in/out correctly, covering the main content. |
+
+## 3. Test Scenarios (Non-Functional)
+
+| ID | Feature | Test Description | Expected Result |
+|----|---------|------------------|-----------------|
+| N-01 | **Responsiveness** | Resize browser window from Desktop (>1200px) down to Mobile (<576px). | Layout adapts cleanly with no horizontal scroll or element overlap. |
+| N-02 | **Stylistic Consistency** | Check all pages for standardized Headers (H2, H3) and Tier Badges. | Styles match the defined CSS (Commit 37/38). |
+| N-03 | **Favicon** | Check browser tab icon. | Favicon.svg displays correctly. |
+
+# 📊 Project Testing Log - ABI Insight Results
+
+## Date: [Current Date]
+## Tester: Marcus
+## Environment: Chrome Desktop, Firefox Mobile View
+---
+
+## 1. Functional Testing Results (F-01 to F-04)
+
+| ID   | Result | Fix Required (Y/N) | Notes      |
+|------|--------|--------------------|------------|
+| F-01 | PASS |     yes            |All navbar links work correctly. Issue: Footer links (index.html, maps.html, etc.) are currently pointing to # (placeholder) and need to be fixed to the correct path. 
+| F-02 | PASS |     yes            |Checked all weapon anchor links (#hk416-carbine) on best-weapons.html. All scroll to the correct section. other pages needs update on paths.
+| F-03 | FAIL |     yes            |external links not properly set up yet.
+| F-04 | PASS |     no             | Mobile menu toggles open and closed smoothly using the checkbox/label structure.
+
+---
+
+## 2. Non-Functional Testing Results (N-01 to N-03)
+
+| ID   | Result | Fix Required (Y/N) | Notes      |
+|------|--------|--------------------|------------|
+| N-01 | FAIL |     yes            |All screen sizes working correctly. Issue: cta button overlaping itself on mobile sizes, ultrawide sizes needs best layout adjustment.
+| N-02 | PASS |     no             |All styles are consistent with website colour pallet and standardized tags and elements.
+| N-03 | PASS |     no             |All navbar links work correctly. Issue: Footer links (index.html, maps.html, etc.) are currently pointing to # (placeholder) and need to be fixed to the correct path. 
+
+---
+
+## 3. HTML/CSS Validation (Future Commits)
+Results of W3C validation tests will be logged here.
