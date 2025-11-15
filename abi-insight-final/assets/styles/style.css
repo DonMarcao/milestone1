@@ -9,15 +9,54 @@
 * {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
+    box-sizing: border-box; /* Ensures padding and border are included in the element's total width and height */
+}
+
+/* Variable for the fixed top disclaimer height (Used to push the body content down) */
+:root {
+    --disclaimer-height: 22px; /* Ultra-compact height for mobile disclaimer banner */
 }
 
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #1a1a1a;
+    background-color: #1a1a1a; /* Dark background */
     color: #ffffff;
-    overflow-x: hidden;
+    overflow-x: hidden; /* Prevents horizontal scrolling */
+    padding-top: var(--disclaimer-height); /* CRUCIAL: Pushes content below the fixed top banner */
 }
+
+/* ============================================
+   TOP FIXED DISCLAIMER BANNER (ULTRA COMPACT)
+   ============================================ */
+
+.top-disclaimer-banner {
+    position: fixed; /* Keeps the banner visible at the top */
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #0d0d0d; /* Dark background matching the navbar */
+    color: #909090; /* Subtle gray text */
+    padding: 0.2rem 1rem; /* Compact vertical padding */
+    text-align: center;
+    z-index: 10001; /* High z-index to ensure it sits above the navbar */
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4); 
+    border-bottom: 1px solid #1f1f1f;
+}
+
+.top-disclaimer-banner p {
+    margin: 0;
+    font-size: 0.6rem; /* Very small font size */
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    line-height: 1.2;
+}
+
+.top-disclaimer-banner .warning-icon {
+    margin-right: 3px; 
+    color: #ffc107; /* Warning yellow */
+}
+
 
 /* ============================================
    NAVIGATION BAR
@@ -25,9 +64,16 @@ body {
 
 .navbar {
     background-color: #0d0d0d;
-    padding: 1rem;
+    padding: 0; /* Vertical padding is now handled by the container-fluid below */
     border-bottom: 1px solid #2a2a2a;
 }
+
+/* Restoring the original padding inside the container now that the navbar parent has 0 padding */
+.navbar .container-fluid {
+    padding: 1rem; 
+    border-bottom: 1px solid #2a2a2a; 
+}
+
 
 .navbar-brand {
     font-size: 1.2rem;
@@ -40,11 +86,11 @@ body {
 }
 
 .navbar-brand:hover .brand-icon {
-    transform: scale(1.1) rotate(5deg);
+    transform: scale(1.1) rotate(5deg); /* Hover animation for the logo icon */
 }
 
 .brand-icon {
-    color: #28a745;
+    color: #28a745; /* Primary green accent color */
     font-size: 1.5rem;
     display: inline-flex;
     align-items: center;
@@ -97,6 +143,7 @@ body {
 .hero-section {
     position: relative;
     height: 60vh;
+    /* Background with a dark linear gradient and a repeating diagonal pattern */
     background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.8)),
                 repeating-linear-gradient(45deg, #1a1a1a 0px, #1a1a1a 10px, #252525 10px, #252525 20px);
     display: flex;
@@ -118,7 +165,7 @@ body {
     height: auto;
     transform: translate(-50%, -50%);
     z-index: 0;
-    opacity: 0.5;
+    opacity: 0.5; /* Makes the video subtle */
     object-fit: cover;
 }
 
@@ -130,7 +177,7 @@ body {
     right: 0;
     bottom: 0;
     background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.6));
-    z-index: 1;
+    z-index: 1; /* Dark overlay on top of the video */
 }
 
 .hero-section::after {
@@ -140,6 +187,7 @@ body {
     left: 0;
     right: 0;
     bottom: 0;
+    /* Radial gradients for a subtle "muzzle flash" or glow effect */
     background-image:
         radial-gradient(circle at 20% 50%, rgba(255, 107, 53, 0.15) 0%, transparent 50%),
         radial-gradient(circle at 80% 50%, rgba(255, 107, 53, 0.15) 0%, transparent 50%);
@@ -147,7 +195,7 @@ body {
 }
 
 .hero-content {
-    z-index: 2;
+    z-index: 2; /* Ensures content is visible above overlays */
 }
 
 .hero-title {
@@ -155,6 +203,7 @@ body {
     font-weight: 900;
     letter-spacing: 3px;
     margin-bottom: 0.5rem;
+    /* Glow/Shadow effect using the green accent color */
     text-shadow: 0 0 20px rgba(40, 167, 69, 0.5), 2px 2px 8px rgba(0, 0, 0, 0.9);
     line-height: 1.2;
 }
@@ -207,7 +256,7 @@ body {
     text-transform: uppercase;
     color: #ffffff;
     padding-left: 0.5rem;
-    border-left: 4px solid #28a745;
+    border-left: 4px solid #28a745; /* Green accent border on the left */
 }
 
 .section-title-btn {
@@ -236,13 +285,14 @@ body {
 
 .cards-container {
     display: flex;
-    overflow-x: auto;
+    overflow-x: auto; /* Enables horizontal scrolling */
     gap: 1.2rem;
     padding-bottom: 1rem;
-    scroll-snap-type: x mandatory;
+    scroll-snap-type: x mandatory; /* Makes cards snap into place when scrolling */
     -webkit-overflow-scrolling: touch;
 }
 
+/* Custom scrollbar styling for the card container */
 .cards-container::-webkit-scrollbar {
     height: 8px;
 }
@@ -259,6 +309,7 @@ body {
 
 .card-horizontal {
     min-width: 300px;
+    /* Subtle gradient for depth */
     background: linear-gradient(145deg, #252525 0%, #1f1f1f 100%);
     border-radius: 10px;
     overflow: hidden;
@@ -286,7 +337,7 @@ body {
 }
 
 .card-image::after {
-    content: none;
+    content: none; /* Placeholder for icon/text in card image area */
     font-size: 2.5rem;
     opacity: 0.4;
     filter: drop-shadow(0 0 10px rgba(40, 167, 69, 0.3));
@@ -320,7 +371,7 @@ body {
     border-radius: 4px;
     text-transform: uppercase;
     box-shadow: 0 2px 8px rgba(40, 167, 69, 0.4);
-    animation: pulse 2s infinite;
+    animation: pulse 2s infinite; /* Animation to draw attention */
 }
 
 @keyframes pulse {
@@ -475,7 +526,7 @@ body {
     z-index: 9998;
     background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
     border: none;
-    border-radius: 0 50% 50% 0;
+    border-radius: 0 50% 50% 0; /* Creates a pill shape on the left edge */
     width: 60px;
     height: 60px;
     display: flex;
@@ -503,7 +554,7 @@ body {
    CSS-ONLY MOBILE MENU
  ============================================ */
 
-/* Hide the checkbox input completely */
+/* Hide the checkbox input completely (used for the menu toggle state) */
 .menu-checkbox {
     display: none;
     visibility: hidden;
@@ -531,22 +582,23 @@ body {
 .mobile-menu {
     position: fixed;
     top: 0;
-    right: -100%;
+    right: -100%; /* Off-screen to the right */
     width: 300px;
     height: 100vh;
     background: linear-gradient(145deg, #1a1a1a 0%, #0d0d0d 100%);
     border-left: 2px solid #28a745;
     z-index: 10000;
-    transition: right 0.3s ease;
+    transition: right 0.3s ease; /* Slide transition */
     overflow-y: auto;
     box-shadow: -5px 0 20px rgba(0, 0, 0, 0.5);
 }
 
-/* MAGIC: When checkbox is checked, show menu and overlay */
+/* MAGIC: When checkbox is checked, slide menu into view */
 .menu-checkbox:checked ~ .mobile-menu {
     right: 0;
 }
 
+/* MAGIC: When checkbox is checked, show overlay */
 .menu-checkbox:checked ~ .menu-overlay {
     opacity: 1;
     visibility: visible;
@@ -630,10 +682,115 @@ body:has(.menu-checkbox:checked) .menu-overlay {
 }
 
 /* ============================================
+   FOOTER STYLES (ULTRA COMPACT)
+   ============================================ */
+
+.site-footer {
+    /* Reduced vertical padding for a compact footer */
+    background-color: #0d0d0d; 
+    padding: 1.5rem 1rem 0.8rem; 
+    border-top: 1px solid #2a2a2a;
+    text-align: center;
+    position: relative; 
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.8rem; /* Reduced gap between elements (icons and text) */
+}
+
+/* Social Icons */
+.social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.social-link {
+    width: 45px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(145deg, #1f1f1f 0%, #0d0d0d 100%);
+    border: 2px solid #2a2a2a;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.social-link::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at center, rgba(40, 167, 69, 0.3) 0%, transparent 70%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.social-link:hover::before {
+    opacity: 1;
+}
+
+.social-link:hover {
+    border-color: #28a745;
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 8px 20px rgba(40, 167, 69, 0.3);
+}
+
+.social-link svg {
+    width: 20px;
+    height: 20px;
+    fill: #28a745;
+    filter: drop-shadow(0 0 2px rgba(40, 167, 69, 0.5));
+    transition: all 0.3s ease;
+    position: relative;
+    z-index: 1;
+}
+
+.social-link:hover svg {
+    fill: #34ce57;
+    filter: drop-shadow(0 0 8px rgba(40, 167, 69, 0.8));
+    transform: scale(1.1);
+}
+
+/* Copyright and Disclaimer Text */
+.footer-text {
+    font-size: 0.65rem; /* Small font size */
+    color: #b0b0b0; 
+    line-height: 1.3; /* Tighter line spacing */
+    max-width: 600px;
+}
+
+.footer-text p {
+    margin-bottom: 0.2rem; /* Reduced space between text paragraphs */
+}
+
+.footer-text .project-note {
+    color: #888888;
+    font-style: italic;
+    font-size: 0.6rem; /* Minimal font size for project note */
+}
+
+
+/* ============================================
    TABLET RESPONSIVE (768px+)
    ============================================ */
 
 @media (min-width: 768px) {
+    /* Adjusted disclaimer height for tablet/desktop */
+    :root {
+        --disclaimer-height: 26px;
+    }
     .hero-title {
         font-size: 3.5rem;
     }
@@ -672,6 +829,22 @@ body:has(.menu-checkbox:checked) .menu-overlay {
 
     .card-image-vertical::after {
         font-size: 2.5rem;
+    }
+
+    /* Footer adjustments for tablet */
+    .site-footer {
+        padding: 2.5rem 2rem 1rem; 
+    }
+    .footer-content {
+        gap: 1rem;
+    }
+    .social-link {
+        width: 50px;
+        height: 50px;
+    }
+    .social-link svg {
+        width: 22px; 
+        height: 22px;
     }
 }
 
