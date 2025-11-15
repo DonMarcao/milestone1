@@ -297,7 +297,7 @@ body {
 }
 
 .map-image::after {
-    content: '🗺️';
+    content: none;
 }
 
 .gear-image {
