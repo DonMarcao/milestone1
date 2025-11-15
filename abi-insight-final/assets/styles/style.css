@@ -215,3 +215,17 @@ article.bg-dark {
     color: #f1f1f1;
     font-size: 0.95rem;
 }
+/* GALLERY PAGE STYLING */
+#gallery-grid .card {
+    background-color: #1e1e1e !important;
+    transition: transform 0.3s ease-in-out;
+}
+
+#gallery-grid .card:hover {
+    transform: translateY(-5px); /* Efeito de elevação ao passar o mouse */
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.4);
+}
+
+#gallery-grid .border-warning {
+    border: 1px solid #ffd700 !important; /* Borda dourada para destaque */
+}
