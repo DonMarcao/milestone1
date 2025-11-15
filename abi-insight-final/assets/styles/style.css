@@ -419,7 +419,7 @@ body {
 }
 
 .card-image-vertical::after {
-    content: '📰';
+    content: none;
     font-size: 2rem;
     opacity: 0.4;
 }
