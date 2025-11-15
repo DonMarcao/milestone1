@@ -12,6 +12,197 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
         <!-- Custom Stylesheet -->
         <link rel="stylesheet" href="/abi-insight-final/assets/styles/style.css">
+        <style>
+            .weapon-detail-section {
+                padding: 3rem 1rem;
+                border-bottom: 1px solid #2a2a2a;
+            }
+
+            .weapon-header {
+                display: flex;
+                align-items: center;
+                gap: 1.5rem;
+                margin-bottom: 2rem;
+                flex-wrap: wrap;
+            }
+
+            .weapon-icon {
+                width: 100px;
+                height: 100px;
+                background: linear-gradient(135deg, #2a2a2a 0%, #3a3a3a 100%);
+                border-radius: 10px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 3rem;
+                border: 2px solid #28a745;
+            }
+
+            .weapon-title-block h2 {
+                font-size: 2rem;
+                font-weight: 800;
+                margin-bottom: 0.5rem;
+                color: #ffffff;
+                text-transform: uppercase;
+                letter-spacing: 2px;
+            }
+
+            .weapon-category {
+                color: #28a745;
+                font-size: 0.9rem;
+                text-transform: uppercase;
+                letter-spacing: 1.5px;
+                font-weight: 600;
+            }
+
+            .stats-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                gap: 1.5rem;
+                margin: 2rem 0;
+            }
+
+            .stat-card {
+                background: linear-gradient(145deg, #252525 0%, #1f1f1f 100%);
+                padding: 1.5rem;
+                border-radius: 8px;
+                border: 1px solid #2a2a2a;
+                transition: all 0.3s ease;
+            }
+
+            .stat-card:hover {
+                border-color: #28a745;
+                box-shadow: 0 4px 15px rgba(40, 167, 69, 0.2);
+            }
+
+            .stat-label {
+                color: #b0b0b0;
+                font-size: 0.85rem;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+                margin-bottom: 0.5rem;
+                font-weight: 600;
+            }
+
+            .stat-value {
+                color: #ffffff;
+                font-size: 1.5rem;
+                font-weight: 700;
+            }
+
+            .stat-bar {
+                height: 8px;
+                background: #2a2a2a;
+                border-radius: 4px;
+                margin-top: 0.5rem;
+                overflow: hidden;
+            }
+
+            .stat-bar-fill {
+                height: 100%;
+                background: linear-gradient(90deg, #28a745 0%, #34ce57 100%);
+                border-radius: 4px;
+                transition: width 0.5s ease;
+            }
+
+            .weapon-description {
+                background: linear-gradient(145deg, #1a1a1a 0%, #252525 100%);
+                padding: 1.5rem;
+                border-radius: 8px;
+                border-left: 4px solid #28a745;
+                margin: 1.5rem 0;
+            }
+
+            .weapon-description p {
+                color: #d0d0d0;
+                line-height: 1.8;
+                margin: 0;
+            }
+
+            .specs-list {
+                list-style: none;
+                padding: 0;
+                margin: 1.5rem 0;
+            }
+
+            .specs-list li {
+                padding: 0.8rem 0;
+                border-bottom: 1px solid #2a2a2a;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+
+            .specs-list li:last-child {
+                border-bottom: none;
+            }
+
+            .spec-name {
+                color: #b0b0b0;
+                font-weight: 600;
+                text-transform: uppercase;
+                font-size: 0.85rem;
+                letter-spacing: 1px;
+            }
+
+            .spec-value {
+                color: #ffffff;
+                font-weight: 700;
+                font-size: 0.95rem;
+            }
+
+            .attachments-section {
+                margin-top: 2rem;
+            }
+
+            .attachment-card {
+                background: linear-gradient(145deg, #252525 0%, #1f1f1f 100%);
+                padding: 1rem;
+                border-radius: 6px;
+                border: 1px solid #2a2a2a;
+                margin-bottom: 1rem;
+            }
+
+            .attachment-card h4 {
+                color: #28a745;
+                font-size: 0.9rem;
+                text-transform: uppercase;
+                margin-bottom: 0.5rem;
+                font-weight: 700;
+            }
+
+            .attachment-card p {
+                color: #b0b0b0;
+                font-size: 0.85rem;
+                margin: 0;
+            }
+
+            @media (min-width: 768px) {
+                .weapon-detail-section {
+                    padding: 3rem 2rem;
+                }
+
+                .weapon-icon {
+                    width: 120px;
+                    height: 120px;
+                    font-size: 4rem;
+                }
+
+                .weapon-title-block h2 {
+                    font-size: 2.5rem;
+                }
+            }
+
+            @media (min-width: 1024px) {
+                .weapon-detail-section {
+                    padding: 4rem;
+                }
+
+                .stats-grid {
+                    grid-template-columns: repeat(3, 1fr);
+                }
+            }
+        </style>
     </head>
 
     <body>
