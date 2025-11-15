@@ -202,3 +202,16 @@ hr.text-secondary {
 .extraction-list .text-info { color: #17a2b8 !important; }
 .extraction-list .text-danger { color: #dc3545 !important; }
 .extraction-list .text-warning { color: #ffc107 !important; }
+
+/* INTEL PAGE STYLING (General Article Look) */
+article.bg-dark {
+    border-left: 5px solid #ffd700; /* Linha amarela para destaque */
+    background-color: #1e1e1e !important;
+}
+
+.intel-list .list-group-item {
+    border-color: #333 !important;
+    background-color: transparent !important;
+    color: #f1f1f1;
+    font-size: 0.95rem;
+}
