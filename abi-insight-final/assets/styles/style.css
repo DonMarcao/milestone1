@@ -1,310 +1,81 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+// LIGHTBOX FUNCTIONALITY (COMMIT 35)
+
+// 1. Get references to necessary DOM elements
+const lightbox = document.getElementById('mediaLightbox');
+const closeButton = lightbox.querySelector('.lightbox-close-btn');
+const mediaContainer = lightbox.querySelector('.lightbox-media-container');
+// We use the entire body/document to listen for clicks since the items are in separate grids
+const galleryElements = document.querySelectorAll('.js-gallery-item');
+
+
+// Function to reset the lightbox content and close it
+function closeLightbox() {
+    lightbox.style.display = 'none';
+    // Clear the media container content
+    mediaContainer.innerHTML = ''; 
 }
 
-body {
-    
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
-    background-color: #121212; 
-    color: #f1f1f1; 
-}
+// Function to handle opening and loading media
+function openLightbox(mediaUrl, mediaType) {
+    // Clear previous content
+    mediaContainer.innerHTML = '';
 
-/* NAVBAR ADJUSTMENTS (Bootstrap override) */
-.navbar {
-    background-color: #1e1e1e !important; 
-    border-bottom: 1px solid #333; 
-}
-.navbar-brand, .nav-link {
-    color: #f1f1f1 !important;
-}
+    let mediaElement;
 
-/* HERO SECTION STYLING (Bootstrap override) */
-#hero {
-    background-color: #212529 !important; 
-    padding-top: 6rem !important;
-    padding-bottom: 6rem !important;
-}
-
-.btn-primary {
-    background-color: #007bff;
-    border-color: #007bff;
-    transition: background-color 0.3s ease;
-}
-
-.btn-primary:hover {
-    background-color: #0056b3;
-    border-color: #0056b3;
-}
-/* CONTENT SECTIONS STYLING */
-#content-sections {
-    background-color: #0d0d0d; /* Fundo levemente mais escuro para profundidade */
-}
-
-#content-sections h2 {
-    color: #ffd700; /* Destaque com cor dourada ou amarela (pode ser ajustado) */
-    font-weight: 700;
-    margin-top: 2rem;
-    padding-bottom: 0.5rem;
-    border-bottom: 2px solid #333;
-}
-/* CARD SYSTEM STYLING */
-.card-scroll-container {
-    display: flex;
-    overflow-x: scroll; 
-    padding-bottom: 1rem; 
-    gap: 1.5rem; 
-    -webkit-overflow-scrolling: touch; 
-    scrollbar-width: none; 
-}
-
-.card-scroll-container::-webkit-scrollbar {
-    display: none; 
-}
-
-/* Base Card Styling */
-.card {
-    min-width: 20rem; 
-    border: 1px solid #444;
-    background-color: #1e1e1e; 
-    color: #f1f1f1;
-    flex-shrink: 0; 
-}
-
-.card-title {
-    color: #ffd700; 
-    font-weight: 600;
-}
-
-.btn-outline-warning {
-    color: #ffd700;
-    border-color: #ffd700;
-}
-
-.btn-outline-warning:hover {
-    background-color: #ffd700;
-    color: #1e1e1e;
-}
-/* FOOTER STYLING */
-footer {
-    background-color: #1e1e1e !important;
-    border-top: 1px solid #333;
-    font-size: 0.8rem;
-}
-
-footer a {
-    color: #ffd700 !important;
-}
-
-footer a:hover {
-    color: #fff !important;
-}
-/* RESPONSIVE STYLING (Mobile-First Adjustments) */
-@media (max-width: 991.98px) {
+    if (mediaType === 'image') {
+        mediaElement = document.createElement('img');
+        mediaElement.src = mediaUrl;
+        mediaElement.className = 'lightbox-media-content';
+        mediaElement.style.maxWidth = '100%'; // Ensures large images fit the modal
+        mediaElement.style.maxHeight = '80vh';
+    } else if (mediaType === 'video') {
+        // Creates a responsive iframe wrapper for YouTube/Vimeo embeds
+        const videoWrapper = document.createElement('div');
+        videoWrapper.className = 'video-responsive'; 
+        videoWrapper.style.maxWidth = '900px'; // Limit max video size inside modal
+        videoWrapper.style.margin = '0 auto';
         
-    #hero {
-        padding-top: 4rem !important;
-        padding-bottom: 4rem !important;
+        mediaElement = document.createElement('iframe');
+        mediaElement.src = mediaUrl + '?autoplay=1'; // Add autoplay parameter
+        mediaElement.title = "Media Content";
+        mediaElement.frameBorder = '0';
+        mediaElement.allow = 'autoplay; fullscreen; picture-in-picture';
+        mediaElement.allowFullscreen = true;
+        
+        videoWrapper.appendChild(mediaElement);
+        mediaElement = videoWrapper; // The actual element inserted is the responsive wrapper
     }
 
+    if (mediaElement) {
+        mediaContainer.appendChild(mediaElement);
+    }
     
-    #hero h1 {
-        font-size: 2rem;
+    // Display the lightbox
+    lightbox.style.display = 'flex';
+}
+
+// 2. Add Event Listeners
+
+// Close on button click
+closeButton.addEventListener('click', closeLightbox);
+
+// Close on clicking outside the content (on the overlay)
+lightbox.addEventListener('click', (event) => {
+    // Only close if the click target is the overlay itself, not content inside
+    if (event.target === lightbox) {
+        closeLightbox();
     }
+});
 
-    
-    #content-sections .container {
-        padding-left: 0.5rem;
-        padding-right: 0.5rem;
+// Close on ESC key press
+document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && lightbox.style.display === 'flex') {
+        closeLightbox();
     }
+});
 
-    
-    .card {
-        min-width: 15rem; 
-    }
 
-    
-    .card-scroll-container {
-        gap: 1rem;
-    }
-}
-/* WEAPONS PAGE STYLING */
-.bg-dark {
-    background-color: #1e1e1e !important;
-    border: 1px solid #333;
-}
-
-.text-warning {
-    color: #ffd700 !important;
-}
-
-/* Specific styling for stats section */
-.performance-stats strong {
-    color: #f1f1f1;
-    display: inline-block;
-    width: 120px;
-    margin-bottom: 0.5rem;
-}
-/* TABLE STYLING FOR WEAPON SPECS */
-.table-dark {
-    --bs-table-bg: #121212;
-    --bs-table-border-color: #333;
-    --bs-table-striped-bg: #1a1a1a;
-    color: #f1f1f1;
-}
-
-.table-bordered {
-    border-color: #333;
-}
-
-.table-bordered th, .table-bordered td {
-    border-color: #333;
-}
-
-.table-dark thead th {
-    color: #ffd700;
-}
-/* ATTACHMENT CARDS STYLING */
-.attachment-list .bg-secondary {
-    background-color: #2a2a2a !important; /* Cor de fundo mais escura para os acessórios */
-    border: 1px solid #444;
-}
-
-.attachment-list .card-title {
-    color: #ffd700 !important;
-    font-size: 0.9rem;
-}
-
-.attachment-list .card-text {
-    color: #f1f1f1;
-    font-size: 0.8rem;
-}
-
-hr.text-secondary {
-    border-top: 1px solid #444 !important;
-}
-/* MAPS PAGE STYLING */
-.extraction-list .list-group-item {
-    /* Define a cor da borda da lista para combinar com o tema */
-    border-color: #333 !important; 
-    padding-left: 0; /* Remove padding desnecessário */
-    color: #f1f1f1;
-}
-
-/* Garante que o fundo da lista seja transparente */
-.list-group-item.bg-transparent {
-    background-color: transparent !important;
-}
-
-/* Cores específicas para os tipos de extração */
-.extraction-list .text-success { color: #28a745 !important; }
-.extraction-list .text-info { color: #17a2b8 !important; }
-.extraction-list .text-danger { color: #dc3545 !important; }
-.extraction-list .text-warning { color: #ffc107 !important; }
-
-/* INTEL PAGE STYLING (General Article Look) */
-article.bg-dark {
-    border-left: 5px solid #ffd700; /* Linha amarela para destaque */
-    background-color: #1e1e1e !important;
-}
-
-.intel-list .list-group-item {
-    border-color: #333 !important;
-    background-color: transparent !important;
-    color: #f1f1f1;
-    font-size: 0.95rem;
-}
-/* GALLERY PAGE STYLING */
-#gallery-grid .card {
-    background-color: #1e1e1e !important;
-    transition: transform 0.3s ease-in-out;
-}
-
-#gallery-grid .card:hover {
-    transform: translateY(-5px); /* Efeito de elevação ao passar o mouse */
-    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.4);
-}
-
-#gallery-grid .border-warning {
-    border: 1px solid #ffd700 !important; /* Borda dourada para destaque */
-}
-/* Estrutura da Grid */
-.video-gallery-grid {
-    /* Exemplo usando CSS Grid */
-    display: grid;
-    /* 3 Colunas na maioria dos tamanhos */
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px; /* Espaço entre os vídeos */
-    padding: 20px;
-}
-
-/* Responsividade (Ajuste para telas menores) */
-@media (max-width: 900px) {
-    .video-gallery-grid {
-        /* 2 Colunas em tablets */
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-@media (max-width: 600px) {
-    .video-gallery-grid {
-        /* 1 Coluna em celulares */
-        grid-template-columns: 1fr;
-    }
-}
-
-/* Tornando o iFrame Responsivo (Regra essencial!) */
-.video-responsive {
-    position: relative;
-    padding-bottom: 56.25%; /* 16:9 Aspect Ratio (9/16 * 100) */
-    height: 0;
-    overflow: hidden;
-    width: 100%;
-}
-
-.video-responsive iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    border: 0;
-}/* 1. The dark background/overlay */
-.lightbox-overlay {
-    position: fixed; /* Fixes the element to the viewport */
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.9); /* Semi-transparent black background */
-    display: flex;
-    justify-content: center; /* Center horizontally */
-    align-items: center; /* Center vertically */
-    z-index: 1000; /* Ensures it sits above all other content */
-}
-
-/* 2. The inner content wrapper */
-.lightbox-content-wrapper {
-    position: relative;
-    max-width: 90%;
-    max-height: 90%;
-}
-
-/* 3. The close button (X) */
-.lightbox-close-btn {
-    position: absolute;
-    top: -30px; /* Positioned above the content wrapper */
-    right: 0px; 
-    color: #fff;
-    background: none;
-    border: none;
-    font-size: 3rem;
-    cursor: pointer;
-    line-height: 1;
-}
-
-/* 4. The media container (where the image/video will appear) */
-.lightbox-media-container {
-    text-align: center;
-}
+// Add listeners to all gallery items
+galleryElements.forEach(item => {
+    item.addEventListener('click', (event) => {
+        // Find the closest parent that is the clickable item (in this case, the item itself)
