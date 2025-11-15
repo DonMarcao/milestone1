@@ -184,3 +184,21 @@ footer a:hover {
 hr.text-secondary {
     border-top: 1px solid #444 !important;
 }
+/* MAPS PAGE STYLING */
+.extraction-list .list-group-item {
+    /* Define a cor da borda da lista para combinar com o tema */
+    border-color: #333 !important; 
+    padding-left: 0; /* Remove padding desnecessário */
+    color: #f1f1f1;
+}
+
+/* Garante que o fundo da lista seja transparente */
+.list-group-item.bg-transparent {
+    background-color: transparent !important;
+}
+
+/* Cores específicas para os tipos de extração */
+.extraction-list .text-success { color: #28a745 !important; }
+.extraction-list .text-info { color: #17a2b8 !important; }
+.extraction-list .text-danger { color: #dc3545 !important; }
+.extraction-list .text-warning { color: #ffc107 !important; }
