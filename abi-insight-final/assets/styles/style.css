@@ -305,7 +305,7 @@ body {
 }
 
 .gear-image::after {
-    content: '🎒';
+    content: none;
 }
 
 .badge-new {
