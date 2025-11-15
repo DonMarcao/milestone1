@@ -78,3 +78,15 @@ This plan covers the validation of all core features, navigation, and stylistic 
 
 ## 3. HTML/CSS Validation (Future Commits)
 Results of W3C validation tests will be logged here.
+
+index.html warning: (/) trailing slash on void elements (img tags) it is not necessary in HTML5 and can cause compatibility issues. fixed on commit 49. Document checking completed. No errors or warnings to show.
+
+best-weapons.html : Document checking completed. No errors or warnings to show.
+
+extraction-maps.html : Document checking completed. No errors or warnings to show.
+
+media-gallery.html : Document checking completed. No errors or warnings to show.
+
+latest-intel.html : Document checking completed. No errors or warnings to show.
+
+tactical-gear.html : Document checking completed. No errors or warnings to show.
