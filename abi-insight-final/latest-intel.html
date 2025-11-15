@@ -1,286 +1,427 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>ABI Insight - Latest Intel</title>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Latest Intel - ABI Insight</title>
+    
+    <!-- ✅ NEW FAVICON - Correct Joystick Icon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2032%2032'%20fill='none'%3E%3Ccircle%20cx='16'%20cy='16'%20r='16'%20fill='%2328a745'/%3E%3Cpath%20d='M7%2020%20L16%2027%20L25%2020'%20fill='none'%20stroke='white'%20stroke-width='2'%20stroke-linejoin='miter'/%3E%3Cpath%20d='M7%2020%20L13%2017'%20fill='none'%20stroke='white'%20stroke-width='2'%20stroke-linejoin='miter'/%3E%3Cpath%20d='M25%2020%20L19%2017'%20fill='none'%20stroke='white'%20stroke-width='2'%20stroke-linejoin='miter'/%3E%3Cellipse%20cx='16'%20cy='20.35'%20rx='2'%20ry='0.9'%20fill='white'%20opacity='0.95'/%3E%3Crect%20x='15.2'%20y='4'%20width='1.6'%20height='16.35'%20fill='white'/%3E%3Ccircle%20cx='16'%20cy='4'%20r='2.875'%20fill='white'/%3E%3Ccircle%20cx='16.9'%20cy='3.2'%20r='0.9'%20fill='rgba(255,255,255,0.5)'/%3E%3C/svg%3E">
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="assets/styles/style.css">
+    <style>
+        .intel-article-section {
+            padding: 3rem 1rem;
+            border-bottom: 1px solid #2a2a2a;
+        }
 
-        <!-- FAVICON - Arcade Joystick Icon (Data URI - Inline SVG) -->
-        <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2032%2032'%20fill='none'%3E%3Ccircle%20cx='16'%20cy='16'%20r='16'%20fill='%2328a745'/%3E%3Cpath%20d='M7%2020%20L16%2027%20L25%2020'%20fill='none'%20stroke='white'%20stroke-width='2'%20stroke-linejoin='miter'/%3E%3Cpath%20d='M7%2020%20L13%2017'%20fill='none'%20stroke='white'%20stroke-width='2'%20stroke-linejoin='miter'/%3E%3Cpath%20d='M25%2020%20L19%2017'%20fill='none'%20stroke='white'%20stroke-width='2'%20stroke-linejoin='miter'/%3E%3Cellipse%20cx='16'%20cy='20.35'%20rx='2'%20ry='0.9'%20fill='white'%20opacity='0.95'/%3E%3Crect%20x='15.2'%20y='4'%20width='1.6'%20height='16.35'%20fill='white'/%3E%3Ccircle%20cx='16'%20cy='4'%20r='2.875'%20fill='white'/%3E%3Ccircle%20cx='16.9'%20cy='3.2'%20r='0.9'%20fill='rgba(255,255,255,0.5)'/%3E%3C/svg%3E">
-        <!-- Bootstrap CSS v5.3.8 -->
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-        <link rel="stylesheet" href="/abi-insight-final/assets/styles/style.css">
-        <style>
+        .article-header {
+            margin-bottom: 2rem;
+        }
+
+        .article-meta {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            margin-bottom: 1rem;
+        }
+
+        .article-date {
+            color: #28a745;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        .article-category {
+            background: linear-gradient(90deg, #28a745 0%, #34ce57 100%);
+            color: #ffffff;
+            padding: 0.3rem 0.7rem;
+            font-size: 0.75rem;
+            font-weight: bold;
+            border-radius: 3px;
+            text-transform: uppercase;
+        }
+
+        .article-header h2 {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+            color: #ffffff;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .article-content {
+            background: linear-gradient(145deg, #1a1a1a 0%, #252525 100%);
+            padding: 2rem;
+            border-radius: 8px;
+            border-left: 4px solid #28a745;
+            margin: 1.5rem 0;
+        }
+
+        .article-content p {
+            color: #d0d0d0;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            font-size: 1rem;
+        }
+
+        .article-content h3 {
+            color: #ffffff;
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin: 2rem 0 1rem 0;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .article-content ul {
+            list-style: none;
+            padding-left: 0;
+            margin-bottom: 1.5rem;
+        }
+
+        .article-content li {
+            padding: 0.7rem 0;
+            color: #b0b0b0;
+            border-bottom: 1px solid #2a2a2a;
+        }
+
+        .article-content li::before {
+            content: "▶";
+            color: #28a745;
+            margin-right: 0.7rem;
+            font-size: 0.8rem;
+        }
+
+        .highlight-box {
+            background: linear-gradient(145deg, #2a2a2a 0%, #1f1f1f 100%);
+            padding: 1.5rem;
+            border-radius: 8px;
+            border: 1px solid #28a745;
+            margin: 2rem 0;
+        }
+
+        .highlight-box h4 {
+            color: #28a745;
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+        }
+
+        .back-button {
+            display: inline-block;
+            margin: 2rem 1rem;
+            padding: 0.8rem 1.5rem;
+            background: linear-gradient(145deg, #3a3a3a 0%, #2a2a2a 100%);
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 4px;
+            border: 1px solid #4a4a4a;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+        }
+
+        .back-button:hover {
+            background: linear-gradient(145deg, #28a745 0%, #34ce57 100%);
+            border-color: #28a745;
+            color: #ffffff;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(40, 167, 69, 0.3);
+        }
+
+        @media (min-width: 768px) {
             .intel-article-section {
-                padding: 3rem 1rem;
-                border-bottom: 1px solid #2a2a2a;
-            }
-
-            .article-header {
-                margin-bottom: 2rem;
-            }
-
-            .article-meta {
-                display: flex;
-                gap: 1.5rem;
-                flex-wrap: wrap;
-                margin-bottom: 1rem;
-            }
-
-            .article-date {
-                color: #28a745;
-                font-size: 0.85rem;
-                text-transform: uppercase;
-                font-weight: 600;
-                letter-spacing: 1px;
-            }
-
-            .article-category {
-                background: linear-gradient(90deg, #28a745 0%, #34ce57 100%);
-                color: #ffffff;
-                padding: 0.3rem 0.7rem;
-                font-size: 0.75rem;
-                font-weight: bold;
-                border-radius: 3px;
-                text-transform: uppercase;
+                padding: 3rem 2rem;
             }
 
             .article-header h2 {
-                font-size: 2rem;
-                font-weight: 800;
-                margin-bottom: 0.5rem;
-                color: #ffffff;
-                text-transform: uppercase;
-                letter-spacing: 2px;
+                font-size: 2.5rem;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .intel-article-section {
+                padding: 4rem;
             }
 
             .article-content {
-                background: linear-gradient(145deg, #1a1a1a 0%, #252525 100%);
-                padding: 2rem;
-                border-radius: 8px;
-                border-left: 4px solid #28a745;
-                margin: 1.5rem 0;
+                padding: 2.5rem;
             }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hidden checkbox for CSS-only menu toggle -->
+    <input type="checkbox" id="menu-toggle" class="menu-checkbox">
 
-            .article-content p {
-                color: #d0d0d0;
-                line-height: 1.8;
-                margin-bottom: 1.5rem;
-                font-size: 1rem;
-            }
-
-            .article-content h3 {
-                color: #ffffff;
-                font-size: 1.3rem;
-                font-weight: 700;
-                margin: 2rem 0 1rem 0;
-                text-transform: uppercase;
-                letter-spacing: 1px;
-            }
-
-            .article-content ul {
-                list-style: none;
-                padding-left: 0;
-                margin-bottom: 1.5rem;
-            }
-
-            .article-content li {
-                padding: 0.7rem 0;
-                color: #b0b0b0;
-                border-bottom: 1px solid #2a2a2a;
-            }
-
-            .article-content li::before {
-                content: "▶";
-                color: #28a745;
-                margin-right: 0.7rem;
-                font-size: 0.8rem;
-            }
-
-            .highlight-box {
-                background: linear-gradient(145deg, #2a2a2a 0%, #1f1f1f 100%);
-                padding: 1.5rem;
-                border-radius: 8px;
-                border: 1px solid #28a745;
-                margin: 2rem 0;
-            }
-
-            .highlight-box h4 {
-                color: #28a745;
-                font-size: 1.1rem;
-                font-weight: 700;
-                margin-bottom: 1rem;
-                text-transform: uppercase;
-            }
-
-            .back-button {
-                display: inline-block;
-                margin: 2rem 1rem;
-                padding: 0.8rem 1.5rem;
-                background: linear-gradient(145deg, #3a3a3a 0%, #2a2a2a 100%);
-                color: #ffffff;
-                text-decoration: none;
-                border-radius: 4px;
-                border: 1px solid #4a4a4a;
-                text-transform: uppercase;
-                font-size: 0.85rem;
-                font-weight: 600;
-                letter-spacing: 1px;
-                transition: all 0.3s ease;
-            }
-
-            .back-button:hover {
-                background: linear-gradient(145deg, #28a745 0%, #34ce57 100%);
-                border-color: #28a745;
-                color: #ffffff;
-                transform: translateY(-2px);
-                box-shadow: 0 4px 12px rgba(40, 167, 69, 0.3);
-            }
-
-            @media (min-width: 768px) {
-                .intel-article-section {
-                    padding: 3rem 2rem;
-                }
-
-                .article-header h2 {
-                    font-size: 2.5rem;
-                }
-            }
-
-            @media (min-width: 1024px) {
-                .intel-article-section {
-                    padding: 4rem;
-                }
-
-                .article-content {
-                    padding: 2.5rem;
-                }
-            }
-        </style>
-    </head>
-    <body>
-        <!-- Hidden checkbox for CSS-only menu toggle -->
-        <input type="checkbox" id="menu-toggle" class="menu-checkbox">
-
-        <!-- Navigation -->
-        <nav class="navbar navbar-dark">
-            <div class="container-fluid">
-                <a class="navbar-brand" href="index.html">
-                    <!-- ✅ NEW ARCADE JOYSTICK ICON (matching favicon) -->
-                    <span class="brand-icon">
-                        <svg width="24" height="24" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <circle cx="16" cy="16" r="16" fill="#28a745"/>
-                            <!-- Diamond base with open top -->
-                            <path d="M7 20 L16 27 L25 20" fill="none" stroke="white" stroke-width="2" stroke-linejoin="miter"/>
-                            <path d="M7 20 L13 17" fill="none" stroke="white" stroke-width="2" stroke-linejoin="miter"/>
-                            <path d="M25 20 L19 17" fill="none" stroke="white" stroke-width="2" stroke-linejoin="miter"/>
-                            <!-- Base connector -->
-                            <ellipse cx="16" cy="20.35" rx="2" ry="0.9" fill="white" opacity="0.95"/>
-                            <!-- Pin -->
-                            <rect x="15.2" y="4" width="1.6" height="16.35" fill="white"/>
-                            <!-- Ball -->
-                            <circle cx="16" cy="4" r="2.875" fill="white"/>
-                            <!-- Highlight -->
-                            <circle cx="16.9" cy="3.2" r="0.9" fill="rgba(255,255,255,0.5)"/>
-                        </svg>
-                    </span>
-                    ABI INSIGHT
-                </a>
-                <div class="nav-icons">
-                    <!-- Hamburger menu icon (label for checkbox) -->
-                    <label for="menu-toggle" class="btn-icon hamburger-icon" aria-label="Toggle menu">
-                        <svg width="28" height="28" fill="currentColor" viewBox="0 0 16 16">
-                            <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
-                        </svg>
-                    </label>
-                </div>
+    <!-- Navigation -->
+    <nav class="navbar navbar-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="index.html">
+                <!-- ✅ NEW ARCADE JOYSTICK ICON (matching favicon) -->
+                <span class="brand-icon">
+                    <svg width="24" height="24" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="16" cy="16" r="16" fill="#28a745"/>
+                        <!-- Diamond base with open top -->
+                        <path d="M7 20 L16 27 L25 20" fill="none" stroke="white" stroke-width="2" stroke-linejoin="miter"/>
+                        <path d="M7 20 L13 17" fill="none" stroke="white" stroke-width="2" stroke-linejoin="miter"/>
+                        <path d="M25 20 L19 17" fill="none" stroke="white" stroke-width="2" stroke-linejoin="miter"/>
+                        <!-- Base connector -->
+                        <ellipse cx="16" cy="20.35" rx="2" ry="0.9" fill="white" opacity="0.95"/>
+                        <!-- Pin -->
+                        <rect x="15.2" y="4" width="1.6" height="16.35" fill="white"/>
+                        <!-- Ball -->
+                        <circle cx="16" cy="4" r="2.875" fill="white"/>
+                        <!-- Highlight -->
+                        <circle cx="16.9" cy="3.2" r="0.9" fill="rgba(255,255,255,0.5)"/>
+                    </svg>
+                </span>
+                ABI INSIGHT
+            </a>
+            <div class="nav-icons">
+                <!-- Hamburger menu icon (label for checkbox) -->
+                <label for="menu-toggle" class="btn-icon hamburger-icon" aria-label="Toggle menu">
+                    <svg width="28" height="28" fill="currentColor" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
+                    </svg>
+                </label>
             </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section" style="height: 40vh;">
+        <div class="hero-content">
+            <h1 class="hero-title">LATEST INTEL</h1>
+            <p class="hero-subtitle">NEWS, UPDATES & STRATEGIES</p>
+        </div>
+    </section>
+
+    <!-- ✅ FIXED HOME BUTTON - INVERTED COLORS (White BG, Green Joystick) -->
+    <a href="index.html" class="icon-btn-home" title="Back to Home">
+        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- White background circle -->
+            <circle cx="16" cy="16" r="16" fill="white"/>
+            <!-- Green diamond base with open top -->
+            <path d="M7 20 L16 27 L25 20" fill="none" stroke="#28a745" stroke-width="2" stroke-linejoin="miter"/>
+            <path d="M7 20 L13 17" fill="none" stroke="#28a745" stroke-width="2" stroke-linejoin="miter"/>
+            <path d="M25 20 L19 17" fill="none" stroke="#28a745" stroke-width="2" stroke-linejoin="miter"/>
+            <!-- Green base connector -->
+            <ellipse cx="16" cy="20.35" rx="2" ry="0.9" fill="#28a745" opacity="0.95"/>
+            <!-- Green pin -->
+            <rect x="15.2" y="4" width="1.6" height="16.35" fill="#28a745"/>
+            <!-- Green ball -->
+            <circle cx="16" cy="4" r="2.875" fill="#28a745"/>
+            <!-- Highlight -->
+            <circle cx="16.9" cy="3.2" r="0.9" fill="rgba(255,255,255,0.4)"/>
+        </svg>
+    </a>
+
+    <!-- Article 1: Extraction Guide -->
+    <section class="intel-article-section">
+        <div class="article-header">
+            <div class="article-meta">
+                <span class="article-date">November 8, 2025</span>
+                <span class="article-category">Guide</span>
+            </div>
+            <h2>EXTRACTION GUIDE: MASTER YOUR EXFIL ROUTES</h2>
+        </div>
+
+        <div class="article-content">
+            <p>Successful extraction is the difference between profit and total loss in Arena Breakout Infinite. This comprehensive guide covers everything you need to know about extracting safely with your hard-earned loot.</p>
+
+            <h3>Core Extraction Principles</h3>
+            <ul>
+                <li>Always have a primary and backup extraction point planned before looting</li>
+                <li>Monitor the timer - most maps have time-dependent extraction points</li>
+                <li>Lighter loadouts move faster toward extraction zones</li>
+                <li>Some extractions require specific items or keys to access</li>
+                <li>The last 5 minutes of a raid are the most dangerous for extraction</li>
+            </ul>
+
+            <div class="highlight-box">
+                <h4>Pro Tip: Exit Camping Counter-Strategy</h4>
+                <p style="color: #d0d0d0; margin: 0;">Never rush directly to extraction. Instead, approach from an unexpected angle, use grenades to clear common camping spots, and consider waiting 1-2 minutes before final approach to let other players draw out campers.</p>
+            </div>
+
+            <h3>Map-Specific Extraction Tips</h3>
+            <p>Each map has unique extraction mechanics that reward players who understand the nuances:</p>
+            <ul>
+                <li><strong>Farm:</strong> The North Gate is safest during the first 15 minutes of a raid</li>
+                <li><strong>Valley:</strong> Vehicle extraction requires finding car keys from specific loot spots</li>
+                <li><strong>Armory:</strong> Underground tunnel extraction is risky but rarely camped</li>
+                <li><strong>Northridge:</strong> Metro stations offer the fastest extraction but expect PvP</li>
+            </ul>
+
+            <p>Remember: the best extraction is one where you survive. Sometimes it's worth waiting an extra few minutes for a safer opportunity rather than rushing into a contested extraction point.</p>
+        </div>
+    </section>
+
+    <!-- Article 2: Update 2.0 -->
+    <section class="intel-article-section">
+        <div class="article-header">
+            <div class="article-meta">
+                <span class="article-date">November 5, 2025</span>
+                <span class="article-category">Update</span>
+            </div>
+            <h2>UPDATE 2.0: LATEST PATCH NOTES</h2>
+        </div>
+
+        <div class="article-content">
+            <p>Arena Breakout Infinite's major Update 2.0 brings significant changes to weapon balance, introduces a new map, and implements quality-of-life improvements that the community has been requesting.</p>
+
+            <h3>Major Changes</h3>
+            <ul>
+                <li>New Map: Industrial District - medium-sized urban combat zone</li>
+                <li>Weapon Rebalance: SMGs received accuracy buff, LMGs slightly reduced mobility</li>
+                <li>Armor System Overhaul: durability now affects protection percentage</li>
+                <li>New Extraction Mechanic: timed helicopter extractions on select maps</li>
+                <li>Trader Reputation System: unlock exclusive items through faction loyalty</li>
+            </ul>
+
+            <h3>Weapon Balance Highlights</h3>
+            <p>The weapon meta has shifted considerably with this update:</p>
+            <ul>
+                <li>M4A1: Reduced recoil by 8%, increased effective range</li>
+                <li>AKM: Damage increased from 92 to 95, but added horizontal recoil</li>
+                <li>MP5: Accuracy improved by 12%, making it viable at medium range</li>
+                <li>Rampage LMG: Movement speed while equipped reduced by 15%</li>
+            </ul>
+
+            <div class="highlight-box">
+                <h4>Community Reaction</h4>
+                <p style="color: #d0d0d0; margin: 0;">Players are generally positive about Update 2.0, particularly praising the armor durability changes which add more strategic depth to gear selection. The new Industrial District map is already becoming a favorite for its balanced mix of CQB and mid-range engagements.</p>
+            </div>
+
+            <h3>Bug Fixes & Performance</h3>
+            <ul>
+                <li>Fixed invisible loot spawn issue on Valley map</li>
+                <li>Resolved audio bug causing delayed gunshot sounds</li>
+                <li>Improved server stability during peak hours</li>
+                <li>Optimized rendering for better FPS in dense combat areas</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Article 3: Group Tactics -->
+    <section class="intel-article-section">
+        <div class="article-header">
+            <div class="article-meta">
+                <span class="article-date">November 1, 2025</span>
+                <span class="article-category">Strategy</span>
+            </div>
+            <h2>GROUP TACTICS: TEAM STRATEGIES</h2>
+        </div>
+
+        <div class="article-content">
+            <p>Squad play in Arena Breakout Infinite requires coordination, communication, and clearly defined roles. A well-organized team will consistently outperform individual players, even if those players are more skilled.</p>
+
+            <h3>Essential Team Roles</h3>
+            <ul>
+                <li><strong>Point Man:</strong> Leads the squad, makes navigation decisions, equipped for close combat</li>
+                <li><strong>Support:</strong> Carries extra ammunition and medical supplies, provides covering fire</li>
+                <li><strong>Marksman:</strong> Hangs back, provides overwatch and long-range threat elimination</li>
+                <li><strong>Flex:</strong> Adapts to current needs, can fill any role as situation demands</li>
+            </ul>
+
+            <div class="highlight-box">
+                <h4>Communication Protocol</h4>
+                <p style="color: #d0d0d0; margin: 0;">Use compass bearings for callouts (e.g., "Enemy at 270, 50 meters"). Keep comms clear during combat - only call essential information. Establish code words for common situations like "Contact" for enemy spotted, "Moving" when changing position, and "Reloading" when vulnerable.</p>
+            </div>
+
+            <h3>Advanced Squad Tactics</h3>
+            <ul>
+                <li><strong>Bounding Overwatch:</strong> Half the team moves while the other half provides cover</li>
+                <li><strong>Crossfire Setup:</strong> Position team to catch enemies between multiple angles</li>
+                <li><strong>Room Clearing:</strong> Use the "stack and clear" method for buildings</li>
+                <li><strong>Retreat Protocol:</strong> Establish fallback positions before engaging</li>
+            </ul>
+
+            <p>Remember to share loot fairly - a team that works together stays together. Priority should go to those who need upgrades most, not whoever grabs items first.</p>
+        </div>
+    </section>
+
+    <!-- Article 4: Meta Weapons -->
+    <section class="intel-article-section">
+        <div class="article-header">
+            <div class="article-meta">
+                <span class="article-date">October 28, 2025</span>
+                <span class="article-category">Loadouts</span>
+            </div>
+            <h2>META WEAPONS: TOP TIER LOADOUTS</h2>
+        </div>
+
+        <div class="article-content">
+            <p>The current meta favors versatility and reliability over raw damage output. Here are the loadouts dominating high-level play in the current season.</p>
+
+            <h3>Budget Loadout (50K Credits)</h3>
+            <ul>
+                <li>Primary: AKM with basic attachments (muzzle brake, foregrip)</li>
+                <li>Secondary: Glock 17 with extended magazine</li>
+                <li>Armor: Class 3 vest and helmet</li>
+                <li>Backpack: Standard 24-slot backpack</li>
+                <li>Meds: 2x bandages, 1x medkit, 1x painkiller</li>
+            </ul>
+
+            <h3>Balanced Loadout (150K Credits)</h3>
+            <ul>
+                <li>Primary: M4A1 Carbine fully modded (suppressor, red dot, vertical grip, 60-round mag)</li>
+                <li>Secondary: P226 with tactical flashlight</li>
+                <li>Armor: Class 5 tactical vest and helmet with face shield</li>
+                <li>Backpack: Tactical 36-slot backpack</li>
+                <li>Meds: 3x bandages, 2x medkits, 2x painkillers, 1x surgical kit</li>
+            </ul>
+
+            <div class="highlight-box">
+                <h4>Investment Strategy</h4>
+                <p style="color: #d0d0d0; margin: 0;">The best cost-to-performance ratio comes from mid-tier loadouts around 100-150K credits. Going full budget often means dying to better-equipped players, while max-tier loadouts have diminishing returns and hurt more when you inevitably die.</p>
+            </div>
+
+            <h3>Chad Loadout (400K+ Credits)</h3>
+            <ul>
+                <li>Primary: Rampage LMG or heavily modded M4A1</li>
+                <li>Secondary: Full-auto machine pistol</li>
+                <li>Armor: Class 6 Heavy Armor, Class 6 helmet, Class 5 face shield</li>
+                <li>Backpack: Large 48-slot tactical backpack</li>
+                <li>Meds: Full medical suite including emergency surgery kits</li>
+                <li>Special: Night vision goggles, thermal scope option</li>
+            </ul>
+
+            <p>Choose your loadout based on your goals for the raid. High-value loot runs justify better gear, while quest runs can be done with budget kits to minimize risk.</p>
+        </div>
+    </section>
+
+    <!-- Menu Overlay (clicking closes menu via label) -->
+    <label for="menu-toggle" class="menu-overlay" id="menu-overlay"></label>
+    
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobile-menu">
+        <div class="mobile-menu-header">
+            <div class="mobile-menu-title">MENU</div>
+            <!-- Close button as label for checkbox -->
+            <label for="menu-toggle" class="mobile-menu-close">×</label>
+        </div>
+        <nav class="mobile-menu-nav">
+            <a href="index.html">Home</a>
+            <a href="best-weapons.html">Best Weapons</a>
+            <a href="tactical-gear.html">Tactical Gear</a>
+            <a href="extraction-maps.html">Extraction Maps</a>
+            <a href="latest-intel.html" class="active">Latest Intel</a>
+            <a href="media-gallery.html">Media Gallery</a>
         </nav>
-        <main>
-            <div class="container py-5">
-                <h1 class="text-center text-white mb-5">Latest Intel - Patch Notes and News</h1>
+    </div>
 
-                <article id="season-update" class="mb-5 p-4 rounded bg-dark">
-                    <header>
-                        <h2 class="text-warning display-6 mb-2">SEASON 5 ANNOUNCED: 'FROZEN FRONTIER'</h2>
-                        <p class="text-muted small">Posted: November 15, 2025 | Category: Major Update</p>
-                    </header>
-
-                    <figure class="text-center my-4">
-                        <img src="assets/media/images/placeholder.png" class="img-fluid rounded" alt="Season 5 Frozen Frontier Promotional Image">
-                        <figcaption class="text-secondary mt-2 small">New winter gear and survival challenges await.</figcaption>
-                    </figure>
-
-                    <p>The developers have just released a major roadmap detailing Season 5: Frozen Frontier. This update is expected to introduce a new snow-covered map variant and focus heavily on survival mechanics and temperature regulation. Players must now manage a new Hypothermia gauge when exposed to outdoor elements for extended periods.</p>
-
-                    <p>Key new features include:</p>
-                    <ul class="list-group list-group-flush intel-list">
-                        <li class="list-group-item bg-transparent text-white">New 'Frozen' version of the Northridge Map.</li>
-                        <li class="list-group-item bg-transparent text-white">Introduction of thermal clothing and heat packs.</li>
-                        <li class="list-group-item bg-transparent text-white">Reworked movement penalties based on gear weight.</li>
-                        <li class="list-group-item bg-transparent text-white">A new high-tier sniper rifle (M200 Intervention).</li>
-                    </ul>
-                    
-                    <a href="#" class="btn btn-sm btn-outline-warning mt-4">READ FULL PATCH NOTES</a>
-                </article>
-                <hr class="text-secondary">
-
-                <article id="meta-rework" class="mb-5 p-4 rounded bg-dark">
-                    <header>
-                        <h2 class="text-warning display-6 mb-2">BALLISTICS REWORK: IS THE AKM BACK?</h2>
-                        <p class="text-muted small">Posted: October 20, 2025 | Category: Weapon Balance</p>
-                    </header>
-
-                    <figure class="text-center my-4">
-                        <img src="assets/media/images/placeholder.png" class="img-fluid rounded" alt="AKM Rework Image">
-                        <figcaption class="text-secondary mt-2 small">The 7.62x39mm round receives a significant damage boost.</figcaption>
-                    </figure>
-
-                    <p>A nova atualização de balanceamento de armas, apelidada de "Balística 2.0", traz mudanças significativas para as armas de calibre 7.62mm, mais notavelmente o AKM. O dano base foi aumentado, mas o coice inicial também foi ligeiramente ajustado para garantir que a arma recompense jogadores que conseguem controlar o *spray*.</p>
-
-                    <p>Detalhes importantes da atualização:</p>
-                    <ul class="list-group list-group-flush intel-list">
-                        <li class="list-group-item bg-transparent text-white">Aumento de 5% no dano base de 7.62x39mm.</li>
-                        <li class="list-group-item bg-transparent text-white">Redução da dispersão de bala (bullet spread) na M4A1.</li>
-                        <li class="list-group-item bg-transparent text-white">Correção de um *exploit* de *reload* rápido com a MP5.</li>
-                        <li class="list-group-item bg-transparent text-white">Novo conjunto de mira (scope) de longo alcance.</li>
-                    </ul>
-
-                    <p>Os desenvolvedores afirmam que o objetivo é encorajar a diversidade de armas no Dark Zone, tornando as armas de alto calibre mais viáveis, mesmo com o coice desafiador.</p>
-                    
-                    <a href="#" class="btn btn-sm btn-outline-warning mt-4">DISCUSS ON FORUMS</a>
-                </article>
-
-            </div>
-            <!-- Menu Overlay (clicking closes menu via label) -->
-            <label for="menu-toggle" class="menu-overlay" id="menu-overlay"></label>
-            
-            <!-- Mobile Menu -->
-            <div class="mobile-menu" id="mobile-menu">
-                <div class="mobile-menu-header">
-                    <div class="mobile-menu-title">MENU</div>
-                    <!-- Close button as label for checkbox -->
-                    <label for="menu-toggle" class="mobile-menu-close">×</label>
-                </div>
-                <nav class="mobile-menu-nav">
-                    <a href="index.html" class="active">Home</a>
-                    <a href="best-weapons.html">Best Weapons</a>
-                    <a href="tactical-gear.html">Tactical Gear</a>
-                    <a href="extraction-maps.html">Extraction Maps</a>
-                    <a href="latest-intel.html">Latest Intel</a>
-                    <a href="media-gallery.html">Media Gallery</a>
-                </nav>
-            </div>
-        </main>
-        <footer class="bg-dark text-white text-center py-3 mt-5">
-            <div class="container">
-                <p class="mb-0">ABI Insight &copy; 2025. All rights reserved. | Fan-made resource for Arena Breakout Infinite.</p>
-                <p class="mb-0 small"><a href="#" class="text-secondary text-decoration-none">Privacy Policy</a> | <a href="#" class="text-secondary text-decoration-none">Disclaimer</a></p>
-            </div>
-        </footer>
-
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"crossorigin="anonymous">
-            
-        </script>
-    </body>
+    <!-- Bootstrap JavaScript (part of Bootstrap framework) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- ✅ NO CUSTOM JAVASCRIPT! Menu works with pure CSS -->
+</body>
 </html>

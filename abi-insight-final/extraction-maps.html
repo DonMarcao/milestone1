@@ -1,333 +1,417 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Extraction Maps - ABI Insight</title>   
-
-        <!-- FAVICON - Arcade Joystick Icon (Data URI - Inline SVG) -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Extraction Maps - ABI Insight</title>
+    
+    <!-- ✅ FAVICON - Arcade Joystick Icon (Data URI - Inline SVG) -->
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2032%2032'%20fill='none'%3E%3Ccircle%20cx='16'%20cy='16'%20r='16'%20fill='%2328a745'/%3E%3Cpath%20d='M7%2020%20L16%2027%20L25%2020'%20fill='none'%20stroke='white'%20stroke-width='2'%20stroke-linejoin='miter'/%3E%3Cpath%20d='M7%2020%20L13%2017'%20fill='none'%20stroke='white'%20stroke-width='2'%20stroke-linejoin='miter'/%3E%3Cpath%20d='M25%2020%20L19%2017'%20fill='none'%20stroke='white'%20stroke-width='2'%20stroke-linejoin='miter'/%3E%3Cellipse%20cx='16'%20cy='20.35'%20rx='2'%20ry='0.9'%20fill='white'%20opacity='0.95'/%3E%3Crect%20x='15.2'%20y='4'%20width='1.6'%20height='16.35'%20fill='white'/%3E%3Ccircle%20cx='16'%20cy='4'%20r='2.875'%20fill='white'/%3E%3Ccircle%20cx='16.9'%20cy='3.2'%20r='0.9'%20fill='rgba(255,255,255,0.5)'/%3E%3C/svg%3E">
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="assets/styles/style.css">
+    <style>
+        .map-detail-section {
+            padding: 3rem 1rem;
+            border-bottom: 1px solid #2a2a2a;
+        }
 
-        <!-- Bootstrap CSS v5.3.8 -->
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-        <!-- Custom Stylesheet -->
-        <link rel="stylesheet" href="/abi-insight-final/assets/styles/style.css">
-        <style>
+        .map-header {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .map-icon {
+            width: 120px;
+            height: 120px;
+            background: linear-gradient(135deg, #1a3a1a 0%, #2a4a2a 100%);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            border: 2px solid #28a745;
+        }
+
+        .map-title-block h2 {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+            color: #ffffff;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .map-category {
+            color: #28a745;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            font-weight: 600;
+        }
+
+        .map-description {
+            background: linear-gradient(145deg, #1a1a1a 0%, #252525 100%);
+            padding: 1.5rem;
+            border-radius: 8px;
+            border-left: 4px solid #28a745;
+            margin: 1.5rem 0;
+        }
+
+        .map-description p {
+            color: #d0d0d0;
+            line-height: 1.8;
+            margin: 0;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .feature-card {
+            background: linear-gradient(145deg, #252525 0%, #1f1f1f 100%);
+            padding: 1.5rem;
+            border-radius: 8px;
+            border: 1px solid #2a2a2a;
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            border-color: #28a745;
+            box-shadow: 0 4px 15px rgba(40, 167, 69, 0.2);
+        }
+
+        .feature-card h4 {
+            color: #28a745;
+            font-size: 1rem;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .feature-card ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .feature-card li {
+            padding: 0.5rem 0;
+            color: #b0b0b0;
+            font-size: 0.9rem;
+            border-bottom: 1px solid #2a2a2a;
+        }
+
+        .feature-card li:last-child {
+            border-bottom: none;
+        }
+
+        .feature-card li::before {
+            content: "▶";
+            color: #28a745;
+            margin-right: 0.5rem;
+            font-size: 0.7rem;
+        }
+
+        @media (min-width: 768px) {
             .map-detail-section {
-                padding: 3rem 1rem;
-                border-bottom: 1px solid #2a2a2a;
-            }
-
-            .map-header {
-                display: flex;
-                align-items: center;
-                gap: 1.5rem;
-                margin-bottom: 2rem;
-                flex-wrap: wrap;
-            }
-
-            .map-icon {
-                width: 120px;
-                height: 120px;
-                background: linear-gradient(135deg, #1a3a1a 0%, #2a4a2a 100%);
-                border-radius: 10px;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                font-size: 4rem;
-                border: 2px solid #28a745;
+                padding: 3rem 2rem;
             }
 
             .map-title-block h2 {
-                font-size: 2rem;
-                font-weight: 800;
-                margin-bottom: 0.5rem;
-                color: #ffffff;
-                text-transform: uppercase;
-                letter-spacing: 2px;
+                font-size: 2.5rem;
             }
+        }
 
-            .map-category {
-                color: #28a745;
-                font-size: 0.9rem;
-                text-transform: uppercase;
-                letter-spacing: 1.5px;
-                font-weight: 600;
+        @media (min-width: 1024px) {
+            .map-detail-section {
+                padding: 4rem;
             }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hidden checkbox for CSS-only menu toggle -->
+    <input type="checkbox" id="menu-toggle" class="menu-checkbox">
 
-            .map-description {
-                background: linear-gradient(145deg, #1a1a1a 0%, #252525 100%);
-                padding: 1.5rem;
-                border-radius: 8px;
-                border-left: 4px solid #28a745;
-                margin: 1.5rem 0;
-            }
-
-            .map-description p {
-                color: #d0d0d0;
-                line-height: 1.8;
-                margin: 0;
-            }
-
-            .features-grid {
-                display: grid;
-                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-                gap: 1.5rem;
-                margin: 2rem 0;
-            }
-
-            .feature-card {
-                background: linear-gradient(145deg, #252525 0%, #1f1f1f 100%);
-                padding: 1.5rem;
-                border-radius: 8px;
-                border: 1px solid #2a2a2a;
-                transition: all 0.3s ease;
-            }
-
-            .feature-card:hover {
-                border-color: #28a745;
-                box-shadow: 0 4px 15px rgba(40, 167, 69, 0.2);
-            }
-
-            .feature-card h4 {
-                color: #28a745;
-                font-size: 1rem;
-                text-transform: uppercase;
-                margin-bottom: 1rem;
-                font-weight: 700;
-            }
-
-            .feature-card ul {
-                list-style: none;
-                padding: 0;
-                margin: 0;
-            }
-
-            .feature-card li {
-                padding: 0.5rem 0;
-                color: #b0b0b0;
-                font-size: 0.9rem;
-                border-bottom: 1px solid #2a2a2a;
-            }
-
-            .feature-card li:last-child {
-                border-bottom: none;
-            }
-
-            .feature-card li::before {
-                content: "▶";
-                color: #28a745;
-                margin-right: 0.5rem;
-                font-size: 0.7rem;
-            }
-
-            @media (min-width: 768px) {
-                .map-detail-section {
-                    padding: 3rem 2rem;
-                }
-
-                .map-title-block h2 {
-                    font-size: 2.5rem;
-                }
-            }
-
-            @media (min-width: 1024px) {
-                .map-detail-section {
-                    padding: 4rem;
-                }
-            }
-        </style>
-    </head>
-
-    <body>
-        <!-- Hidden checkbox for CSS-only menu toggle -->
-        <input type="checkbox" id="menu-toggle" class="menu-checkbox">
-
-        <!-- Navigation -->
-        <nav class="navbar navbar-dark">
-            <div class="container-fluid">
-                <a class="navbar-brand" href="index.html">
-                    <!-- ✅ ARCADE JOYSTICK ICON - Inline SVG -->
-                    <span class="brand-icon">
-                        <svg width="24" height="24" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <!-- Green circular background -->
-                            <circle cx="16" cy="16" r="16" fill="#28a745"/>
-                            <!-- Diamond base with open top -->
-                            <path d="M7 20 L16 27 L25 20" fill="none" stroke="white" stroke-width="2" stroke-linejoin="miter"/>
-                            <path d="M7 20 L13 17" fill="none" stroke="white" stroke-width="2" stroke-linejoin="miter"/>
-                            <path d="M25 20 L19 17" fill="none" stroke="white" stroke-width="2" stroke-linejoin="miter"/>
-                            <!-- Base connector -->
-                            <ellipse cx="16" cy="20.35" rx="2" ry="0.9" fill="white" opacity="0.95"/>
-                            <!-- Pin -->
-                            <rect x="15.2" y="4" width="1.6" height="16.35" fill="white"/>
-                            <!-- Ball on top -->
-                            <circle cx="16" cy="4" r="2.875" fill="white"/>
-                            <!-- Highlight on ball -->
-                            <circle cx="16.9" cy="3.2" r="0.9" fill="rgba(255,255,255,0.5)"/>
-                        </svg>
-                    </span>
-                    ABI INSIGHT
-                </a>
-                <div class="nav-icons">
-                    <!-- Hamburger menu icon (label for checkbox) -->
-                    <label for="menu-toggle" class="btn-icon hamburger-icon" aria-label="Toggle menu">
-                        <svg width="28" height="28" fill="currentColor" viewBox="0 0 16 16">
-                            <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
-                        </svg>
-                    </label>
-                </div>
+    <!-- Navigation -->
+    <nav class="navbar navbar-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="index.html">
+                <!-- ✅ ARCADE JOYSTICK ICON - Inline SVG -->
+                <span class="brand-icon">
+                    <svg width="24" height="24" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Green circular background -->
+                        <circle cx="16" cy="16" r="16" fill="#28a745"/>
+                        <!-- Diamond base with open top -->
+                        <path d="M7 20 L16 27 L25 20" fill="none" stroke="white" stroke-width="2" stroke-linejoin="miter"/>
+                        <path d="M7 20 L13 17" fill="none" stroke="white" stroke-width="2" stroke-linejoin="miter"/>
+                        <path d="M25 20 L19 17" fill="none" stroke="white" stroke-width="2" stroke-linejoin="miter"/>
+                        <!-- Base connector -->
+                        <ellipse cx="16" cy="20.35" rx="2" ry="0.9" fill="white" opacity="0.95"/>
+                        <!-- Pin -->
+                        <rect x="15.2" y="4" width="1.6" height="16.35" fill="white"/>
+                        <!-- Ball on top -->
+                        <circle cx="16" cy="4" r="2.875" fill="white"/>
+                        <!-- Highlight on ball -->
+                        <circle cx="16.9" cy="3.2" r="0.9" fill="rgba(255,255,255,0.5)"/>
+                    </svg>
+                </span>
+                ABI INSIGHT
+            </a>
+            <div class="nav-icons">
+                <!-- Hamburger menu icon (label for checkbox) -->
+                <label for="menu-toggle" class="btn-icon hamburger-icon" aria-label="Toggle menu">
+                    <svg width="28" height="28" fill="currentColor" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
+                    </svg>
+                </label>
             </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section" style="height: 40vh;">
+        <div class="hero-content">
+            <h1 class="hero-title">EXTRACTION MAPS</h1>
+            <p class="hero-subtitle">TACTICAL GUIDES & STRATEGIES</p>
+        </div>
+    </section>
+
+    <!-- ✅ FIXED HOME BUTTON - INVERTED COLORS (White BG, Green Joystick) -->
+    <a href="index.html" class="icon-btn-home" title="Back to Home">
+        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- White background circle -->
+            <circle cx="16" cy="16" r="16" fill="white"/>
+            <!-- Green diamond base with open top -->
+            <path d="M7 20 L16 27 L25 20" fill="none" stroke="#28a745" stroke-width="2" stroke-linejoin="miter"/>
+            <path d="M7 20 L13 17" fill="none" stroke="#28a745" stroke-width="2" stroke-linejoin="miter"/>
+            <path d="M25 20 L19 17" fill="none" stroke="#28a745" stroke-width="2" stroke-linejoin="miter"/>
+            <!-- Green base connector -->
+            <ellipse cx="16" cy="20.35" rx="2" ry="0.9" fill="#28a745" opacity="0.95"/>
+            <!-- Green pin -->
+            <rect x="15.2" y="4" width="1.6" height="16.35" fill="#28a745"/>
+            <!-- Green ball -->
+            <circle cx="16" cy="4" r="2.875" fill="#28a745"/>
+            <!-- White highlight -->
+            <circle cx="16.9" cy="3.2" r="0.9" fill="rgba(255,255,255,0.4)"/>
+        </svg>
+    </a>
+
+    <!-- Map 1: FARM -->
+    <section class="map-detail-section" id="farm">
+        <div class="map-header">
+            <div class="map-icon">🗺️</div>
+            <div class="map-title-block">
+                <span class="badge-new">NEW</span>
+                <h2>FARM - EXTRACTION GUIDE</h2>
+                <p class="map-category">Medium-Sized Map</p>
+            </div>
+        </div>
+
+        <div class="map-description">
+            <p>Farm is a versatile medium-sized map featuring agricultural buildings, open fields, and dense tree lines. This map offers multiple playstyles, from long-range engagements across crop fields to close-quarters combat in barn complexes. Success on Farm requires balancing aggression with caution, as visibility varies dramatically between open areas and covered positions.</p>
+        </div>
+
+        <h3 class="section-title" style="margin-top: 2rem;">Key Features</h3>
+        <div class="features-grid">
+            <div class="feature-card">
+                <h4>Extraction Points</h4>
+                <ul>
+                    <li>North Farm Gate (always available)</li>
+                    <li>South Bridge (timer-based)</li>
+                    <li>East Fence Line (conditional)</li>
+                    <li>West Forest Path (secure)</li>
+                </ul>
+            </div>
+            <div class="feature-card">
+                <h4>High-Value Loot Spots</h4>
+                <ul>
+                    <li>Main Farmhouse - weapons cache</li>
+                    <li>Grain Silo - medical supplies</li>
+                    <li>Equipment Shed - attachments</li>
+                    <li>Underground Bunker - rare items</li>
+                </ul>
+            </div>
+            <div class="feature-card">
+                <h4>Danger Zones</h4>
+                <ul>
+                    <li>Open crop fields - sniper exposure</li>
+                    <li>Main barn complex - hotly contested</li>
+                    <li>Central road - high traffic</li>
+                    <li>Boss spawn area - extreme danger</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Map 2: VALLEY -->
+    <section class="map-detail-section" id="valley">
+        <div class="map-header">
+            <div class="map-icon">🏔️</div>
+            <div class="map-title-block">
+                <h2>VALLEY - TACTICAL GUIDE</h2>
+                <p class="map-category">Large Map</p>
+            </div>
+        </div>
+
+        <div class="map-description">
+            <p>Valley is an expansive map characterized by elevation changes, river systems, and scattered industrial complexes. The terrain heavily favors players who understand positioning and long-range engagements. Navigation requires careful route planning as moving between zones often exposes you to multiple sightlines. Master the high ground, and you'll control the valley.</p>
+        </div>
+
+        <h3 class="section-title" style="margin-top: 2rem;">Key Features</h3>
+        <div class="features-grid">
+            <div class="feature-card">
+                <h4>Extraction Points</h4>
+                <ul>
+                    <li>Hillside Extraction (elevation required)</li>
+                    <li>River Crossing (water route)</li>
+                    <li>Mountain Pass (secure but distant)</li>
+                    <li>Vehicle Extraction (keys needed)</li>
+                </ul>
+            </div>
+            <div class="feature-card">
+                <h4>High-Value Loot Spots</h4>
+                <ul>
+                    <li>Sawmill Complex - industrial loot</li>
+                    <li>Radio Tower - military gear</li>
+                    <li>Riverside Compound - varied loot</li>
+                    <li>Crashed Helicopter - high-tier</li>
+                </ul>
+            </div>
+            <div class="feature-card">
+                <h4>Tactical Positions</h4>
+                <ul>
+                    <li>Observation Ridge - best overview</li>
+                    <li>Bridge Overwatch - choke point</li>
+                    <li>Forest Treeline - concealment</li>
+                    <li>Rocky Outcrops - cover positions</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Map 3: ARMORY -->
+    <section class="map-detail-section" id="armory">
+        <div class="map-header">
+            <div class="map-icon">🏭</div>
+            <div class="map-title-block">
+                <h2>ARMORY - HOT ZONES</h2>
+                <p class="map-category">Small Map - High Risk</p>
+            </div>
+        </div>
+
+        <div class="map-description">
+            <p>Armory is a compact, high-intensity map centered around a military storage facility. Every inch of this map is potentially hostile, with tight corridors, multi-level buildings, and countless ambush points. The loot quality is exceptional, but expect constant combat. Quick reflexes and aggressive tactics are rewarded, while hesitation is punished.</p>
+        </div>
+
+        <h3 class="section-title" style="margin-top: 2rem;">Key Features</h3>
+        <div class="features-grid">
+            <div class="feature-card">
+                <h4>Extraction Points</h4>
+                <ul>
+                    <li>Main Gate (heavily contested)</li>
+                    <li>Drainage Tunnel (underground)</li>
+                    <li>Roof Helipad (requires access)</li>
+                    <li>Breach Point (tactical exit)</li>
+                </ul>
+            </div>
+            <div class="feature-card">
+                <h4>High-Value Loot Spots</h4>
+                <ul>
+                    <li>Weapons Vault - top-tier weapons</li>
+                    <li>Officers' Quarters - rare keys</li>
+                    <li>Supply Room - attachments/mods</li>
+                    <li>Command Center - intelligence</li>
+                </ul>
+            </div>
+            <div class="feature-card">
+                <h4>Combat Zones</h4>
+                <ul>
+                    <li>Central Courtyard - deadly crossfire</li>
+                    <li>Main Building - CQB hell</li>
+                    <li>Perimeter Walls - sniper positions</li>
+                    <li>Underground - maze-like corridors</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Map 4: NORTHRIDGE -->
+    <section class="map-detail-section" id="northridge">
+        <div class="map-header">
+            <div class="map-icon">🏘️</div>
+            <div class="map-title-block">
+                <h2>NORTHRIDGE - ROUTES</h2>
+                <p class="map-category">Urban Map</p>
+            </div>
+        </div>
+
+        <div class="map-description">
+            <p>Northridge is an urban warfare environment featuring residential blocks, commercial centers, and underground metro systems. The map's complexity comes from its verticality and interconnected buildings. Rooftop access, window positions, and interior navigation create a three-dimensional battlefield where threats can come from any angle. Knowledge of optimal routes is essential for survival and successful extraction.</p>
+        </div>
+
+        <h3 class="section-title" style="margin-top: 2rem;">Key Features</h3>
+        <div class="features-grid">
+            <div class="feature-card">
+                <h4>Extraction Points</h4>
+                <ul>
+                    <li>Metro Station (underground route)</li>
+                    <li>Rooftop Evacuation (vertical)</li>
+                    <li>Street Checkpoint (patrolled)</li>
+                    <li>Parking Garage (vehicle)</li>
+                </ul>
+            </div>
+            <div class="feature-card">
+                <h4>High-Value Loot Spots</h4>
+                <ul>
+                    <li>Bank Vault - cash & valuables</li>
+                    <li>Police Station - tactical gear</li>
+                    <li>Hospital - medical supplies</li>
+                    <li>Electronics Store - tech loot</li>
+                </ul>
+            </div>
+            <div class="feature-card">
+                <h4>Safe Routes</h4>
+                <ul>
+                    <li>Alleyway Network - covered movement</li>
+                    <li>Sewer System - underground travel</li>
+                    <li>Rooftop Pathway - elevated route</li>
+                    <li>Building Interiors - avoid streets</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Menu Overlay (clicking closes menu via label) -->
+    <label for="menu-toggle" class="menu-overlay" id="menu-overlay"></label>
+    
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobile-menu">
+        <div class="mobile-menu-header">
+            <div class="mobile-menu-title">MENU</div>
+            <!-- Close button as label for checkbox -->
+            <label for="menu-toggle" class="mobile-menu-close">×</label>
+        </div>
+        <nav class="mobile-menu-nav">
+            <a href="index.html">Home</a>
+            <a href="best-weapons.html">Best Weapons</a>
+            <a href="tactical-gear.html">Tactical Gear</a>
+            <a href="extraction-maps.html" class="active">Extraction Maps</a>
+            <a href="latest-intel.html">Latest Intel</a>
+            <a href="media-gallery.html">Media Gallery</a>
         </nav>
+    </div>
 
-        <main>
-            <div class="container py-5">
-                <h1 class="text-center text-white mb-5">Extraction Maps - Guides and Routes</h1>
-
-                <section id="farm-map" class="mb-5 p-4 rounded bg-dark">
-                    <h2 class="text-warning display-5 mb-4">Farm Map</h2>
-                    <p class="lead">Farm is a small, high-intensity map with multiple engagement zones, making it popular for both quick raids and intense PvP. The map layout favors close-to-medium range weapons.</p>
-
-                    <div class="row mt-4">
-                        <div class="col-md-6">
-                            <h3 class="text-white">Extraction Points</h3>
-                            <ul class="list-group list-group-flush extraction-list">
-                                <li class="list-group-item bg-transparent text-success">North Exit (Always Open)</li>
-                                <li class="list-group-item bg-transparent text-info">Southern Road (Requires Key)</li>
-                                <li class="list-group-item bg-transparent text-danger">Factory Exit (Timed / Conditional)</li>
-                                <li class="list-group-item bg-transparent text-warning">Armored Vehicle (Flares Required)</li>
-                            </ul>
-                        </div>
-                        <div class="col-md-6">
-                            <h3 class="text-white">Danger Zones</h3>
-                            <p>The **Warehouse Complex** and **Motel** are high-value loot zones, expecting heavy opposition. Approach with caution and suppression gear.</p>
-                            <img src="assets/media/images/placeholder.png" class="img-fluid rounded mt-2" alt="Farm Map Layout">
-                        </div>
-                    </div>
-                </section>
-                <hr class="text-secondary">
-
-                <section id="valley-map" class="mb-5 p-4 rounded bg-dark">
-                    <h2 class="text-warning display-5 mb-4">Valley Map</h2>
-                    <p class="lead">Valley is known for its diverse terrain, including rural areas and a dense forest, encouraging long-range engagement and flanking maneuvers. Visibility can be low in the forest, favoring players with thermal gear.</p>
-
-                    <div class="row mt-4">
-                        <div class="col-md-6">
-                            <h3 class="text-white">Extraction Points</h3>
-                            <ul class="list-group list-group-flush extraction-list">
-                                <li class="list-group-item bg-transparent text-success">Roadside (Always Open)</li>
-                                <li class="list-group-item bg-transparent text-info">Mountain Pass (Requires Gear)</li>
-                                <li class="list-group-item bg-transparent text-danger">River Dock (Conditional)</li>
-                                <li class="list-group-item bg-transparent text-warning">Air Drop (Random Event)</li>
-                            </ul>
-                        </div>
-                        <div class="col-md-6">
-                            <h3 class="text-white">Danger Zones</h3>
-                            <p>The **North Bridge** and the **Valley Dam** are critical bottlenecks. The Dam offers high-tier loot but is extremely exposed to snipers.</p>
-                            <img src="assets/media/images/placeholder.png" class="img-fluid rounded mt-2" alt="Valley Map Layout">
-                        </div>
-                    </div>
-                </section>
-
-                <hr class="text-secondary">
-
-                <section id="northridge-map" class="mb-5 p-4 rounded bg-dark">
-                    <h2 class="text-warning display-5 mb-4">Northridge Map</h2>
-                    <p class="lead">Northridge is the largest map, offering vast, open spaces perfect for long-range rifles and squad cooperation. Key points are far apart, making vehicles or careful planning essential for loot runs and extractions.</p>
-
-                    <div class="row mt-4">
-                        <div class="col-md-6">
-                            <h3 class="text-white">Extraction Points</h3>
-                            <ul class="list-group list-group-flush extraction-list">
-                                <li class="list-group-item bg-transparent text-success">Bus Station (Always Open)</li>
-                                <li class="list-group-item bg-transparent text-info">Observatory (Timed / Conditional)</li>
-                                <li class="list-group-item bg-transparent text-danger">Main Entrance (Conditional)</li>
-                                <li class="list-group-item bg-transparent text-warning">Heliport (Requires Cooperation)</li>
-                            </ul>
-                        </div>
-                        <div class="col-md-6">
-                            <h3 class="text-white">Danger Zones</h3>
-                            <p>The **Observatory** and the **Dam Bridge** are the main points of contention. Be aware of players holding long angles from the surrounding mountains.</p>
-                            <img src="assets/media/images/placeholder.png" class="img-fluid rounded mt-2" alt="Northridge Map Layout">
-                        </div>
-                    </div>
-                </section>
-                <hr class="text-secondary">
-                <section id="armory-map" class="mb-5 p-4 rounded bg-dark">
-                    <h2 class="text-warning display-5 mb-4">Armory Map</h2>
-                    <p class="lead">Armory is an exclusively indoor, high-risk, high-reward map. It features highly contested corridors and multi-level combat, demanding close-quarters gear and fast reaction times. Expect heavy resistance from elite AI guards (Bosses).</p>
-
-                    <div class="row mt-4">
-                        <div class="col-md-6">
-                            <h3 class="text-white">Extraction Points</h3>
-                            <ul class="list-group list-group-flush extraction-list">
-                                <li class="list-group-item bg-transparent text-success">Control Room Exit (Always Open, but guarded)</li>
-                                <li class="list-group-item bg-transparent text-info">Server Room (Requires Fuse)</li>
-                                <li class="list-group-item bg-transparent text-danger">Main Gate (Timed / Conditional)</li>
-                                <li class="list-group-item bg-transparent text-warning">Ventilation Shaft (Requires Tool)</li>
-                            </ul>
-                        </div>
-                        <div class="col-md-6">
-                            <h3 class="text-white">Danger Zones</h3>
-                            <p>The **Central Atrium** and the **Server Room** are choke points. Due to the high value of the loot, this map is often populated by highly geared players.</p>
-                            <img src="assets/media/images/placeholder.png" class="img-fluid rounded mt-2" alt="Armory Map Layout">
-                        </div>
-                    </div>
-                </section>
-                <hr class="text-secondary">
-
-                <section id="tv-station-map" class="mb-5 p-4 rounded bg-dark">
-                    <h2 class="text-warning display-5 mb-4">TV Station Map</h2>
-                    <p class="lead">TV Station is a compact, high-intensity map featuring extreme close-quarters combat (CQB). Visibility is often poor due to damaged lighting, demanding the use of laser sights and fragmentation grenades. Expect high-tier loot and aggressive enemy players.</p>
-
-                    <div class="row mt-4">
-                        <div class="col-md-6">
-                            <h3 class="text-white">Extraction Points</h3>
-                            <ul class="list-group list-group-flush extraction-list">
-                                <li class="list-group-item bg-transparent text-success">Server Room (Timed / Conditional)</li>
-                                <li class="list-group-item bg-transparent text-info">Parking Garage (Requires Key)</li>
-                                <li class="list-group-item bg-transparent text-danger">Rooftop (Flares / Conditional)</li>
-                                <li class="list-group-item bg-transparent text-warning">Main Entrance (Highly Guarded)</li>
-                            </ul>
-                        </div>
-                        <div class="col-md-6">
-                            <h3 class="text-white">Danger Zones</h3>
-                            <p>The **Central Atrium** and the **Broadcast Studio** are critical choke points and spawn points for high-tier loot. Move slowly and listen closely, as sound is key on this map.</p>
-                            <img src="assets/media/images/placeholder.png" class="img-fluid rounded mt-2" alt="TV Station Map Layout">
-                        </div>
-                    </div>
-                </section>
-            </div>
-            <!-- Menu Overlay (clicking closes menu via label) -->
-            <label for="menu-toggle" class="menu-overlay" id="menu-overlay"></label>
-            
-            <!-- Mobile Menu -->
-            <div class="mobile-menu" id="mobile-menu">
-                <div class="mobile-menu-header">
-                    <div class="mobile-menu-title">MENU</div>
-                    <!-- Close button as label for checkbox -->
-                    <label for="menu-toggle" class="mobile-menu-close">×</label>
-                </div>
-                <nav class="mobile-menu-nav">
-                    <a href="index.html" class="active">Home</a>
-                    <a href="best-weapons.html">Best Weapons</a>
-                    <a href="tactical-gear.html">Tactical Gear</a>
-                    <a href="extraction-maps.html">Extraction Maps</a>
-                    <a href="latest-intel.html">Latest Intel</a>
-                    <a href="media-gallery.html">Media Gallery</a>
-                </nav>
-            </div>
-        
-        </main>
-
-        <footer class="bg-dark text-white text-center py-3 mt-5">
-            <div class="container">
-                <p class="mb-0">ABI Insight &copy; 2025. All rights reserved. | Fan-made resource for Arena Breakout Infinite.</p>
-                <p class="mb-0 small"><a href="#" class="text-secondary text-decoration-none">Privacy Policy</a> | <a href="#" class="text-secondary text-decoration-none">Disclaimer</a></p>
-            </div>
-        </footer>
-
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
-            
-        </script>
-    </body>
+    <!-- Bootstrap JavaScript (part of Bootstrap framework) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- ✅ NO CUSTOM JAVASCRIPT! Menu works with pure CSS -->
+</body>
 </html>

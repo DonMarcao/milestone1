@@ -1,457 +1,666 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>ABI Insight - Tactical Gear</title> 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tactical Gear - ABI Insight</title>
+    
+    <!-- ✅ FAVICON - Arcade Joystick Icon (Data URI - Inline SVG - URL Encoded) -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2032%2032'%20fill='none'%3E%3Ccircle%20cx='16'%20cy='16'%20r='16'%20fill='%2328a745'/%3E%3Cpath%20d='M7%2020%20L16%2027%20L25%2020'%20fill='none'%20stroke='white'%20stroke-width='2'%20stroke-linejoin='miter'/%3E%3Cpath%20d='M7%2020%20L13%2017'%20fill='none'%20stroke='white'%20stroke-width='2'%20stroke-linejoin='miter'/%3E%3Cpath%20d='M25%2020%20L19%2017'%20fill='none'%20stroke='white'%20stroke-width='2'%20stroke-linejoin='miter'/%3E%3Cellipse%20cx='16'%20cy='20.35'%20rx='2'%20ry='0.9'%20fill='white'%20opacity='0.95'/%3E%3Crect%20x='15.2'%20y='4'%20width='1.6'%20height='16.35'%20fill='white'/%3E%3Ccircle%20cx='16'%20cy='4'%20r='2.875'%20fill='white'/%3E%3Ccircle%20cx='16.9'%20cy='3.2'%20r='0.9'%20fill='rgba(255,255,255,0.5)'/%3E%3C/svg%3E">
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="assets/styles/style.css">
+    <style>
+        .gear-detail-section {
+            padding: 3rem 1rem;
+            border-bottom: 1px solid #2a2a2a;
+        }
 
-        <!-- FAVICON - Arcade Joystick Icon (Data URI - Inline SVG) -->
-        <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2032%2032'%20fill='none'%3E%3Ccircle%20cx='16'%20cy='16'%20r='16'%20fill='%2328a745'/%3E%3Cpath%20d='M7%2020%20L16%2027%20L25%2020'%20fill='none'%20stroke='white'%20stroke-width='2'%20stroke-linejoin='miter'/%3E%3Cpath%20d='M7%2020%20L13%2017'%20fill='none'%20stroke='white'%20stroke-width='2'%20stroke-linejoin='miter'/%3E%3Cpath%20d='M25%2020%20L19%2017'%20fill='none'%20stroke='white'%20stroke-width='2'%20stroke-linejoin='miter'/%3E%3Cellipse%20cx='16'%20cy='20.35'%20rx='2'%20ry='0.9'%20fill='white'%20opacity='0.95'/%3E%3Crect%20x='15.2'%20y='4'%20width='1.6'%20height='16.35'%20fill='white'/%3E%3Ccircle%20cx='16'%20cy='4'%20r='2.875'%20fill='white'/%3E%3Ccircle%20cx='16.9'%20cy='3.2'%20r='0.9'%20fill='rgba(255,255,255,0.5)'/%3E%3C/svg%3E">
+        .gear-header {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
 
-        <!-- Bootstrap CSS v5.3.8 -->
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-        <!-- Custom stylesheet-->
-        <link rel="stylesheet" href="/abi-insight-final/assets/styles/style.css">
-        <style>
+        .gear-icon {
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, #2a2a2a 0%, #3a3a3a 100%);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            border: 2px solid #28a745;
+        }
+
+        .gear-title-block h2 {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+            color: #ffffff;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .gear-category {
+            color: #28a745;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            font-weight: 600;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .stat-card {
+            background: linear-gradient(145deg, #252525 0%, #1f1f1f 100%);
+            padding: 1.5rem;
+            border-radius: 8px;
+            border: 1px solid #2a2a2a;
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            border-color: #28a745;
+            box-shadow: 0 4px 15px rgba(40, 167, 69, 0.2);
+        }
+
+        .stat-label {
+            color: #b0b0b0;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .stat-value {
+            color: #ffffff;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .stat-bar {
+            height: 8px;
+            background: #2a2a2a;
+            border-radius: 4px;
+            margin-top: 0.5rem;
+            overflow: hidden;
+        }
+
+        .stat-bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #28a745 0%, #34ce57 100%);
+            border-radius: 4px;
+            transition: width 0.5s ease;
+        }
+
+        .gear-description {
+            background: linear-gradient(145deg, #1a1a1a 0%, #252525 100%);
+            padding: 1.5rem;
+            border-radius: 8px;
+            border-left: 4px solid #28a745;
+            margin: 1.5rem 0;
+        }
+
+        .gear-description p {
+            color: #d0d0d0;
+            line-height: 1.8;
+            margin: 0;
+        }
+
+        .specs-list {
+            list-style: none;
+            padding: 0;
+            margin: 1.5rem 0;
+        }
+
+        .specs-list li {
+            padding: 0.8rem 0;
+            border-bottom: 1px solid #2a2a2a;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .specs-list li:last-child {
+            border-bottom: none;
+        }
+
+        .spec-name {
+            color: #b0b0b0;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+        }
+
+        .spec-value {
+            color: #ffffff;
+            font-weight: 700;
+            font-size: 0.95rem;
+        }
+
+        .features-section {
+            margin-top: 2rem;
+        }
+
+        .feature-card {
+            background: linear-gradient(145deg, #252525 0%, #1f1f1f 100%);
+            padding: 1rem;
+            border-radius: 6px;
+            border: 1px solid #2a2a2a;
+            margin-bottom: 1rem;
+        }
+
+        .feature-card h4 {
+            color: #28a745;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        .feature-card p {
+            color: #b0b0b0;
+            font-size: 0.85rem;
+            margin: 0;
+        }
+
+        @media (min-width: 768px) {
             .gear-detail-section {
-                padding: 3rem 1rem;
-                border-bottom: 1px solid #2a2a2a;
-            }
-
-            .gear-header {
-                display: flex;
-                align-items: center;
-                gap: 1.5rem;
-                margin-bottom: 2rem;
-                flex-wrap: wrap;
+                padding: 3rem 2rem;
             }
 
             .gear-icon {
-                width: 100px;
-                height: 100px;
-                background: linear-gradient(135deg, #2a2a2a 0%, #3a3a3a 100%);
-                border-radius: 10px;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                font-size: 3rem;
-                border: 2px solid #28a745;
+                width: 120px;
+                height: 120px;
+                font-size: 4rem;
             }
 
             .gear-title-block h2 {
-                font-size: 2rem;
-                font-weight: 800;
-                margin-bottom: 0.5rem;
-                color: #ffffff;
-                text-transform: uppercase;
-                letter-spacing: 2px;
+                font-size: 2.5rem;
             }
+        }
 
-            .gear-category {
-                color: #28a745;
-                font-size: 0.9rem;
-                text-transform: uppercase;
-                letter-spacing: 1.5px;
-                font-weight: 600;
+        @media (min-width: 1024px) {
+            .gear-detail-section {
+                padding: 4rem;
             }
 
             .stats-grid {
-                display: grid;
-                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-                gap: 1.5rem;
-                margin: 2rem 0;
+                grid-template-columns: repeat(3, 1fr);
             }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hidden checkbox for CSS-only menu toggle -->
+    <input type="checkbox" id="menu-toggle" class="menu-checkbox">
 
-            .stat-card {
-                background: linear-gradient(145deg, #252525 0%, #1f1f1f 100%);
-                padding: 1.5rem;
-                border-radius: 8px;
-                border: 1px solid #2a2a2a;
-                transition: all 0.3s ease;
-            }
+    <!-- Navigation -->
+    <nav class="navbar navbar-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="index.html">
+                <!-- ✅ ARCADE JOYSTICK ICON - Inline SVG -->
+                <span class="brand-icon">
+                    <svg width="24" height="24" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Green circular background -->
+                        <circle cx="16" cy="16" r="16" fill="#28a745"/>
+                        <!-- Diamond base with open top -->
+                        <path d="M7 20 L16 27 L25 20" fill="none" stroke="white" stroke-width="2" stroke-linejoin="miter"/>
+                        <path d="M7 20 L13 17" fill="none" stroke="white" stroke-width="2" stroke-linejoin="miter"/>
+                        <path d="M25 20 L19 17" fill="none" stroke="white" stroke-width="2" stroke-linejoin="miter"/>
+                        <!-- Base connector -->
+                        <ellipse cx="16" cy="20.35" rx="2" ry="0.9" fill="white" opacity="0.95"/>
+                        <!-- Pin -->
+                        <rect x="15.2" y="4" width="1.6" height="16.35" fill="white"/>
+                        <!-- Ball on top -->
+                        <circle cx="16" cy="4" r="2.875" fill="white"/>
+                        <!-- Highlight on ball -->
+                        <circle cx="16.9" cy="3.2" r="0.9" fill="rgba(255,255,255,0.5)"/>
+                    </svg>
+                </span>
+                ABI INSIGHT
+            </a>
+            <div class="nav-icons">
+                <!-- Hamburger menu icon (label for checkbox) -->
+                <label for="menu-toggle" class="btn-icon hamburger-icon" aria-label="Toggle menu">
+                    <svg width="28" height="28" fill="currentColor" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
+                    </svg>
+                </label>
+            </div>
+        </div>
+    </nav>
 
-            .stat-card:hover {
-                border-color: #28a745;
-                box-shadow: 0 4px 15px rgba(40, 167, 69, 0.2);
-            }
+    <!-- Hero Section -->
+    <section class="hero-section" style="height: 40vh;">
+        <div class="hero-content">
+            <h1 class="hero-title">TACTICAL GEAR</h1>
+            <p class="hero-subtitle">ARMOR & EQUIPMENT BREAKDOWN</p>
+        </div>
+    </section>
 
-            .stat-label {
-                color: #b0b0b0;
-                font-size: 0.85rem;
-                text-transform: uppercase;
-                letter-spacing: 1px;
-                margin-bottom: 0.5rem;
-                font-weight: 600;
-            }
+    <!-- ✅ FIXED HOME BUTTON - INVERTED COLORS (White BG, Green Joystick) -->
+    <a href="index.html" class="icon-btn-home" title="Back to Home">
+        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- White background circle -->
+            <circle cx="16" cy="16" r="16" fill="white"/>
+            <!-- Green diamond base with open top -->
+            <path d="M7 20 L16 27 L25 20" fill="none" stroke="#28a745" stroke-width="2" stroke-linejoin="miter"/>
+            <path d="M7 20 L13 17" fill="none" stroke="#28a745" stroke-width="2" stroke-linejoin="miter"/>
+            <path d="M25 20 L19 17" fill="none" stroke="#28a745" stroke-width="2" stroke-linejoin="miter"/>
+            <!-- Green base connector -->
+            <ellipse cx="16" cy="20.35" rx="2" ry="0.9" fill="#28a745" opacity="0.95"/>
+            <!-- Green pin -->
+            <rect x="15.2" y="4" width="1.6" height="16.35" fill="#28a745"/>
+            <!-- Green ball -->
+            <circle cx="16" cy="4" r="2.875" fill="#28a745"/>
+            <!-- White highlight -->
+            <circle cx="16.9" cy="3.2" r="0.9" fill="rgba(255,255,255,0.4)"/>
+        </svg>
+    </a>
 
-            .stat-value {
-                color: #ffffff;
-                font-size: 1.5rem;
-                font-weight: 700;
-            }
+    <!-- Gear 1: HEAVY ARMOR -->
+    <section class="gear-detail-section" id="heavy-armor">
+        <div class="gear-header">
+            <div class="gear-icon">🛡️</div>
+            <div class="gear-title-block">
+                <span class="badge-tier">TIER 6</span>
+                <h2>HEAVY ARMOR</h2>
+                <p class="gear-category">Body Armor - Full Protection</p>
+            </div>
+        </div>
 
-            .stat-bar {
-                height: 8px;
-                background: #2a2a2a;
-                border-radius: 4px;
-                margin-top: 0.5rem;
-                overflow: hidden;
-            }
+        <div class="gear-description">
+            <p>The Heavy Armor represents the pinnacle of personal protection in Arena Breakout Infinite. Engineered with multi-layer ceramic composite plates and advanced ballistic fiber weaving, this full-body armor system can withstand multiple high-caliber impacts. While it significantly reduces mobility, operators wearing Heavy Armor can confidently push through danger zones and engage in prolonged firefights with substantially reduced risk of critical injury.</p>
+        </div>
 
-            .stat-bar-fill {
-                height: 100%;
-                background: linear-gradient(90deg, #28a745 0%, #34ce57 100%);
-                border-radius: 4px;
-                transition: width 0.5s ease;
-            }
-
-            .gear-description {
-                background: linear-gradient(145deg, #1a1a1a 0%, #252525 100%);
-                padding: 1.5rem;
-                border-radius: 8px;
-                border-left: 4px solid #28a745;
-                margin: 1.5rem 0;
-            }
-
-            .gear-description p {
-                color: #d0d0d0;
-                line-height: 1.8;
-                margin: 0;
-            }
-
-            .specs-list {
-                list-style: none;
-                padding: 0;
-                margin: 1.5rem 0;
-            }
-
-            .specs-list li {
-                padding: 0.8rem 0;
-                border-bottom: 1px solid #2a2a2a;
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-            }
-
-            .specs-list li:last-child {
-                border-bottom: none;
-            }
-
-            .spec-name {
-                color: #b0b0b0;
-                font-weight: 600;
-                text-transform: uppercase;
-                font-size: 0.85rem;
-                letter-spacing: 1px;
-            }
-
-            .spec-value {
-                color: #ffffff;
-                font-weight: 700;
-                font-size: 0.95rem;
-            }
-
-            .features-section {
-                margin-top: 2rem;
-            }
-
-            .feature-card {
-                background: linear-gradient(145deg, #252525 0%, #1f1f1f 100%);
-                padding: 1rem;
-                border-radius: 6px;
-                border: 1px solid #2a2a2a;
-                margin-bottom: 1rem;
-            }
-
-            .feature-card h4 {
-                color: #28a745;
-                font-size: 0.9rem;
-                text-transform: uppercase;
-                margin-bottom: 0.5rem;
-                font-weight: 700;
-            }
-
-            .feature-card p {
-                color: #b0b0b0;
-                font-size: 0.85rem;
-                margin: 0;
-            }
-
-            @media (min-width: 768px) {
-                .gear-detail-section {
-                    padding: 3rem 2rem;
-                }
-
-                .gear-icon {
-                    width: 120px;
-                    height: 120px;
-                    font-size: 4rem;
-                }
-
-                .gear-title-block h2 {
-                    font-size: 2.5rem;
-                }
-            }
-
-            @media (min-width: 1024px) {
-                .gear-detail-section {
-                    padding: 4rem;
-                }
-
-                .stats-grid {
-                    grid-template-columns: repeat(3, 1fr);
-                }
-            }
-        </style>
-    </head>
-    <body>
-        
-        <!-- Hidden checkbox for CSS-only menu toggle -->
-        <input type="checkbox" id="menu-toggle" class="menu-checkbox">
-
-        <!-- Navigation -->
-        <nav class="navbar navbar-dark">
-            <div class="container-fluid">
-                <a class="navbar-brand" href="index.html">
-                    <!-- ✅ ARCADE JOYSTICK ICON - Inline SVG -->
-                    <span class="brand-icon">
-                        <svg width="24" height="24" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <!-- Green circular background -->
-                            <circle cx="16" cy="16" r="16" fill="#28a745"/>
-                            <!-- Diamond base with open top -->
-                            <path d="M7 20 L16 27 L25 20" fill="none" stroke="white" stroke-width="2" stroke-linejoin="miter"/>
-                            <path d="M7 20 L13 17" fill="none" stroke="white" stroke-width="2" stroke-linejoin="miter"/>
-                            <path d="M25 20 L19 17" fill="none" stroke="white" stroke-width="2" stroke-linejoin="miter"/>
-                            <!-- Base connector -->
-                            <ellipse cx="16" cy="20.35" rx="2" ry="0.9" fill="white" opacity="0.95"/>
-                            <!-- Pin -->
-                            <rect x="15.2" y="4" width="1.6" height="16.35" fill="white"/>
-                            <!-- Ball on top -->
-                            <circle cx="16" cy="4" r="2.875" fill="white"/>
-                            <!-- Highlight on ball -->
-                            <circle cx="16.9" cy="3.2" r="0.9" fill="rgba(255,255,255,0.5)"/>
-                        </svg>
-                    </span>
-                    ABI INSIGHT
-                </a>
-                <div class="nav-icons">
-                    <!-- Hamburger menu icon (label for checkbox) -->
-                    <label for="menu-toggle" class="btn-icon hamburger-icon" aria-label="Toggle menu">
-                        <svg width="28" height="28" fill="currentColor" viewBox="0 0 16 16">
-                            <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
-                        </svg>
-                    </label>
+        <h3 class="section-title" style="margin-top: 2rem;">Performance Stats</h3>
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-label">Protection Level</div>
+                <div class="stat-value">98</div>
+                <div class="stat-bar">
+                    <div class="stat-bar-fill" style="width: 98%;"></div>
                 </div>
             </div>
+            <div class="stat-card">
+                <div class="stat-label">Durability</div>
+                <div class="stat-value">95</div>
+                <div class="stat-bar">
+                    <div class="stat-bar-fill" style="width: 95%;"></div>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">Coverage Area</div>
+                <div class="stat-value">92</div>
+                <div class="stat-bar">
+                    <div class="stat-bar-fill" style="width: 92%;"></div>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">Mobility Impact</div>
+                <div class="stat-value">35</div>
+                <div class="stat-bar">
+                    <div class="stat-bar-fill" style="width: 35%;"></div>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">Noise Reduction</div>
+                <div class="stat-value">40</div>
+                <div class="stat-bar">
+                    <div class="stat-bar-fill" style="width: 40%;"></div>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">Repair Cost</div>
+                <div class="stat-value">25</div>
+                <div class="stat-bar">
+                    <div class="stat-bar-fill" style="width: 25%;"></div>
+                </div>
+            </div>
+        </div>
+
+        <h3 class="section-title">Specifications</h3>
+        <ul class="specs-list">
+            <li><span class="spec-name">Armor Class</span> <span class="spec-value">Class VI</span></li>
+            <li><span class="spec-name">Material</span> <span class="spec-value">Ceramic Composite + Kevlar</span></li>
+            <li><span class="spec-name">Weight</span> <span class="spec-value">18.5 kg</span></li>
+            <li><span class="spec-name">Effective Zones</span> <span class="spec-value">Thorax, Stomach, Back</span></li>
+            <li><span class="spec-name">Max Durability</span> <span class="spec-value">120 points</span></li>
+            <li><span class="spec-name">Movement Speed Penalty</span> <span class="spec-value">-25%</span></li>
+        </ul>
+
+        <div class="features-section">
+            <h3 class="section-title">Special Features</h3>
+            <div class="feature-card">
+                <h4>Multi-Hit Protection</h4>
+                <p>Advanced ceramic plates designed to withstand multiple impacts from armor-piercing rounds without complete failure.</p>
+            </div>
+            <div class="feature-card">
+                <h4>Integrated Trauma Plates</h4>
+                <p>Additional soft armor backing reduces blunt force trauma from stopped rounds, preventing rib fractures and internal injuries.</p>
+            </div>
+            <div class="feature-card">
+                <h4>Modular Design</h4>
+                <p>Compatible with various pouches, holsters, and tactical accessories via MOLLE webbing system.</p>
+            </div>
+            <div class="feature-card">
+                <h4>Quick-Release System</h4>
+                <p>Emergency pull tabs allow for rapid armor removal in critical medical situations or water crossings.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gear 2: TACTICAL HELMET -->
+    <section class="gear-detail-section" id="tactical-helmet">
+        <div class="gear-header">
+            <div class="gear-icon">⛑️</div>
+            <div class="gear-title-block">
+                <span class="badge-tier">TIER 5</span>
+                <h2>TACTICAL HELMET</h2>
+                <p class="gear-category">Head Protection - Combat Ready</p>
+            </div>
+        </div>
+
+        <div class="gear-description">
+            <p>The Tactical Helmet offers comprehensive head protection with integrated communication systems and mounting rails for accessories. Constructed from high-impact polymer with ballistic-rated components, this helmet protects against fragmentation and pistol-caliber threats while maintaining reasonable weight and comfort. The built-in communication system ensures seamless squad coordination even in the loudest firefights.</p>
+        </div>
+
+        <h3 class="section-title" style="margin-top: 2rem;">Performance Stats</h3>
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-label">Protection Level</div>
+                <div class="stat-value">85</div>
+                <div class="stat-bar">
+                    <div class="stat-bar-fill" style="width: 85%;"></div>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">Durability</div>
+                <div class="stat-value">88</div>
+                <div class="stat-bar">
+                    <div class="stat-bar-fill" style="width: 88%;"></div>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">Audio Quality</div>
+                <div class="stat-value">92</div>
+                <div class="stat-bar">
+                    <div class="stat-bar-fill" style="width: 92%;"></div>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">Mobility Impact</div>
+                <div class="stat-value">75</div>
+                <div class="stat-bar">
+                    <div class="stat-bar-fill" style="width: 75%;"></div>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">Peripheral Vision</div>
+                <div class="stat-value">80</div>
+                <div class="stat-bar">
+                    <div class="stat-bar-fill" style="width: 80%;"></div>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">Comfort Rating</div>
+                <div class="stat-value">78</div>
+                <div class="stat-bar">
+                    <div class="stat-bar-fill" style="width: 78%;"></div>
+                </div>
+            </div>
+        </div>
+
+        <h3 class="section-title">Specifications</h3>
+        <ul class="specs-list">
+            <li><span class="spec-name">Armor Class</span> <span class="spec-value">Class IIIA</span></li>
+            <li><span class="spec-name">Material</span> <span class="spec-value">Reinforced Polymer + Kevlar Liner</span></li>
+            <li><span class="spec-name">Weight</span> <span class="spec-value">1.8 kg</span></li>
+            <li><span class="spec-name">Effective Zones</span> <span class="spec-value">Head, Nape, Ears</span></li>
+            <li><span class="spec-name">Max Durability</span> <span class="spec-value">65 points</span></li>
+            <li><span class="spec-name">Communication Range</span> <span class="spec-value">5 km</span></li>
+        </ul>
+
+        <div class="features-section">
+            <h3 class="section-title">Special Features</h3>
+            <div class="feature-card">
+                <h4>Integrated Comms System</h4>
+                <p>Built-in radio with noise cancellation and voice activation for hands-free squad communication.</p>
+            </div>
+            <div class="feature-card">
+                <h4>Rail Mounting System</h4>
+                <p>Picatinny rails on sides and front allow attachment of lights, cameras, and night vision devices.</p>
+            </div>
+            <div class="feature-card">
+                <h4>Enhanced Hearing Protection</h4>
+                <p>Active noise reduction protects hearing from gunfire while amplifying quiet sounds for situational awareness.</p>
+            </div>
+            <div class="feature-card">
+                <h4>Adjustable Suspension</h4>
+                <p>Multi-point adjustment system ensures secure fit across different head sizes and shapes.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gear 3: BACKPACK PRO -->
+    <section class="gear-detail-section" id="backpack-pro">
+        <div class="gear-header">
+            <div class="gear-icon">🎒</div>
+            <div class="gear-title-block">
+                <span class="badge-tier">TIER 4</span>
+                <h2>BACKPACK PRO</h2>
+                <p class="gear-category">Storage System - High Capacity</p>
+            </div>
+        </div>
+
+        <div class="gear-description">
+            <p>The Backpack Pro is a military-grade load-bearing system designed for extended operations in hostile territory. With its massive storage capacity and intelligent compartmentalization, this backpack allows operators to carry substantial amounts of loot, supplies, and ammunition without compromising combat effectiveness. The ergonomic design distributes weight efficiently, and the quick-access pockets ensure critical items are always within reach during intense situations.</p>
+        </div>
+
+        <h3 class="section-title" style="margin-top: 2rem;">Performance Stats</h3>
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-label">Storage Capacity</div>
+                <div class="stat-value">96</div>
+                <div class="stat-bar">
+                    <div class="stat-bar-fill" style="width: 96%;"></div>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">Durability</div>
+                <div class="stat-value">82</div>
+                <div class="stat-bar">
+                    <div class="stat-bar-fill" style="width: 82%;"></div>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">Weight Distribution</div>
+                <div class="stat-value">88</div>
+                <div class="stat-bar">
+                    <div class="stat-bar-fill" style="width: 88%;"></div>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">Mobility Impact</div>
+                <div class="stat-value">65</div>
+                <div class="stat-bar">
+                    <div class="stat-bar-fill" style="width: 65%;"></div>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">Organization</div>
+                <div class="stat-value">90</div>
+                <div class="stat-bar">
+                    <div class="stat-bar-fill" style="width: 90%;"></div>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">Water Resistance</div>
+                <div class="stat-value">85</div>
+                <div class="stat-bar">
+                    <div class="stat-bar-fill" style="width: 85%;"></div>
+                </div>
+            </div>
+        </div>
+
+        <h3 class="section-title">Specifications</h3>
+        <ul class="specs-list">
+            <li><span class="spec-name">Total Capacity</span> <span class="spec-value">80 Liters (6x8 grid)</span></li>
+            <li><span class="spec-name">Material</span> <span class="spec-value">Ripstop Nylon 1000D</span></li>
+            <li><span class="spec-name">Empty Weight</span> <span class="spec-value">2.2 kg</span></li>
+            <li><span class="spec-name">Max Load</span> <span class="spec-value">45 kg</span></li>
+            <li><span class="spec-name">Compartments</span> <span class="spec-value">Main + 4 External Pockets</span></li>
+            <li><span class="spec-name">Hydration Compatible</span> <span class="spec-value">Yes (3L reservoir)</span></li>
+        </ul>
+
+        <div class="features-section">
+            <h3 class="section-title">Special Features</h3>
+            <div class="feature-card">
+                <h4>Massive Main Compartment</h4>
+                <p>80-liter main storage area with internal organizer panels for maximum loot carrying capacity.</p>
+            </div>
+            <div class="feature-card">
+                <h4>Quick-Access Side Pockets</h4>
+                <p>Four external compartments provide instant access to medical supplies, ammunition, and essential gear without opening main compartment.</p>
+            </div>
+            <div class="feature-card">
+                <h4>Load-Bearing Suspension</h4>
+                <p>Padded shoulder straps and hip belt transfer weight to skeletal frame, reducing fatigue during long raids.</p>
+            </div>
+            <div class="feature-card">
+                <h4>Hydration System Integration</h4>
+                <p>Dedicated sleeve and routing for hydration bladder keeps you operational without stopping to drink.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gear 4: NIGHT VISION -->
+    <section class="gear-detail-section" id="night-vision">
+        <div class="gear-header">
+            <div class="gear-icon">🔦</div>
+            <div class="gear-title-block">
+                <span class="badge-tier">TIER 3</span>
+                <h2>NIGHT VISION</h2>
+                <p class="gear-category">Optical Equipment - Night Operations</p>
+            </div>
+        </div>
+
+        <div class="gear-description">
+            <p>Night Vision technology transforms darkness into a tactical advantage. This advanced optical system amplifies available light thousands of times, allowing operators to navigate and engage targets in complete darkness with near-daylight clarity. When the sun sets and most players become vulnerable, Night Vision users dominate the battlefield. The compact monocular design mounts easily to helmets and can be flipped up when not needed, making it perfect for transitioning between lit and dark areas.</p>
+        </div>
+
+        <h3 class="section-title" style="margin-top: 2rem;">Performance Stats</h3>
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-label">Light Amplification</div>
+                <div class="stat-value">95</div>
+                <div class="stat-bar">
+                    <div class="stat-bar-fill" style="width: 95%;"></div>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">Image Clarity</div>
+                <div class="stat-value">88</div>
+                <div class="stat-bar">
+                    <div class="stat-bar-fill" style="width: 88%;"></div>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">Detection Range</div>
+                <div class="stat-value">90</div>
+                <div class="stat-bar">
+                    <div class="stat-bar-fill" style="width: 90%;"></div>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">Battery Life</div>
+                <div class="stat-value">75</div>
+                <div class="stat-bar">
+                    <div class="stat-bar-fill" style="width: 75%;"></div>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">Durability</div>
+                <div class="stat-value">70</div>
+                <div class="stat-bar">
+                    <div class="stat-bar-fill" style="width: 70%;"></div>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">Mobility Impact</div>
+                <div class="stat-value">92</div>
+                <div class="stat-bar">
+                    <div class="stat-bar-fill" style="width: 92%;"></div>
+                </div>
+            </div>
+        </div>
+
+        <h3 class="section-title">Specifications</h3>
+        <ul class="specs-list">
+            <li><span class="spec-name">Generation</span> <span class="spec-value">Gen 3+ White Phosphor</span></li>
+            <li><span class="spec-name">Field of View</span> <span class="spec-value">40 degrees</span></li>
+            <li><span class="spec-name">Weight</span> <span class="spec-value">340 grams</span></li>
+            <li><span class="spec-name">Effective Range</span> <span class="spec-value">300 meters</span></li>
+            <li><span class="spec-name">Battery Runtime</span> <span class="spec-value">20 hours (single CR123A)</span></li>
+            <li><span class="spec-name">Waterproof Rating</span> <span class="spec-value">IPX7</span></li>
+        </ul>
+
+        <div class="features-section">
+            <h3 class="section-title">Special Features</h3>
+            <div class="feature-card">
+                <h4>White Phosphor Technology</h4>
+                <p>Superior image clarity with white phosphor tubes provides better contrast and more natural viewing compared to traditional green phosphor.</p>
+            </div>
+            <div class="feature-card">
+                <h4>Auto-Gating System</h4>
+                <p>Automatically adjusts gain in response to changing light conditions, protecting your eyes from sudden bright light exposure.</p>
+            </div>
+            <div class="feature-card">
+                <h4>Flip-Up Mount</h4>
+                <p>Quick-release mechanism allows instant deployment or stowing when entering lit areas or engaging in close combat.</p>
+            </div>
+            <div class="feature-card">
+                <h4>Infrared Illuminator</h4>
+                <p>Built-in IR light source extends effective range in complete darkness and improves target identification.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Menu Overlay (clicking closes menu via label) -->
+    <label for="menu-toggle" class="menu-overlay" id="menu-overlay"></label>
+    
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobile-menu">
+        <div class="mobile-menu-header">
+            <div class="mobile-menu-title">MENU</div>
+            <!-- Close button as label for checkbox -->
+            <label for="menu-toggle" class="mobile-menu-close">×</label>
+        </div>
+        <nav class="mobile-menu-nav">
+            <a href="index.html">Home</a>
+            <a href="best-weapons.html">Best Weapons</a>
+            <a href="tactical-gear.html" class="active">Tactical Gear</a>
+            <a href="extraction-maps.html">Extraction Maps</a>
+            <a href="latest-intel.html">Latest Intel</a>
+            <a href="media-gallery.html">Media Gallery</a>
         </nav>
+    </div>
 
-        <main>
-            <div class="container py-5">
-                <h1 class="text-center text-white mb-5">Tactical Gear - Armor, Helmets, and Utilities</h1>
-
-                <section id="armor-class-6" class="mb-5 p-4 rounded bg-dark">
-                    <h2 class="text-warning display-5 mb-4">Class 6 Armor: Aegis Heavy Vest 
-                        <span class="tier-badge tier-special">Tier S</span>
-                    </h2>
-                    <p class="lead">The Aegis Heavy Vest represents the best ballistic protection available, offering superior defense against high-caliber rounds. This vest is essential for high-risk engagements in maps like Armory and TV Station.</p>
-
-                    <div class="row mt-4 align-items-center">
-                        <div class="col-md-4 text-center">
-                            <img src="assets/media/images/placeholder.png" class="img-fluid rounded" alt="Aegis Class 6 Vest">
-                        </div>
-                        <div class="col-md-8">
-                            <h3 class="text-white">Specifications</h3>
-                            <table class="table table-dark table-striped table-bordered mt-3">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">STATISTIC</th>
-                                        <th scope="col">VALUE</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>Protection Level</td>
-                                        <td>6 (MAX)</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Durability</td>
-                                        <td>300 Points</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Effective vs.</td>
-                                        <td>7.62x51mm, 5.56x45mm (AP)</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Movement Penalty</td>
-                                        <td>-20% Speed, -15% Ergonomics</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </section>
-                <hr class="text-secondary">
-
-                <section id="armor-class-4" class="mb-5 p-4 rounded bg-dark">
-                    <h2 class="text-warning display-5 mb-4">Class 4 Armor: Lightweight Assault Vest 
-                        <span class="tier-badge tier-2">Tier B</span>
-                    </h2>
-                    <p class="lead">The Lightweight Assault Vest is the best all-around armor for budget-conscious players. It offers solid protection against common rounds while maintaining decent mobility for quick flanking maneuvers and repositioning.</p>
-
-                    <div class="row mt-4 align-items-center">
-                        <div class="col-md-4 text-center">
-                            <img src="assets/media/images/placeholder.png" class="img-fluid rounded" alt="Lightweight Assault Vest">
-                        </div>
-                        <div class="col-md-8">
-                            <h3 class="text-white">Specifications</h3>
-                            <table class="table table-dark table-striped table-bordered mt-3">
-                                <thead>
-                                    <tr>
-                                        <tr>
-                                            <th scope="col">STATISTIC</th>
-                                            <th scope="col">VALUE</th>
-                                        </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>Protection Level</td>
-                                        <td>4 (Balanced)</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Durability</td>
-                                        <td>200 Points</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Effective vs.</td>
-                                        <td>9x19mm (AP), 5.56x45mm (Standard)</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Movement Penalty</td>
-                                        <td>-10% Speed, -5% Ergonomics</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </section>
-                <hr class="text-secondary">
-
-                <section id="helmet-class-5" class="mb-5 p-4 rounded bg-dark">
-                    <h2 class="text-warning display-5 mb-4">Class 5 Helmet: Spectre Full-Coverage 
-                        <span class="tier-badge tier-3">Tier A+</span>
-                    </h2>
-                    <p class="lead">The Spectre Helmet offers best-in-class protection for the head, covering both the top and face with Level 5 ballistic plates. It is a critical piece of gear for surviving headshots from assault rifle rounds.</p>
-
-                    <div class="row mt-4 align-items-center">
-                        <div class="col-md-4 text-center">
-                            <img src="assets/media/images/placeholder.png" class="img-fluid rounded" alt="Spectre Class 5 Helmet">
-                        </div>
-                        <div class="col-md-8">
-                            <h3 class="text-white">Specifications</h3>
-                            <table class="table table-dark table-striped table-bordered mt-3">
-                                <thead>
-                                    <tr>
-                                        <tr>
-                                            <th scope="col">STATISTIC</th>
-                                            <th scope="col">VALUE</th>
-                                        </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>Protection Level</td>
-                                        <td>5 (High)</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Durability</td>
-                                        <td>120 Points</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Coverage</td>
-                                        <td>Head & Face</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Hearing Penalty</td>
-                                        <td>Moderate</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </section>
-                <hr class="text-secondary">
-
-                <section id="backpack-high-cap" class="mb-5 p-4 rounded bg-dark">
-                    <h2 class="text-warning display-5 mb-4">High-Capacity Backpack: Mammoth Carrier 
-                        <span class="tier-badge tier-1">Tier A</span>
-                    </h2>
-                    <p class="lead">The Mammoth Carrier is designed for long raids and large hauls, offering the maximum possible storage space. While it provides unparalleled capacity, it significantly reduces mobility, making you a slower target.</p>
-
-                    <div class="row mt-4 align-items-center">
-                        <div class="col-md-4 text-center">
-                            <img src="assets/media/images/placeholder.png" class="img-fluid rounded" alt="Mammoth Backpack">
-                        </div>
-                        <div class="col-md-8">
-                            <h3 class="text-white">Specifications</h3>
-                            <table class="table table-dark table-striped table-bordered mt-3">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">STATISTIC</th>
-                                        <th scope scope="col">VALUE</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>Capacity (Slots)</td>
-                                        <td>40 Slots (8x5)</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Durability</td>
-                                        <td>80 Points</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Visible Size</td>
-                                        <td>Very High</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Movement Penalty</td>
-                                        <td>-15% Speed</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </section>
-         
-            </div>
-            <!-- Menu Overlay (clicking closes menu via label) -->
-            <label for="menu-toggle" class="menu-overlay" id="menu-overlay"></label>
-            
-            <!-- Mobile Menu -->
-            <div class="mobile-menu" id="mobile-menu">
-                <div class="mobile-menu-header">
-                    <div class="mobile-menu-title">MENU</div>
-                    <!-- Close button as label for checkbox -->
-                    <label for="menu-toggle" class="mobile-menu-close">×</label>
-                </div>
-                <nav class="mobile-menu-nav">
-                    <a href="index.html" class="active">Home</a>
-                    <a href="best-weapons.html">Best Weapons</a>
-                    <a href="tactical-gear.html">Tactical Gear</a>
-                    <a href="extraction-maps.html">Extraction Maps</a>
-                    <a href="latest-intel.html">Latest Intel</a>
-                    <a href="media-gallery.html">Media Gallery</a>
-                </nav>
-            </div>
-        </main>
-        <footer class="bg-dark text-white text-center py-3 mt-5">
-            <div class="container">
-                <p class="mb-0">ABI Insight &copy; 2025. All rights reserved. | Fan-made resource for Arena Breakout Infinite.</p>
-                <p class="mb-0 small"><a href="#" class="text-secondary text-decoration-none">Privacy Policy</a> | <a href="#" class="text-secondary text-decoration-none">Disclaimer</a></p>
-            </div>
-        </footer>
-
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"crossorigin="anonymous">
-            
-        </script>
-    </body>
+    <!-- Bootstrap JavaScript (part of Bootstrap framework) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- ✅ NO CUSTOM JAVASCRIPT! Menu works with pure CSS -->
+</body>
 </html>
