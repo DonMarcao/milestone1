@@ -1,68 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Meta tags for character encoding and responsive design -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <!-- Page title displayed in browser tab -->
     <title>Extraction Maps - ABI Insight</title>
     
-    <!-- Favicon: Custom arcade joystick icon using inline SVG data URI -->
+    <!-- ✅ FAVICON - Arcade Joystick Icon (Data URI - Inline SVG) -->
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2032%2032'%20fill='none'%3E%3Ccircle%20cx='16'%20cy='16'%20r='16'%20fill='%2328a745'/%3E%3Cpath%20d='M7%2020%20L16%2027%20L25%2020'%20fill='none'%20stroke='white'%20stroke-width='2'%20stroke-linejoin='miter'/%3E%3Cpath%20d='M7%2020%20L13%2017'%20fill='none'%20stroke='white'%20stroke-width='2'%20stroke-linejoin='miter'/%3E%3Cpath%20d='M25%2020%20L19%2017'%20fill='none'%20stroke='white'%20stroke-width='2'%20stroke-linejoin='miter'/%3E%3Cellipse%20cx='16'%20cy='20.35'%20rx='2'%20ry='0.9'%20fill='white'%20opacity='0.95'/%3E%3Crect%20x='15.2'%20y='4'%20width='1.6'%20height='16.35'%20fill='white'/%3E%3Ccircle%20cx='16'%20cy='4'%20r='2.875'%20fill='white'/%3E%3Ccircle%20cx='16.9'%20cy='3.2'%20r='0.9'%20fill='rgba(255,255,255,0.5)'/%3E%3C/svg%3E">
     
-    <!-- External CSS: Bootstrap 5.3.0 framework for responsive grid and components -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    
-    <!-- Custom CSS: Main stylesheet for site-specific styling -->
     <link rel="stylesheet" href="assets/styles/style.css">
-    
-    <!-- ========================================
-         PAGE-SPECIFIC INTERNAL CSS STYLES
-         Custom styling for extraction maps pages
-         ======================================== -->
     <style>
-        /* ===== MAP DETAIL SECTION ===== */
-        /* Main container for each map entry with consistent spacing */
         .map-detail-section {
             padding: 3rem 1rem;
-            border-bottom: 1px solid #2a2a2a; /* Subtle divider between maps */
+            border-bottom: 1px solid #2a2a2a;
         }
 
-        /* ===== MAP HEADER ===== */
-        /* Flexbox layout for map icon and title information */
         .map-header {
             display: flex;
             align-items: center;
             gap: 1.5rem;
             margin-bottom: 2rem;
-            flex-wrap: wrap; /* Responsive wrapping on smaller screens */
+            flex-wrap: wrap;
         }
 
-        /* Map icon container with green-tinted gradient background */
         .map-icon {
             width: 120px;
             height: 120px;
-            background: linear-gradient(135deg, #1a3a1a 0%, #2a4a2a 100%); /* Darker green gradient for map theme */
+            background: linear-gradient(135deg, #1a3a1a 0%, #2a4a2a 100%);
             border-radius: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 4rem;
-            border: 2px solid #28a745; /* Green accent border */
+            border: 2px solid #28a745;
         }
 
-        /* Map title styling with bold uppercase lettering */
         .map-title-block h2 {
             font-size: 2rem;
             font-weight: 800;
             margin-bottom: 0.5rem;
             color: #ffffff;
             text-transform: uppercase;
-            letter-spacing: 2px; /* Wide letter spacing for tactical feel */
+            letter-spacing: 2px;
         }
 
-        /* Map category label (e.g., "Urban Map", "CQB Map") */
         .map-category {
             color: #28a745;
             font-size: 0.9rem;
@@ -71,64 +53,54 @@
             font-weight: 600;
         }
 
-        /* ===== MAP DESCRIPTION ===== */
-        /* Highlighted description box with left border accent */
         .map-description {
             background: linear-gradient(145deg, #1a1a1a 0%, #252525 100%);
             padding: 1.5rem;
             border-radius: 8px;
-            border-left: 4px solid #28a745; /* Green accent border on left side */
+            border-left: 4px solid #28a745;
             margin: 1.5rem 0;
         }
 
         .map-description p {
             color: #d0d0d0;
-            line-height: 1.8; /* Increased line height for readability */
+            line-height: 1.8;
             margin: 0;
         }
 
-        /* ===== FEATURES GRID ===== */
-        /* Responsive grid layout for map features (extraction points, loot, routes) */
         .features-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Auto-fit columns based on screen width */
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 1.5rem;
             margin: 2rem 0;
         }
 
-        /* Individual feature card with gradient background and hover effect */
         .feature-card {
             background: linear-gradient(145deg, #252525 0%, #1f1f1f 100%);
             padding: 1.5rem;
             border-radius: 8px;
             border: 1px solid #2a2a2a;
-            transition: all 0.3s ease; /* Smooth transition for hover effects */
+            transition: all 0.3s ease;
         }
 
-        /* Hover effect for feature cards */
         .feature-card:hover {
-            border-color: #28a745; /* Green border on hover */
-            box-shadow: 0 4px 15px rgba(40, 167, 69, 0.2); /* Subtle green glow */
+            border-color: #28a745;
+            box-shadow: 0 4px 15px rgba(40, 167, 69, 0.2);
         }
 
-        /* Feature card title styling */
         .feature-card h4 {
             color: #28a745;
             font-size: 1rem;
             text-transform: uppercase;
             margin-bottom: 1rem;
             font-weight: 700;
-            letter-spacing: 1px;
         }
 
-        /* Remove default list styling */
         .feature-card ul {
             list-style: none;
             padding: 0;
             margin: 0;
         }
 
-        /* List item styling with bottom border */
         .feature-card li {
             padding: 0.5rem 0;
             color: #b0b0b0;
@@ -136,88 +108,71 @@
             border-bottom: 1px solid #2a2a2a;
         }
 
-        /* Remove border from last list item */
         .feature-card li:last-child {
             border-bottom: none;
         }
 
-        /* Add green arrow bullet points before each list item */
         .feature-card li::before {
-            content: "▶"; /* Triangle arrow character */
+            content: "▶";
             color: #28a745;
             margin-right: 0.5rem;
             font-size: 0.7rem;
         }
 
-        /* ===== RESPONSIVE DESIGN ===== */
-        /* Tablet breakpoint (768px and above) */
         @media (min-width: 768px) {
             .map-detail-section {
-                padding: 3rem 2rem; /* Increased horizontal padding */
+                padding: 3rem 2rem;
             }
 
             .map-title-block h2 {
-                font-size: 2.5rem; /* Larger title on tablets */
+                font-size: 2.5rem;
             }
         }
 
-        /* Desktop breakpoint (1024px and above) */
         @media (min-width: 1024px) {
             .map-detail-section {
-                padding: 4rem; /* Maximum padding for large screens */
+                padding: 4rem;
             }
         }
     </style>
 </head>
 <body>
-    <!-- ========================================
-         TOP DISCLAIMER BANNER
-         Fixed banner at top of page for educational disclaimer
-         ======================================== -->
     <div class="top-disclaimer-banner">
         <p>
             <span class="warning-icon">⚠️</span> 
-            THIS IS A SCHOOL PROJECT UTILIZING THIRD-PARTY GAME IMAGES AND VIDEOS FOR SKILL/PURPOSES ONLY, WITH FAN MADE DESIGN. IT IS INTENDED USE ON GITHUB ONLY.
-            <span class="warning-icon">⚠️</span>
+            THIS IS A SCHOOL PROJECT UTILIZING THIRD-PARTY GAME IMAGES AND VIDEOS FOR SKILL/PURPOSES ONLY, WITH FAN MADE DESIGN. IT IS INTENDED USE ON GITHUB ONLY.<span class="warning-icon">⚠️</span>
         </p>
     </div>
-    
-    <!-- Hidden checkbox for CSS-only mobile menu toggle (no JavaScript required) -->
+    <!-- Hidden checkbox for CSS-only menu toggle -->
     <input type="checkbox" id="menu-toggle" class="menu-checkbox">
 
-    <!-- ========================================
-         NAVIGATION BAR
-         Responsive navbar with logo and hamburger menu
-         ======================================== -->
+    <!-- Navigation -->
     <nav class="navbar navbar-dark">
         <div class="container-fluid">
-            <!-- Brand logo with custom arcade joystick icon -->
             <a class="navbar-brand" href="index.html">
-                <!-- Inline SVG for brand icon (arcade joystick design) -->
+                <!-- ✅ ARCADE JOYSTICK ICON - Inline SVG -->
                 <span class="brand-icon">
                     <svg width="24" height="24" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <!-- Green circular background -->
                         <circle cx="16" cy="16" r="16" fill="#28a745"/>
-                        <!-- Diamond base with open top (3 sides) -->
+                        <!-- Diamond base with open top -->
                         <path d="M7 20 L16 27 L25 20" fill="none" stroke="white" stroke-width="2" stroke-linejoin="miter"/>
                         <path d="M7 20 L13 17" fill="none" stroke="white" stroke-width="2" stroke-linejoin="miter"/>
                         <path d="M25 20 L19 17" fill="none" stroke="white" stroke-width="2" stroke-linejoin="miter"/>
                         <!-- Base connector -->
                         <ellipse cx="16" cy="20.35" rx="2" ry="0.9" fill="white" opacity="0.95"/>
-                        <!-- Joystick pin -->
+                        <!-- Pin -->
                         <rect x="15.2" y="4" width="1.6" height="16.35" fill="white"/>
                         <!-- Ball on top -->
                         <circle cx="16" cy="4" r="2.875" fill="white"/>
-                        <!-- Highlight reflection on ball -->
+                        <!-- Highlight on ball -->
                         <circle cx="16.9" cy="3.2" r="0.9" fill="rgba(255,255,255,0.5)"/>
                     </svg>
                 </span>
                 ABI INSIGHT
             </a>
-            
-            <!-- Navigation icons container -->
             <div class="nav-icons">
-                <!-- Hamburger menu icon (label triggers hidden checkbox for menu toggle) -->
+                <!-- Hamburger menu icon (label for checkbox) -->
                 <label for="menu-toggle" class="btn-icon hamburger-icon" aria-label="Toggle menu">
                     <svg width="28" height="28" fill="currentColor" viewBox="0 0 16 16">
                         <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
@@ -227,104 +182,53 @@
         </div>
     </nav>
 
-    <!-- ========================================
-         PAGE HERO SECTION
-         Introduction banner for Extraction Maps page
-         ======================================== -->
-    <section class="hero-section" style="height: 30vh;">
-        <!-- Background video with tactical shooter gameplay -->
+    <!-- Hero Section -->
+    <section class="hero-section" style="height: 40vh;">
         <video class="hero-video" autoplay muted loop playsinline poster="assets/media/images/gallery/abi-poster.jpg">
             <source src="assets/media/video/abi-video.webm" type="video/webm">
             Your browser does not support the video tag.
         </video>
-        
-        <!-- Hero content overlay -->
         <div class="hero-content">
             <h1 class="hero-title">EXTRACTION MAPS</h1>
-            <p class="hero-subtitle">MASTER YOUR ROUTES</p>
+            <p class="hero-subtitle">TACTICAL GUIDES & STRATEGIES</p>
         </div>
     </section>
 
-    <!-- ========================================
-         MAP 1: ARMORY
-         Urban Combat Map - Detailed routes and extraction points
-         ID: armory (anchor link target)
-         ======================================== -->
-    <section class="map-detail-section" id="armory">
-        <div class="map-header">
-            <!-- Map icon with image -->
-            <div class="map-icon">
-                <img src="assets/media/images/maps/armory-map-card.webp" alt="Armory map icon" class="map-icon">
-            </div>
-            <!-- Map title and category -->
-            <div class="map-title-block">
-                <h2>ARMORY - ROUTES</h2>
-                <p class="map-category">Urban Combat Map</p>
-            </div>
-        </div>
+    <!-- ✅ FIXED HOME BUTTON - INVERTED COLORS (White BG, Green Joystick) -->
+    <a href="index.html" class="icon-btn-home" title="Back to Home">
+        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- White background circle -->
+            <circle cx="16" cy="16" r="16" fill="white"/>
+            <!-- Green diamond base with open top -->
+            <path d="M7 20 L16 27 L25 20" fill="none" stroke="#28a745" stroke-width="2" stroke-linejoin="miter"/>
+            <path d="M7 20 L13 17" fill="none" stroke="#28a745" stroke-width="2" stroke-linejoin="miter"/>
+            <path d="M25 20 L19 17" fill="none" stroke="#28a745" stroke-width="2" stroke-linejoin="miter"/>
+            <!-- Green base connector -->
+            <ellipse cx="16" cy="20.35" rx="2" ry="0.9" fill="#28a745" opacity="0.95"/>
+            <!-- Green pin -->
+            <rect x="15.2" y="4" width="1.6" height="16.35" fill="#28a745"/>
+            <!-- Green ball -->
+            <circle cx="16" cy="4" r="2.875" fill="#28a745"/>
+            <!-- White highlight -->
+            <circle cx="16.9" cy="3.2" r="0.9" fill="rgba(255,255,255,0.4)"/>
+        </svg>
+    </a>
 
-        <!-- Map description with strategic overview -->
-        <div class="map-description">
-            <p>The Armory is a medium-sized urban environment featuring a central military installation surrounded by residential and commercial buildings. This map excels in providing multiple approach angles and vertical gameplay opportunities. Success requires understanding high-traffic areas, optimal rotation paths, and extraction point positioning. The central armory building contains high-value loot but attracts heavy enemy presence.</p>
-        </div>
-
-        <!-- Map features section -->
-        <h3 class="section-title" style="margin-top: 2rem;">Key Features</h3>
-        <div class="features-grid">
-            
-            <!-- Feature Card 1: Extraction Points -->
-            <div class="feature-card">
-                <h4>Extraction Points</h4>
-                <ul>
-                    <li>South Gate (most common, moderate risk)</li>
-                    <li>Rooftop Helipad (requires key, high risk)</li>
-                    <li>Underground Tunnel (hidden, low risk)</li>
-                    <li>East Checkpoint (quick access, high visibility)</li>
-                </ul>
-            </div>
-            
-            <!-- Feature Card 2: High-Value Loot Spots -->
-            <div class="feature-card">
-                <h4>High-Value Loot Spots</h4>
-                <ul>
-                    <li>Armory Vault - weapons & attachments</li>
-                    <li>Command Center - intelligence items</li>
-                    <li>Officer Quarters - cash & valuables</li>
-                    <li>Supply Depot - medical & tactical gear</li>
-                </ul>
-            </div>
-            
-            <!-- Feature Card 3: Safe Routes -->
-            <div class="feature-card">
-                <h4>Safe Routes</h4>
-                <ul>
-                    <li>Perimeter Path - avoid central combat</li>
-                    <li>Rooftop Network - elevated movement</li>
-                    <li>Building Interiors - cover from snipers</li>
-                    <li>Drainage System - underground passage</li>
-                </ul>
-            </div>
-        </div>
-    </section>
-
-    <!-- ========================================
-         MAP 2: FARM
-         Open Terrain Map - Long-range engagements
-         ID: farm (anchor link target)
-         ======================================== -->
+    <!-- Map 1: FARM -->
     <section class="map-detail-section" id="farm">
         <div class="map-header">
             <div class="map-icon">
                 <img src="assets/media/images/maps/farm-map-card.webp" alt="Farm map icon" class="map-icon">
             </div>
             <div class="map-title-block">
-                <h2>FARM - ROUTES</h2>
-                <p class="map-category">Open Terrain Map</p>
+                <span class="badge-new">NEW</span>
+                <h2>FARM - EXTRACTION GUIDE</h2>
+                <p class="map-category">Medium-Sized Map</p>
             </div>
         </div>
 
         <div class="map-description">
-            <p>Farm is a sprawling rural environment featuring open fields, scattered buildings, and forested areas. This map heavily favors long-range combat and tactical positioning. Movement across open areas requires careful timing and awareness of sniper positions. The map's size allows for multiple simultaneous engagements across different zones. Understanding terrain elevation and natural cover is essential for survival.</p>
+            <p>Farm is a versatile medium-sized map featuring agricultural buildings, open fields, and dense tree lines. This map offers multiple playstyles, from long-range engagements across crop fields to close-quarters combat in barn complexes. Success on Farm requires balancing aggression with caution, as visibility varies dramatically between open areas and covered positions.</p>
         </div>
 
         <h3 class="section-title" style="margin-top: 2rem;">Key Features</h3>
@@ -332,51 +236,47 @@
             <div class="feature-card">
                 <h4>Extraction Points</h4>
                 <ul>
-                    <li>Main Road (vehicle required, exposed)</li>
-                    <li>Forest Edge (on foot, concealed)</li>
-                    <li>Barn Loft (conditional, limited time)</li>
-                    <li>River Crossing (water route, slow)</li>
+                    <li>North Farm Gate (always available)</li>
+                    <li>South Bridge (timer-based)</li>
+                    <li>East Fence Line (conditional)</li>
+                    <li>West Forest Path (secure)</li>
                 </ul>
             </div>
             <div class="feature-card">
                 <h4>High-Value Loot Spots</h4>
                 <ul>
-                    <li>Main Farmhouse - residential loot</li>
-                    <li>Equipment Shed - tools & attachments</li>
-                    <li>Silo Storage - hidden caches</li>
-                    <li>Worker Cabins - medical supplies</li>
+                    <li>Main Farmhouse - weapons cache</li>
+                    <li>Grain Silo - medical supplies</li>
+                    <li>Equipment Shed - attachments</li>
+                    <li>Underground Bunker - rare items</li>
                 </ul>
             </div>
             <div class="feature-card">
-                <h4>Safe Routes</h4>
+                <h4>Danger Zones</h4>
                 <ul>
-                    <li>Tree Line Movement - forest cover</li>
-                    <li>Ditch Network - low profile travel</li>
-                    <li>Building-to-Building - minimize exposure</li>
-                    <li>Night Movement - reduced visibility</li>
+                    <li>Open crop fields - sniper exposure</li>
+                    <li>Main barn complex - hotly contested</li>
+                    <li>Central road - high traffic</li>
+                    <li>Boss spawn area - extreme danger</li>
                 </ul>
             </div>
         </div>
     </section>
 
-    <!-- ========================================
-         MAP 3: FORT NARITH
-         Military Installation Map - High-intensity combat
-         ID: fort-narith (anchor link target)
-         ======================================== -->
-    <section class="map-detail-section" id="fort-narith">
+    <!-- Map 2: VALLEY -->
+    <section class="map-detail-section" id="valley">
         <div class="map-header">
             <div class="map-icon">
-                <img src="assets/media/images/maps/fort-map-card.webp" alt="Fort Narith map icon" class="map-icon">
+                <img src="assets/media/images/maps/valley-map-card.webp" alt="Valley map icon" class="map-icon">
             </div>
             <div class="map-title-block">
-                <h2>FORT NARITH - ROUTES</h2>
-                <p class="map-category">Military Installation Map</p>
+                <h2>VALLEY - TACTICAL GUIDE</h2>
+                <p class="map-category">Large Map</p>
             </div>
         </div>
 
         <div class="map-description">
-            <p>Fort Narith is a heavily fortified military complex featuring multi-level structures, underground bunkers, and defensive positions. This map is characterized by intense close to mid-range combat with limited sightlines. The fort's design creates natural chokepoints and contested zones. High-tier loot attracts aggressive players, making every raid a high-stakes operation requiring excellent tactics and loadout preparation.</p>
+            <p>Valley is an expansive map characterized by elevation changes, river systems, and scattered industrial complexes. The terrain heavily favors players who understand positioning and long-range engagements. Navigation requires careful route planning as moving between zones often exposes you to multiple sightlines. Master the high ground, and you'll control the valley.</p>
         </div>
 
         <h3 class="section-title" style="margin-top: 2rem;">Key Features</h3>
@@ -384,23 +284,71 @@
             <div class="feature-card">
                 <h4>Extraction Points</h4>
                 <ul>
-                    <li>Main Gate (heavily defended)</li>
-                    <li>Bunker Exit (underground route)</li>
-                    <li>Watchtower Rope (requires item)</li>
-                    <li>Breach Point (explosive needed)</li>
+                    <li>Hillside Extraction (elevation required)</li>
+                    <li>River Crossing (water route)</li>
+                    <li>Mountain Pass (secure but distant)</li>
+                    <li>Vehicle Extraction (keys needed)</li>
                 </ul>
             </div>
             <div class="feature-card">
                 <h4>High-Value Loot Spots</h4>
                 <ul>
-                    <li>Command Bunker - rare equipment</li>
-                    <li>Arsenal - tier 6-7 weapons</li>
-                    <li>Communications Room - intelligence</li>
-                    <li>Generator Room - tech loot</li>
+                    <li>Sawmill Complex - industrial loot</li>
+                    <li>Radio Tower - military gear</li>
+                    <li>Riverside Compound - varied loot</li>
+                    <li>Crashed Helicopter - high-tier</li>
                 </ul>
             </div>
             <div class="feature-card">
-                <h4>Danger Zones</h4>
+                <h4>Tactical Positions</h4>
+                <ul>
+                    <li>Observation Ridge - best overview</li>
+                    <li>Bridge Overwatch - choke point</li>
+                    <li>Forest Treeline - concealment</li>
+                    <li>Rocky Outcrops - cover positions</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Map 3: ARMORY -->
+    <section class="map-detail-section" id="armory">
+        <div class="map-header">
+            <div class="map-icon">
+                <img src="assets/media/images/maps/armory-map-card.webp" alt="Armory map icon" class="map-icon">
+            </div>
+            <div class="map-title-block">
+                <h2>ARMORY - HOT ZONES</h2>
+                <p class="map-category">Small Map - High Risk</p>
+            </div>
+        </div>
+
+        <div class="map-description">
+            <p>Armory is a compact, high-intensity map centered around a military storage facility. Every inch of this map is potentially hostile, with tight corridors, multi-level buildings, and countless ambush points. The loot quality is exceptional, but expect constant combat. Quick reflexes and aggressive tactics are rewarded, while hesitation is punished.</p>
+        </div>
+
+        <h3 class="section-title" style="margin-top: 2rem;">Key Features</h3>
+        <div class="features-grid">
+            <div class="feature-card">
+                <h4>Extraction Points</h4>
+                <ul>
+                    <li>Main Gate (heavily contested)</li>
+                    <li>Drainage Tunnel (underground)</li>
+                    <li>Roof Helipad (requires access)</li>
+                    <li>Breach Point (tactical exit)</li>
+                </ul>
+            </div>
+            <div class="feature-card">
+                <h4>High-Value Loot Spots</h4>
+                <ul>
+                    <li>Weapons Vault - top-tier weapons</li>
+                    <li>Officers' Quarters - rare keys</li>
+                    <li>Supply Room - attachments/mods</li>
+                    <li>Command Center - intelligence</li>
+                </ul>
+            </div>
+            <div class="feature-card">
+                <h4>Combat Zones</h4>
                 <ul>
                     <li>Central Courtyard - deadly crossfire</li>
                     <li>Main Building - CQB hell</li>
@@ -411,11 +359,7 @@
         </div>
     </section>
 
-    <!-- ========================================
-         MAP 4: NORTHRIDGE
-         Urban Warfare Map - Vertical gameplay and complex navigation
-         ID: northridge (anchor link target)
-         ======================================== -->
+    <!-- Map 4: NORTHRIDGE -->
     <section class="map-detail-section" id="northridge">
         <div class="map-header">
             <div class="map-icon">
@@ -462,12 +406,6 @@
             </div>
         </div>
     </section>
-
-    <!-- ========================================
-         MAP 5: TV STATION
-         Close-Quarters Interior Map - Intense CQB combat
-         ID: tv-station (anchor link target)
-         ======================================== -->
     <section class="map-detail-section" id="tv-station">
         <div class="map-header">
             <div class="map-icon">
@@ -513,89 +451,60 @@
                 </ul>
             </div>
         </div>
-    </section>
+        </section>
 
-    <!-- ========================================
-         MOBILE MENU OVERLAY
-         Dark overlay when mobile menu is open (clicking closes menu)
-         ======================================== -->
-    <label for="menu-toggle" class="menu-overlay" id="menu-overlay"></label>
-    
-    <!-- ========================================
-         MOBILE MENU
-         Slide-in navigation menu for mobile devices (CSS-only toggle)
-         ======================================== -->
-    <div class="mobile-menu" id="mobile-menu">
-        <!-- Menu header with title and close button -->
-        <div class="mobile-menu-header">
-            <div class="mobile-menu-title">MENU</div>
-            <!-- Close button (label triggers checkbox to close menu) -->
-            <label for="menu-toggle" class="mobile-menu-close">×</label>
-        </div>
+        <!-- Menu Overlay (clicking closes menu via label) -->
+        <label for="menu-toggle" class="menu-overlay" id="menu-overlay"></label>
         
-        <!-- Navigation links -->
-        <nav class="mobile-menu-nav">
-            <a href="index.html">Home</a>
-            <a href="best-weapons.html">Best Weapons</a>
-            <a href="tactical-gear.html">Tactical Gear</a>
-            <a href="extraction-maps.html" class="active">Extraction Maps</a>
-            <a href="latest-intel.html">Latest Intel</a>
-            <a href="media-gallery.html">Media Gallery</a>
-        </nav>
-    </div>
-    
-    <!-- ========================================
-         FOOTER
-         Site footer with social media links and copyright information
-         ======================================== -->
-    <footer class="site-footer">
-        <div class="footer-content">
-            
-            <!-- Social media icons (circular badges with hover effects) -->
-            <div class="social-icons">
-                
-                <!-- Discord link -->
-                <a href="https://discord.com/" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Discord">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M20.211 4.223A.954.954 0 0 0 19.38 4H4.62a.954.954 0 0 0-.83 4.887c.21 1.77 1.05 3.3 2.37 4.542 1.32 1.242 3.018 1.933 4.84 2.124v3.193l.02.046a.5.5 0 0 0 .82 0l.02-.046v-3.193c1.822-.191 3.52-.882 4.84-2.124 1.32-1.242 2.16-2.772 2.37-4.542a.954.954 0 0 0-.17-4.887zm-4.322 3.86a1.59 1.59 0 0 1-1.6 1.6c-.88 0-1.6-.72-1.6-1.6s.72-1.6 1.6-1.6c.88 0 1.6.72 1.6 1.6zm-8.58 0a1.59 1.59 0 0 1-1.6 1.6c-.88 0-1.6-.72-1.6-1.6s.72-1.6 1.6-1.6c.88 0 1.6.72 1.6 1.6z"/></svg>
-                </a>
-                
-                <!-- X (Twitter) link -->
-                <a href="https://x.com/" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="X (Twitter)">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M18.244 2.25h3.308l-7.227 8.25L21.602 22H0V20.13l7.989-8.62L0 2.25h8.34L13.88 9.42l4.364-7.17zM20.29 20h-1.89L7.747 4H9.72L20.29 20z"/></svg>
-                </a>
-                
-                <!-- YouTube link -->
-                <a href="https://youtube.com/" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="YouTube">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M21.543 6.486c-.192-.727-.775-1.31-1.502-1.502C18.667 4 12 4 12 4s-6.667 0-8.041.984c-.727.192-1.31.775-1.502 1.502C2 7.84 2 12 2 12s0 4.16.457 5.514c.192.727.775 1.31 1.502 1.502C5.333 20 12 20 12 20s6.667 0 8.041-.984c.727-.192 1.31-.775 1.502-1.502C22 16.16 22 12 22 12s0-4.16-.457-5.514zM10 15.5V8.5l6 3.5-6 3.5z"/></svg>
-                </a>
-                
-                <!-- Twitch link -->
-                <a href="https://twitch.com/" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Twitch">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M3.504 19.382V2.618H20.49V16.62L16.002 21H5.748L3.504 19.382zM17.027 15.77H17.035V7.23h-2.188v8.54h2.18zM12.87 15.77H12.878V7.23h-2.188v8.54h2.18z"/></svg>
-                </a>
-                
-                <!-- Instagram link -->
-                <a href="https://instagram.com/" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Instagram">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M7.8 2h8.4C17.61 2 19 3.39 19 5.06v13.88C19 20.61 17.61 22 15.6 22H7.8C5.79 22 4.4 20.61 4.4 18.94V5.06C4.4 3.39 5.79 2 7.8 2zm10.79 4.31c.42 0 .7.28.7.7s-.28.7-.7.7h-1.4c-.42 0-.7-.28-.7-.7s.28-.7.7-.7h1.4zM12.1 8c2.2 0 4 1.8 4 4s-1.8 4-4 4-4-1.8-4-4 1.8-4 4-4zm0 6.6c1.43 0 2.6-1.17 2.6-2.6s-1.17-2.6-2.6-2.6-2.6 1.17-2.6 2.6 1.17 2.6 2.6 2.6z"/></svg>
-                </a>
+        <!-- Mobile Menu -->
+        <div class="mobile-menu" id="mobile-menu">
+            <div class="mobile-menu-header">
+                <div class="mobile-menu-title">MENU</div>
+                <!-- Close button as label for checkbox -->
+                <label for="menu-toggle" class="mobile-menu-close">×</label>
             </div>
-
-            <!-- Copyright and disclaimer text -->
-            <div class="footer-text">
-                <p>
-                    &copy; 2025 ABI INSIGHT. BY MMARCUSMACHADO ALL RIGHTS RESERVED. NOT AFFILIATED WITH TENCENT GAMES OR MOREFUN STUDIOS.
-                </p>
-                <p class="project-note">
-                    <span class="warning-icon">⚠️</span>
-                    THIS IS A SCHOOL PROJECT UTILIZING THIRD-PARTY GAME IMAGES AND VIDEOS FOR SKILL/PURPOSES ONLY WITH FAN MADE DESIGN. IT IS INTENDED USE ON GITHUB ONLY.
-                    <span class="warning-icon">⚠️</span>
-                </p>
-            </div>
+            <nav class="mobile-menu-nav">
+                <a href="index.html">Home</a>
+                <a href="best-weapons.html">Best Weapons</a>
+                <a href="tactical-gear.html">Tactical Gear</a>
+                <a href="extraction-maps.html" class="active">Extraction Maps</a>
+                <a href="latest-intel.html">Latest Intel</a>
+                <a href="media-gallery.html">Media Gallery</a>
+            </nav>
         </div>
-    </footer>
+        <footer class="site-footer">
+            <div class="footer-content">
+                <div class="social-icons">
+                    <a href="https://discord.com/" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Discord">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M20.211 4.223A.954.954 0 0 0 19.38 4H4.62a.954.954 0 0 0-.83 4.887c.21 1.77 1.05 3.3 2.37 4.542 1.32 1.242 3.018 1.933 4.84 2.124v3.193l.02.046a.5.5 0 0 0 .82 0l.02-.046v-3.193c1.822-.191 3.52-.882 4.84-2.124 1.32-1.242 2.16-2.772 2.37-4.542a.954.954 0 0 0-.17-4.887zm-4.322 3.86a1.59 1.59 0 0 1-1.6 1.6c-.88 0-1.6-.72-1.6-1.6s.72-1.6 1.6-1.6c.88 0 1.6.72 1.6 1.6zm-8.58 0a1.59 1.59 0 0 1-1.6 1.6c-.88 0-1.6-.72-1.6-1.6s.72-1.6 1.6-1.6c.88 0 1.6.72 1.6 1.6z"/></svg>
+                    </a>
+                    <a href="https://x.com/" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="X (Twitter)">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M18.244 2.25h3.308l-7.227 8.25L21.602 22H0V20.13l7.989-8.62L0 2.25h8.34L13.88 9.42l4.364-7.17zM20.29 20h-1.89L7.747 4H9.72L20.29 20z"/></svg>
+                    </a>
+                    <a href="https://youtube.com/" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="YouTube">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M21.543 6.486c-.192-.727-.775-1.31-1.502-1.502C18.667 4 12 4 12 4s-6.667 0-8.041.984c-.727.192-1.31.775-1.502 1.502C2 7.84 2 12 2 12s0 4.16.457 5.514c.192.727.775 1.31 1.502 1.502C5.333 20 12 20 12 20s6.667 0 8.041-.984c.727-.192 1.31-.775 1.502-1.502C22 16.16 22 12 22 12s0-4.16-.457-5.514zM10 15.5V8.5l6 3.5-6 3.5z"/></svg>
+                    </a>
+                    <a href="https://twitch.com/" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Twitch">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M3.504 19.382V2.618H20.49V16.62L16.002 21H5.748L3.504 19.382zM17.027 15.77H17.035V7.23h-2.188v8.54h2.18zM12.87 15.77H12.878V7.23h-2.188v8.54h2.18z"/></svg>
+                    </a>
+                    <a href="https://instagram.com/" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Instagram">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M7.8 2h8.4C17.61 2 19 3.39 19 5.06v13.88C19 20.61 17.61 22 15.6 22H7.8C5.79 22 4.4 20.61 4.4 18.94V5.06C4.4 3.39 5.79 2 7.8 2zm10.79 4.31c.42 0 .7.28.7.7s-.28.7-.7.7h-1.4c-.42 0-.7-.28-.7-.7s.28-.7.7-.7h1.4zM12.1 8c2.2 0 4 1.8 4 4s-1.8 4-4 4-4-1.8-4-4 1.8-4 4-4zm0 6.6c1.43 0 2.6-1.17 2.6-2.6s-1.17-2.6-2.6-2.6-2.6 1.17-2.6 2.6 1.17 2.6 2.6 2.6z"/></svg>
+                    </a>
+                </div>
 
-    <!-- Bootstrap JavaScript: Required for Bootstrap interactive components -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+                <div class="footer-text">
+                    <p>
+                        &copy; 2025 ABI INSIGHT. BY MMARCUSMACHADO ALL RIGHTS RESERVED. NOT AFFILIATED WITH TENCENT GAMES OR MOREFUN STUDIOS.
+                    </p>
+                    <p class="project-note"><span class="warning-icon">⚠️</span>
+                        THIS IS A SCHOOL PROJECT UTILIZING THIRD-PARTY GAME IMAGES AND VIDEOS FOR SKILL/PURPOSES ONLY WITH FAN MADE<span class="warning-icon">⚠️</span> <span class="warning-icon">⚠️</span>DESIGN. IT IS INTENDED USE ON GITHUB ONLY.<span class="warning-icon">⚠️</span>
+                    </p>
+                </div>
+            </div>
+        </footer>
 
-</body>
+        <!-- Bootstrap JavaScript (part of Bootstrap framework) -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    </body>
 </html>

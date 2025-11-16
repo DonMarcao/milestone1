@@ -1,456 +1,432 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <!-- Meta tags for character encoding and responsive design -->
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <!-- Page title displayed in browser tab -->
-    <title>ABI Insight - Arena Breakout Infinite</title>
-    
-    <!-- Favicon: Custom arcade joystick icon using inline SVG data URI -->
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2032%2032'%20fill='none'%3E%3Ccircle%20cx='16'%20cy='16'%20r='16'%20fill='%2328a745'/%3E%3Cpath%20d='M7%2020%20L16%2027%20L25%2020'%20fill='none'%20stroke='white'%20stroke-width='2'%20stroke-linejoin='miter'/%3E%3Cpath%20d='M7%2020%20L13%2017'%20fill='none'%20stroke='white'%20stroke-width='2'%20stroke-linejoin='miter'/%3E%3Cpath%20d='M25%2020%20L19%2017'%20fill='none'%20stroke='white'%20stroke-width='2'%20stroke-linejoin='miter'/%3E%3Cellipse%20cx='16'%20cy='20.35'%20rx='2'%20ry='0.9'%20fill='white'%20opacity='0.95'/%3E%3Crect%20x='15.2'%20y='4'%20width='1.6'%20height='16.35'%20fill='white'/%3E%3Ccircle%20cx='16'%20cy='4'%20r='2.875'%20fill='white'/%3E%3Ccircle%20cx='16.9'%20cy='3.2'%20r='0.9'%20fill='rgba(255,255,255,0.5)'/%3E%3C/svg%3E">
-    
-    <!-- External CSS: Bootstrap 5.3.0 framework for responsive grid and components -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    
-    <!-- Custom CSS: Main stylesheet for site-specific styling -->
-    <link rel="stylesheet" href="assets/styles/style.css">
-</head>
-<body>
-    <!-- ========================================
-         TOP DISCLAIMER BANNER
-         Fixed banner at top of page for educational disclaimer
-         ======================================== -->
-    <div class="top-disclaimer-banner">
-        <p>
-            <span class="warning-icon">⚠️</span> 
-            THIS IS A SCHOOL PROJECT UTILIZING THIRD-PARTY GAME IMAGES AND VIDEOS FOR SKILL/PURPOSES ONLY, WITH FAN MADE DESIGN. IT IS INTENDED USE ON GITHUB ONLY.
-            <span class="warning-icon">⚠️</span>
-        </p>
-    </div>
-    
-    <!-- Hidden checkbox for CSS-only mobile menu toggle (no JavaScript required) -->
-    <input type="checkbox" id="menu-toggle" class="menu-checkbox">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>ABI Insight - Arena Breakout Infinite</title>
+        
+        <!--FAVICON - Arcade Joystick Icon (Data URI - Inline SVG)--> 
+        <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2032%2032'%20fill='none'%3E%3Ccircle%20cx='16'%20cy='16'%20r='16'%20fill='%2328a745'/%3E%3Cpath%20d='M7%2020%20L16%2027%20L25%2020'%20fill='none'%20stroke='white'%20stroke-width='2'%20stroke-linejoin='miter'/%3E%3Cpath%20d='M7%2020%20L13%2017'%20fill='none'%20stroke='white'%20stroke-width='2'%20stroke-linejoin='miter'/%3E%3Cpath%20d='M25%2020%20L19%2017'%20fill='none'%20stroke='white'%20stroke-width='2'%20stroke-linejoin='miter'/%3E%3Cellipse%20cx='16'%20cy='20.35'%20rx='2'%20ry='0.9'%20fill='white'%20opacity='0.95'/%3E%3Crect%20x='15.2'%20y='4'%20width='1.6'%20height='16.35'%20fill='white'/%3E%3Ccircle%20cx='16'%20cy='4'%20r='2.875'%20fill='white'/%3E%3Ccircle%20cx='16.9'%20cy='3.2'%20r='0.9'%20fill='rgba(255,255,255,0.5)'/%3E%3C/svg%3E">
+        
+        <!--Bootstrap CSS CDN Link-->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+        <!--Custom Project Stylesheet-->
+        <link rel="stylesheet" href="assets/styles/style.css">
+    </head>
+    <body>
+        
+        <!--Project Disclaimer Banner (Fixed at Top)-->
+        <div class="top-disclaimer-banner">
+            <p>
+                <span class="warning-icon">⚠️</span> 
+                THIS IS A SCHOOL PROJECT UTILIZING THIRD-PARTY GAME IMAGES AND VIDEOS FOR SKILL/PURPOSES ONLY, WITH FAN MADE DESIGN. IT IS INTENDED USE ON GITHUB ONLY.<span class="warning-icon">⚠️</span>
+            </p>
+        </div>
+        
+        <!--Hidden checkbox for CSS-only menu toggle (Mobile/Hamburger)-->
+        <input type="checkbox" id="menu-toggle" class="menu-checkbox">
 
-    <!-- ========================================
-         NAVIGATION BAR
-         Responsive navbar with logo and hamburger menu
-         ======================================== -->
-    <nav class="navbar navbar-dark">
-        <div class="container-fluid">
-            <!-- Brand logo with custom arcade joystick icon -->
-            <a class="navbar-brand" href="index.html">
-                <!-- Inline SVG for brand icon (arcade joystick design) -->
-                <span class="brand-icon">
-                    <svg width="24" height="24" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <!-- Green circular background -->
-                        <circle cx="16" cy="16" r="16" fill="#28a745"/>
-                        <!-- Diamond base with open top (3 sides) -->
-                        <path d="M7 20 L16 27 L25 20" fill="none" stroke="white" stroke-width="2" stroke-linejoin="miter"/>
-                        <path d="M7 20 L13 17" fill="none" stroke="white" stroke-width="2" stroke-linejoin="miter"/>
-                        <path d="M25 20 L19 17" fill="none" stroke="white" stroke-width="2" stroke-linejoin="miter"/>
-                        <!-- Base connector -->
-                        <ellipse cx="16" cy="20.35" rx="2" ry="0.9" fill="white" opacity="0.95"/>
-                        <!-- Joystick pin -->
-                        <rect x="15.2" y="4" width="1.6" height="16.35" fill="white"/>
-                        <!-- Ball on top -->
-                        <circle cx="16" cy="4" r="2.875" fill="white"/>
-                        <!-- Highlight reflection on ball -->
-                        <circle cx="16.9" cy="3.2" r="0.9" fill="rgba(255,255,255,0.5)"/>
-                    </svg>
-                </span>
-                ABI INSIGHT
-            </a>
+        <!--Navigation Bar (Main Header/Nav)-->
+        <nav class="navbar navbar-dark">
             
-            <!-- Navigation icons container -->
-            <div class="nav-icons">
-                <!-- Hamburger menu icon (label triggers hidden checkbox for menu toggle) -->
-                <label for="menu-toggle" class="btn-icon hamburger-icon" aria-label="Toggle menu">
-                    <svg width="28" height="28" fill="currentColor" viewBox="0 0 16 16">
-                        <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
-                    </svg>
-                </label>
-            </div>
-        </div>
-    </nav>
-
-    <!-- ========================================
-         HERO SECTION
-         Full-width video background with overlay text and CTA button
-         ======================================== -->
-    <section class="hero-section" style="height: 40vh;">
-        <!-- Background video with autoplay, muted, and loop attributes -->
-        <video class="hero-video" autoplay muted loop playsinline poster="assets/media/images/gallery/abi-poster.jpg">
-            <source src="assets/media/video/abi-video.webm" type="video/webm">
-            Your browser does not support the video tag.
-        </video>
-        
-        <!-- Hero content overlay (positioned above video) -->
-        <div class="hero-content">
-            <h1 class="hero-title">ARENA BREAKOUT<br>INFINITE</h1>
-            <p class="hero-subtitle">MASTER THE TACTICAL EXTRACTION</p>
-            <a href="media-gallery.html" style="text-decoration: none;" class="btn-cta">CHECK THE LATEST BEST GAMEPLAYS</a>
-        </div>
-    </section>
-
-    <!-- ========================================
-         WEAPONS SECTION
-         Horizontal scrolling cards showcasing best weapons
-         ======================================== -->
-    <section class="content-section">
-        <!-- Section title as clickable button linking to weapons page -->
-        <a href="best-weapons.html" class="btn btn-outline-success section-title-btn">BEST WEAPONS</a>
-        
-        <!-- Horizontal scrolling container for weapon cards -->
-        <div class="cards-container">
-            
-            <!-- Weapon Card 1: HK416-CARBINE -->
-            <div class="card-horizontal">
-                <div class="card-image">
-                    <img 
-                        src="assets/media/images/weapons/H416.webp" 
-                        alt="HK416-CARBINE Icon" 
-                        class="gun-icon" 
-                    >
-                    <!-- NEW badge indicator -->
-                    <span class="badge-new">NEW</span>
-                </div>
-                <div class="card-body-custom">
-                    <span class="badge-tier">TIER 6</span>
-                    <h3 class="card-title-custom">HK416-CARBINE</h3>
-                    <p class="card-text-custom">Reliable assault rifle for all combat situations.</p>
-                    <a href="best-weapons.html#hk416-carbine" style="text-decoration: none;" class="btn-card">VIEW STATS</a>
+            <div class="container-fluid">
+                <!--Navbar Brand/Logo Link-->
+                <a class="navbar-brand" href="index.html">
+                    <!--ARCADE JOYSTICK ICON - Inline SVG-->
+                    <span class="brand-icon">
+                        <svg width="24" height="24" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <!--Green circular background--> 
+                            <circle cx="16" cy="16" r="16" fill="#28a745"/>
+                            <!--Diamond base with open top (3 sides) -->
+                            <path d="M7 20 L16 27 L25 20" fill="none" stroke="white" stroke-width="2" stroke-linejoin="miter"/>
+                            <path d="M7 20 L13 17" fill="none" stroke="white" stroke-width="2" stroke-linejoin="miter"/>
+                            <path d="M25 20 L19 17" fill="none" stroke="white" stroke-width="2" stroke-linejoin="miter"/>
+                            <!--Base connector -->
+                            <ellipse cx="16" cy="20.35" rx="2" ry="0.9" fill="white" opacity="0.95"/>
+                            <!--Pin -->
+                            <rect x="15.2" y="4" width="1.6" height="16.35" fill="white"/>
+                            <!--Ball on top--> 
+                            <circle cx="16" cy="4" r="2.875" fill="white"/>
+                            <!--Highlight on ball--> 
+                            <circle cx="16.9" cy="3.2" r="0.9" fill="rgba(255,255,255,0.5)"/>
+                        </svg>
+                    </span>
+                    ABI INSIGHT
+                </a>
+                <div class="nav-icons">
+                    <!--Hamburger menu icon (label for checkbox)-->
+                    <label for="menu-toggle" class="btn-icon hamburger-icon" aria-label="Toggle menu">
+                        <svg width="28" height="28" fill="currentColor" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
+                        </svg>
+                    </label>
                 </div>
             </div>
-
-            <!-- Weapon Card 2: SJ16 .338 -->
-            <div class="card-horizontal">
-                <div class="card-image">
-                    <img 
-                        src="assets/media/images/weapons/SJ16.webp" 
-                        alt="SJ16 .338 Icon" 
-                        class="gun-icon" 
-                    >
-                    <span class="badge-new">NEW</span>
-                </div>
-                <div class="card-body-custom">
-                    <span class="badge-tier">TIER 7</span>
-                    <h3 class="card-title-custom">SJ 16 .338</h3>
-                    <p class="card-text-custom">Unleash devastating firepower with the strogest gun ever.</p>
-                    <a href="best-weapons.html#sj16" style="text-decoration: none;" class="btn-card">VIEW STATS</a>
-                </div>
-            </div>
-
-            <!-- Weapon Card 3: FN 57 Pistol -->
-            <div class="card-horizontal">
-                <div class="card-image">
-                    <img 
-                        src="assets/media/images/weapons/F57.webp" 
-                        alt="FN 57 Pistol Icon" 
-                        class="gun-icon" 
-                    >
-                </div>
-                <div class="card-body-custom">
-                    <span class="badge-tier">TIER 5</span>
-                    <h3 class="card-title-custom">FN 57 Pistol</h3>
-                    <p class="card-text-custom">Known for its excellent armor penetration, making it a threat against players.</p>
-                    <a href="best-weapons.html#F57-pistol" style="text-decoration: none;" class="btn-card">VIEW STATS</a>
-                </div>
-            </div>
-
-            <!-- Weapon Card 4: M110-SASS -->
-            <div class="card-horizontal">
-                <div class="card-image">
-                    <img 
-                        src="assets/media/images/weapons/M110.webp" 
-                        alt="M110-SASS Icon" 
-                        class="gun-icon" 
-                    >
-                </div>
-                <div class="card-body-custom">
-                    <span class="badge-tier">TIER 6</span>
-                    <h3 class="card-title-custom">M110-SASS</h3>
-                    <p class="card-text-custom">Effective for long-range engagements with manageable recoil.</p>
-                    <a href="best-weapons.html#m110-sass" style="text-decoration: none;" class="btn-card">VIEW STATS</a>
-                </div>
-            </div>
-
-            <!-- Weapon Card 5: M4A1 -->
-            <div class="card-horizontal">
-                <div class="card-image">
-                    <img 
-                        src="assets/media/images/weapons/M4A1.webp" 
-                        alt="M4A1 Icon" 
-                        class="gun-icon" 
-                    >
-                </div>
-                <div class="card-body-custom">
-                    <span class="badge-tier">TIER 5</span>
-                    <h3 class="card-title-custom">M4A1</h3>
-                    <p class="card-text-custom">Incredibly versatile rifle that dominates close to mid-range.</p>
-                    <a href="best-weapons.html#m4a1" style="text-decoration: none;" class="btn-card">VIEW STATS</a>
-                </div>
-            </div>
-
-            <!-- Weapon Card 6: AKM -->
-            <div class="card-horizontal">
-                <div class="card-image">
-                    <img 
-                        src="assets/media/images/weapons/AKM.webp" 
-                        alt="AKM Icon" 
-                        class="gun-icon" 
-                    >
-                </div>
-                <div class="card-body-custom">
-                    <span class="badge-tier">TIER 4</span>
-                    <h3 class="card-title-custom">AKM</h3>
-                    <p class="card-text-custom">High damage output balanced by strong recoil.</p>
-                    <a href="best-weapons.html#akm" style="text-decoration: none;" class="btn-card">VIEW STATS</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ========================================
-         TACTICAL GEAR SECTION
-         Horizontal scrolling cards showcasing tactical equipment
-         ======================================== -->
-    <section class="content-section">
-        <!-- Section title as clickable button -->
-        <a href="tactical-gear.html" class="btn btn-outline-success section-title-btn">TACTICAL GEAR</a>
-        
-        <!-- Horizontal scrolling container for gear cards -->
-        <div class="cards-container">
-            
-            <!-- Gear Card 1: Heavy Armor -->
-            <div class="card-horizontal">
-                <div class="card-image">
-                    <img 
-                        src="assets/media/images/gear/armor.webp" 
-                        alt="Heavy Armor Icon" 
-                        class="gear-icon" 
-                    >
-                </div>
-                <div class="card-body-custom">
-                    <span class="badge-tier">TIER 6</span>
-                    <h3 class="card-title-custom">HEAVY ARMOR</h3>
-                    <p class="card-text-custom">Maximum protection for dangerous raids.</p>
-                    <a href="tactical-gear.html#heavy-armor" style="text-decoration: none;" class="btn-card">VIEW DETAILS</a>
-                </div>
-            </div>
-
-            <!-- Gear Card 2: Tactical Helmet -->
-            <div class="card-horizontal">
-                <div class="card-image">
-                    <img 
-                        src="assets/media/images/gear/helmet.webp" 
-                        alt="Tactical Helmet Icon" 
-                        class="gear-icon" 
-                    >
-                </div>
-                <div class="card-body-custom">
-                    <span class="badge-tier">TIER 6</span>
-                    <h3 class="card-title-custom">TACTICAL HELMET</h3>
-                    <p class="card-text-custom">Essential head protection with built-in comms.</p>
-                    <a href="tactical-gear.html#tactical-helmet" style="text-decoration: none;" class="btn-card">VIEW DETAILS</a>
-                </div>
-            </div>
-
-            <!-- Gear Card 3: Backpack Pro -->
-            <div class="card-horizontal">
-                <div class="card-image">
-                    <img 
-                        src="assets/media/images/gear/backpack.webp" 
-                        alt="Backpack Pro Icon" 
-                        class="gear-icon" 
-                    >
-                </div>
-                <div class="card-body-custom">
-                    <span class="badge-tier">TIER 6</span>
-                    <h3 class="card-title-custom">BACKPACK PRO</h3>
-                    <p class="card-text-custom">Maximize your loot carrying capacity.</p>
-                    <a href="tactical-gear.html#backpack-pro" style="text-decoration: none;" class="btn-card">VIEW DETAILS</a>
-                </div>
-            </div>
-
-            <!-- Gear Card 4: Night Vision -->
-            <div class="card-horizontal">
-                <div class="card-image">
-                    <img 
-                        src="assets/media/images/gear/t7.webp" 
-                        alt="T7 thermal imager Icon" 
-                        class="gear-icon" 
-                    >
-                </div>
-                <div class="card-body-custom">
-                    <span class="badge-tier">TIER 7</span>
-                    <h3 class="card-title-custom">NIGHT VISION</h3>
-                    <p class="card-text-custom">See clearly in complete darkness.</p>
-                    <a href="tactical-gear.html#night-vision" style="text-decoration: none;" class="btn-card">VIEW DETAILS</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ========================================
-         LATEST INTEL SECTION
-         Grid layout cards for game updates and guides
-         ======================================== -->
-    <section class="content-section">
-        <!-- Section title as clickable button -->
-        <a href="latest-intel.html" class="btn btn-outline-success section-title-btn">LATEST INTEL</a>
-        
-        <!-- Grid container for intel cards -->
-        <div class="cards-container grid-cards">
-            
-            <!-- Intel Card 1: Extraction Guide -->
-            <div class="card-vertical">
-                <div class="card-image-vertical">
-                    <img 
-                        src="assets/media/images/intel/extraction-guide-card.webp" 
-                        alt="Extraction Guide Icon" 
-                        class="intel-icon" 
-                    >
-                </div>
-                <div class="card-body-vertical">
-                    <h4>EXTRACTION GUIDE</h4>
-                    <p>Master your exfil routes</p>
-                    <a href="latest-intel.html#extraction-guide-card" style="text-decoration: none;" class="btn-card-small">VIEW GUIDE</a>
-                </div>
-            </div>
-
-            <!-- Intel Card 2: Update 2.0 -->
-            <div class="card-vertical">
-                <div class="card-image-vertical">
-                    <img 
-                        src="assets/media/images/intel/update-2-card.webp" 
-                        alt="Update 2.0 Icon" 
-                        class="intel-icon" 
-                    >
-                </div>
-                <div class="card-body-vertical">
-                    <h4>UPDATE 2.0</h4>
-                    <p>Latest patch notes</p>
-                    <a href="latest-intel.html#update-2-card" style="text-decoration: none;" class="btn-card-small">READ MORE</a>
-                </div>
-            </div>
-
-            <!-- Intel Card 3: Group Tactics -->
-            <div class="card-vertical">
-                <div class="card-image-vertical">
-                    <img 
-                        src="assets/media/images/intel/group-tactics-card.webp" 
-                        alt="Group Tactics Icon" 
-                        class="intel-icon" 
-                    >
-                </div>
-                <div class="card-body-vertical">
-                    <h4>GROUP TACTICS</h4>
-                    <p>Team strategies</p>
-                    <a href="latest-intel.html#group-tactics-card" style="text-decoration: none;" class="btn-card-small">LEARN MORE</a>
-                </div>
-            </div>
-
-            <!-- Intel Card 4: Meta Weapons -->
-            <div class="card-vertical">
-                <div class="card-image-vertical">
-                    <img 
-                        src="assets/media/images/intel/meta-weapons-card.webp" 
-                        alt="Meta Weapons Icon" 
-                        class="intel-icon" 
-                    >
-                </div>
-                <div class="card-body-vertical">
-                    <h4>META WEAPONS</h4>
-                    <p>Top tier loadouts</p>
-                    <a href="latest-intel.html#meta-weapons-card" style="text-decoration: none" class="btn-card-small">VIEW LOADOUTS</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ========================================
-         MOBILE MENU OVERLAY
-         Dark overlay when mobile menu is open (clicking closes menu)
-         ======================================== -->
-    <label for="menu-toggle" class="menu-overlay" id="menu-overlay"></label>
-    
-    <!-- ========================================
-         MOBILE MENU
-         Slide-in navigation menu for mobile devices (CSS-only toggle)
-         ======================================== -->
-    <div class="mobile-menu" id="mobile-menu">
-        <!-- Menu header with title and close button -->
-        <div class="mobile-menu-header">
-            <div class="mobile-menu-title">MENU</div>
-            <!-- Close button (label triggers checkbox to close menu) -->
-            <label for="menu-toggle" class="mobile-menu-close">×</label>
-        </div>
-        
-        <!-- Navigation links -->
-        <nav class="mobile-menu-nav">
-            <a href="index.html" class="active">Home</a>
-            <a href="best-weapons.html">Best Weapons</a>
-            <a href="tactical-gear.html">Tactical Gear</a>
-            <a href="extraction-maps.html">Extraction Maps</a>
-            <a href="latest-intel.html">Latest Intel</a>
-            <a href="media-gallery.html">Media Gallery</a>
         </nav>
-    </div>
-    
-    <!-- ========================================
-         FOOTER
-         Site footer with social media links and copyright information
-         ======================================== -->
-    <footer class="site-footer">
-        <div class="footer-content">
-            
-            <!-- Social media icons (circular badges with hover effects) -->
-            <div class="social-icons">
-                
-                <!-- Discord link -->
-                <a href="https://discord.com/" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Discord">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M20.211 4.223A.954.954 0 0 0 19.38 4H4.62a.954.954 0 0 0-.83 4.887c.21 1.77 1.05 3.3 2.37 4.542 1.32 1.242 3.018 1.933 4.84 2.124v3.193l.02.046a.5.5 0 0 0 .82 0l.02-.046v-3.193c1.822-.191 3.52-.882 4.84-2.124 1.32-1.242 2.16-2.772 2.37-4.542a.954.954 0 0 0-.17-4.887zm-4.322 3.86a1.59 1.59 0 0 1-1.6 1.6c-.88 0-1.6-.72-1.6-1.6s.72-1.6 1.6-1.6c.88 0 1.6.72 1.6 1.6zm-8.58 0a1.59 1.59 0 0 1-1.6 1.6c-.88 0-1.6-.72-1.6-1.6s.72-1.6 1.6-1.6c.88 0 1.6.72 1.6 1.6z"/></svg>
-                </a>
-                
-                <!-- X (Twitter) link -->
-                <a href="https://x.com/" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="X (Twitter)">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M18.244 2.25h3.308l-7.227 8.25L21.602 22H0V20.13l7.989-8.62L0 2.25h8.34L13.88 9.42l4.364-7.17zM20.29 20h-1.89L7.747 4H9.72L20.29 20z"/></svg>
-                </a>
-                
-                <!-- YouTube link -->
-                <a href="https://youtube.com/" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="YouTube">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M21.543 6.486c-.192-.727-.775-1.31-1.502-1.502C18.667 4 12 4 12 4s-6.667 0-8.041.984c-.727.192-1.31.775-1.502 1.502C2 7.84 2 12 2 12s0 4.16.457 5.514c.192.727.775 1.31 1.502 1.502C5.333 20 12 20 12 20s6.667 0 8.041-.984c.727-.192 1.31-.775 1.502-1.502C22 16.16 22 12 22 12s0-4.16-.457-5.514zM10 15.5V8.5l6 3.5-6 3.5z"/></svg>
-                </a>
-                
-                <!-- Twitch link -->
-                <a href="https://twitch.com/" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Twitch">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M3.504 19.382V2.618H20.49V16.62L16.002 21H5.748L3.504 19.382zM17.027 15.77H17.035V7.23h-2.188v8.54h2.18zM12.87 15.77H12.878V7.23h-2.188v8.54h2.18z"/></svg>
-                </a>
-                
-                <!-- Instagram link -->
-                <a href="https://instagram.com/" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Instagram">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M7.8 2h8.4C17.61 2 19 3.39 19 5.06v13.88C19 20.61 17.61 22 15.6 22H7.8C5.79 22 4.4 20.61 4.4 18.94V5.06C4.4 3.39 5.79 2 7.8 2zm10.79 4.31c.42 0 .7.28.7.7s-.28.7-.7.7h-1.4c-.42 0-.7-.28-.7-.7s.28-.7.7-.7h1.4zM12.1 8c2.2 0 4 1.8 4 4s-1.8 4-4 4-4-1.8-4-4 1.8-4 4-4zm0 6.6c1.43 0 2.6-1.17 2.6-2.6s-1.17-2.6-2.6-2.6-2.6 1.17-2.6 2.6 1.17 2.6 2.6 2.6z"/></svg>
-                </a>
-            </div>
 
-            <!-- Copyright and disclaimer text -->
-            <div class="footer-text">
-                <p>
-                    &copy; 2025 ABI INSIGHT. BY MMARCUSMACHADO ALL RIGHTS RESERVED. NOT AFFILIATED WITH TENCENT GAMES OR MOREFUN STUDIOS.
-                </p>
-                <p class="project-note">
-                    <span class="warning-icon">⚠️</span>
-                    THIS IS A SCHOOL PROJECT UTILIZING THIRD-PARTY GAME IMAGES AND VIDEOS FOR SKILL/PURPOSES ONLY WITH FAN MADE DESIGN. IT IS INTENDED USE ON GITHUB ONLY.
-                    <span class="warning-icon">⚠️</span>
-                </p>
+        <!--MAIN CONTENT START-->  
+
+        <!--Hero Section (Full-width video background)-->  
+        <section class="hero-section" style="height: 40vh;">
+            <!--Background Video Element-->  
+            <video class="hero-video" autoplay muted loop playsinline poster="assets/media/images/gallery/abi-poster.jpg">
+                <source src="assets/media/video/abi-video.webm" type="video/webm">
+                Your browser does not support the video tag.
+            </video>
+            <!--Content Overlay-->  
+            <div class="hero-content">
+                <h1 class="hero-title">ARENA BREAKOUT<br>INFINITE</h1>
+                <p class="hero-subtitle">MASTER THE TACTICAL EXTRACTION</p>
+                <!--Call to Action Button-->  
+                <a href="media-gallery.html" style="text-decoration: none;" class="btn-cta">CHECK THE LATEST BEST GAMEPLAYS</a>
             </div>
+        </section>
+
+        <!--Weapons Section (Horizontal Card Grid)-->  
+        <section class="content-section">
+            <!--Section Title Button Link-->  
+            <a href="best-weapons.html" class="btn btn-outline-success section-title-btn">BEST WEAPONS</a>
+            <div class="cards-container">
+                <!--Card 1: HK416-CARBINE-->  
+                <div class="card-horizontal">
+                    <div class="card-image">
+                        
+                        <img 
+                            src="assets/media/images/weapons/H416.webp" 
+                            alt="HK416-CARBINE Icon" 
+                            class="gun-icon" 
+                        >
+                        <span class="badge-new">NEW</span>
+                    </div>
+                    <div class="card-body-custom">
+                        <span class="badge-tier">TIER 6</span>
+                        <h3 class="card-title-custom">HK416-CARBINE</h3>
+                        <p class="card-text-custom">Reliable assault rifle for all combat situations.</p>
+                        <a href="best-weapons.html#hk416-carbine" style="text-decoration: none;" class="btn-card">VIEW STATS</a>
+                    </div>
+                </div>
+
+                <!--Card 2: SJ 16 .338-->
+                <div class="card-horizontal">
+                    <div class="card-image">
+                        <img 
+                            src="assets/media/images/weapons/SJ16.webp" 
+                            alt="SJ16 .338 Icon" 
+                            class="gun-icon" 
+                        >
+                        <span class="badge-new">NEW</span>
+                    </div>
+                    <div class="card-body-custom">
+                        <span class="badge-tier">TIER 7</span>
+                        <h3 class="card-title-custom">SJ 16 .338</h3>
+                        <p class="card-text-custom">Unleash devastating firepower with the strogest gun ever.</p>
+                        <a href="best-weapons.html#sj16" style="text-decoration: none;" class="btn-card">VIEW STATS></a>
+                    </div>
+                </div>
+
+                <!--Card 3: FN 57 Pistol--> 
+                <div class="card-horizontal">
+                    <div class="card-image">
+                        <img 
+                            src="assets/media/images/weapons/F57.webp" 
+                            alt="FN 57 Pistol Icon" 
+                            class="gun-icon" 
+                        >
+                    </div>
+
+                    <div class="card-body-custom">
+                        <span class="badge-tier">TIER 5</span>
+                        <h3 class="card-title-custom">FN 57 Pistol</h3>
+                        <p class="card-text-custom">Known for its excellent armor penetration, making it a threat against players.</p>
+                        <a href="best-weapons.html#F57-pistol" style="text-decoration: none;" class="btn-card">VIEW STATS</a>
+                    </div>
+                </div>
+
+                <!--Card 4: M110-SASS-->
+                <div class="card-horizontal">
+                    <div class="card-image">
+                        <img 
+                            src="assets/media/images/weapons/M110.webp" 
+                            alt="M110-SASS Icon" 
+                            class="gun-icon" 
+                        >
+                    </div>
+                    <div class="card-body-custom">
+                        <span class="badge-tier">TIER 6</span>
+                        <h3 class="card-title-custom">M110-SASS</h3>
+                        <p class="card-text-custom">The pinnacle of semi-automatic precision, excelling in overwatch and suppressive fire.</p>
+                        <a href="best-weapons.html#M110-SASS" style="text-decoration: none;" class="btn-card">VIEW STATS</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!--Maps Section (Extraction Guides)-->  
+        <section class="content-section">
+            <!--Section Title Button Link-->  
+            <a href="extraction-maps.html" class="btn btn-outline-success section-title-btn">EXTRACTION MAPS</a>
+            <div class="cards-container">
+                <!--Card 1: Farm Map-->  
+                <div class="card-horizontal">
+                    <div class="card-image map-image">
+                        <img src="assets/media/images/maps/farm-map-card.webp" alt="Farm map icon" class="map-icon">
+                        <span class="badge-new">NEW</span>
+                    </div>
+                    <div class="card-body-custom">
+                        <h3 class="card-title-custom">FARM - EXTRACTION GUIDE</h3>
+                        <p class="card-text-custom">Master your exfil routes and high-value loot spots.</p>
+                        <a href="extraction-maps.html#farm" style="text-decoration: none;" class="btn-card">VIEW MAP STRATS</a>
+                    </div>
+                </div>
+
+                <!--Card 2: Valley Map --> 
+                <div class="card-horizontal">
+                    <div class="card-image map-image">
+                        <img src="assets/media/images/maps/valley-map-card.webp" alt="Valley map icon" class="map-icon">
+                    </div>
+                    <div class="card-body-custom">
+                        <h3 class="card-title-custom">VALLEY - TACTICAL GUIDE</h3>
+                        <p class="card-text-custom">Navigate dangerous terrain effectively and safely.</p>
+                        <a href="extraction-maps.html#valley" style="text-decoration: none;" class="btn-card">VIEW MAP STRATS</a>
+                    </div>
+                </div>
+
+                <!--Card 3: Armory Map-->  
+                <div class="card-horizontal">
+                    <div class="card-image map-image">
+                        <img src="assets/media/images/maps/armory-map-card.webp" alt="Armory map icon" class="map-icon">
+                    </div>
+                    <div class="card-body-custom">
+                        <h3 class="card-title-custom">ARMORY - HOT ZONES</h3>
+                        <p class="card-text-custom">High risk, high reward combat locations.</p>
+                        <a href="extraction-maps.html#armory" style="text-decoration: none;" class="btn-card">VIEW MAP STRATS</a>
+                    </div>
+                </div>
+
+                <!--Card 4: Northridge Map -->
+                <div class="card-horizontal">
+                    <div class="card-image map-image">
+                        <img src="assets/media/images/maps/northridge-map-card.webp" alt="Northridge map icon" class="map-icon">
+                    </div>
+                    <div class="card-body-custom">
+                        <h3 class="card-title-custom">NORTHRIDGE - ROUTES</h3>
+                        <p class="card-text-custom">Optimal paths for successful extraction.</p>
+                        <a href="extraction-maps.html#northridge" style="text-decoration: none;" class="btn-card">VIEW MAP STRATS</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!--Gear Section (Armor and Equipment)-->  
+        <section class="content-section">
+            <!--Section Title Button Link-->  
+            <a href="tactical-gear.html" class="btn btn-outline-success section-title-btn">TACTICAL GEAR</a>
+            <div class="cards-container">
+                <!--Card 1: Heavy Armor-->  
+                <div class="card-horizontal">
+                    <div class="card-image gear-image">
+                        <img 
+                            src="assets/media/images/gear/BT201_Full_Body_Armor.webp" 
+                            alt="BT201 Heavy Armor Icon" 
+                            class="gear-icon" 
+                        >
+                    </div>
+                    <div class="card-body-custom">
+                        <span class="badge-tier">TIER 6</span>
+                        <h3 class="card-title-custom">HEAVY ARMOR</h3>
+                        <p class="card-text-custom">Maximum protection for dangerous raids.</p>
+                        <a href="tactical-gear.html#heavy-armor" style="text-decoration: none;" class="btn-card">VIEW DETAILS</a>
+                    </div>
+                </div>
+
+                <!--Card 2: Tactical Helmet-->  
+                <div class="card-horizontal">
+                    <div class="card-image gear-image">
+                        <img 
+                            src="assets/media/images/gear/IND70_Tactical_Helmet.webp" 
+                            alt="IND70 Tactical Helmet Icon" 
+                            class="gear-icon" 
+                        >
+                    </div>
+                    <div class="card-body-custom">
+                        <span class="badge-tier">TIER 6</span>
+                        <h3 class="card-title-custom">TACTICAL HELMET</h3>
+                        <p class="card-text-custom">Essential head protection with built-in comms.</p>
+                        <a href="tactical-gear.html#tactical-helmet" style="text-decoration: none;" class="btn-card">VIEW DETAILS</a>
+                    </div>
+                </div>
+
+                <!--Card 3: Backpack Pro-->  
+                <div class="card-horizontal">
+                    <div class="card-image gear-image">
+                        <img 
+                            src="assets/media/images/gear/Ral.heavy.military.backpack.webp" 
+                            alt="Backpack Pro Icon" 
+                            class="gear-icon" 
+                        >
+                    </div>
+                    <div class="card-body-custom">
+                        <span class="badge-tier">TIER 6</span>
+                        <h3 class="card-title-custom">BACKPACK PRO</h3>
+                        <p class="card-text-custom">Maximize your loot carrying capacity.</p>
+                        <a href="tactical-gear.html#backpack-pro" style="text-decoration: none;" class="btn-card">VIEW DETAILS</a>
+                    </div>
+                </div>
+
+                <!--Card 4: Night Vision-->  
+                <div class="card-horizontal">
+                    <div class="card-image gear-image">
+                        <img 
+                            src="assets/media/images/gear/t7.webp" 
+                            alt="T7 thermal imager Icon" 
+                            class="gear-icon" 
+                        >
+                    </div>
+                    <div class="card-body-custom">
+                        <span class="badge-tier">TIER 7</span>
+                        <h3 class="card-title-custom">NIGHT VISION</h3>
+                        <p class="card-text-custom">See clearly in complete darkness.</p>
+                        <a href="tactical-gear.html#night-vision" style="text-decoration: none;" class="btn-card">VIEW DETAILS</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!--Latest Intel Section (Vertical Card Grid)-->  
+        <section class="content-section">
+            <!--Section Title Button Link-->  
+            <a href="latest-intel.html" class="btn btn-outline-success section-title-btn">LATEST INTEL</a>
+            <div class="cards-container grid-cards">
+                <!--Card 1: Extraction Guide --> 
+                <div class="card-vertical">
+                    <div class="card-image-vertical">
+                        <img 
+                            src="assets/media/images/intel/extraction-guide-card.webp" 
+                            alt="Extraction Guide Icon" 
+                            class="intel-icon" 
+                        >
+                    </div>
+                    <div class="card-body-vertical">
+                        <h4>EXTRACTION GUIDE</h4>
+                        <p>Master your exfil routes</p>
+                        <a href="latest-intel.html#extraction-guide-card" style="text-decoration: none;" class="btn-card-small">VIEW GUIDE</a>
+                    </div>
+                </div>
+
+                <!--Card 2: Update 2.0-->  
+                <div class="card-vertical">
+                    <div class="card-image-vertical">
+                        <img 
+                            src="assets/media/images/intel/update-2-card.webp" 
+                            alt="Update 2.0 Icon" 
+                            class="intel-icon" 
+                        >
+                    </div>
+                    <div class="card-body-vertical">
+                        <h4>UPDATE 2.0</h4>
+                        <p>Latest patch notes</p>
+                        <a href="latest-intel.html#update-2-card" style="text-decoration: none;" class="btn-card-small">READ MORE</a>
+                    </div>
+                </div>
+
+                <!--Card 3: Group Tactics-->  
+                <div class="card-vertical">
+                    <div class="card-image-vertical">
+                        <img 
+                            src="assets/media/images/intel/group-tactics-card.webp" 
+                            alt="Group Tactics Icon" 
+                            class="intel-icon" 
+                        >
+                    </div>
+                    <div class="card-body-vertical">
+                        <h4>GROUP TACTICS</h4>
+                        <p>Team strategies</p>
+                        <a href="latest-intel.html#group-tactics-card" style="text-decoration: none;" class="btn-card-small">LEARN MORE</a>
+                    </div>
+                </div>
+
+                <!--Card 4: Meta Weapons-->  
+                <div class="card-vertical">
+                    <div class="card-image-vertical">
+                        <img 
+                            src="assets/media/images/intel/meta-weapons-card.webp" 
+                            alt="Meta Weapons Icon" 
+                            class="intel-icon" 
+                        >
+                    </div>
+                    <div class="card-body-vertical">
+                        <h4>META WEAPONS</h4>
+                        <p>Top tier loadouts</p>
+                        <a href="latest-intel.html#meta-weapons-card" style="text-decoration: none" class="btn-card-small">VIEW LOADOUTS</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!--MAIN CONTENT END --> 
+
+        <!--Menu Overlay (clicking closes menu via label)-->  
+        <label for="menu-toggle" class="menu-overlay" id="menu-overlay"></label>
+        
+        <!--Mobile Menu Container-->  
+        <div class="mobile-menu" id="mobile-menu">
+            <div class="mobile-menu-header">
+                <div class="mobile-menu-title">MENU</div>
+                <!--Close button as label for checkbox-->  
+                <label for="menu-toggle" class="mobile-menu-close">×</label>
+            </div>
+            <nav class="mobile-menu-nav">
+                <!--Mobile Menu Links-->  
+                <a href="index.html" class="active">Home</a>
+                <a href="best-weapons.html">Best Weapons</a>
+                <a href="tactical-gear.html">Tactical Gear</a>
+                <a href="extraction-maps.html">Extraction Maps</a>
+                <a href="latest-intel.html">Latest Intel</a>
+                <a href="media-gallery.html">Media Gallery</a>
+            </nav>
         </div>
-    </footer>
+        
+        <!--Site Footer-->  
+        <footer class="site-footer">
+            <div class="footer-content">
+                <!--Social Media Icons Container-->  
+                <div class="social-icons">
+                    <a href="https://discord.com/" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Discord">
+                        <!--Discord SVG Icon-->  
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M20.211 4.223A.954.954 0 0 0 19.38 4H4.62a.954.954 0 0 0-.83 4.887c.21 1.77 1.05 3.3 2.37 4.542 1.32 1.242 3.018 1.933 4.84 2.124v3.193l.02.046a.5.5 0 0 0 .82 0l.02-.046v-3.193c1.822-.191 3.52-.882 4.84-2.124 1.32-1.242 2.16-2.772 2.37-4.542a.954.954 0 0 0-.17-4.887zm-4.322 3.86a1.59 1.59 0 0 1-1.6 1.6c-.88 0-1.6-.72-1.6-1.6s.72-1.6 1.6-1.6c.88 0 1.6.72 1.6 1.6zm-8.58 0a1.59 1.59 0 0 1-1.6 1.6c-.88 0-1.6-.72-1.6-1.6s.72-1.6 1.6-1.6c.88 0 1.6.72 1.6 1.6z"/></svg>
+                    </a>
+                    <a href="https://x.com/" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="X (Twitter)">
+                        <!--X (Twitter) SVG Icon-->  
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M18.244 2.25h3.308l-7.227 8.25L21.602 22H0V20.13l7.989-8.62L0 2.25h8.34L13.88 9.42l4.364-7.17zM20.29 20h-1.89L7.747 4H9.72L20.29 20z"/></svg>
+                    </a>
+                    <a href="https://youtube.com/" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="YouTube">
+                        <!--YouTube SVG Icon --> 
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M21.543 6.486c-.192-.727-.775-1.31-1.502-1.502C18.667 4 12 4 12 4s-6.667 0-8.041.984c-.727.192-1.31.775-1.502 1.502C2 7.84 2 12 2 12s0 4.16.457 5.514c.192.727.775 1.31 1.502 1.502C5.333 20 12 20 12 20s6.667 0 8.041-.984c.727-.192 1.31-.775 1.502-1.502C22 16.16 22 12 22 12s0-4.16-.457-5.514zM10 15.5V8.5l6 3.5-6 3.5z"/></svg>
+                    </a>
+                    <a href="https://twitch.com/" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Twitch">
+                        <!--Twitch SVG Icon-->  
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M3.504 19.382V2.618H20.49V16.62L16.002 21H5.748L3.504 19.382zM17.027 15.77H17.035V7.23h-2.188v8.54h2.18zM12.87 15.77H12.878V7.23h-2.188v8.54h2.18z"/></svg>
+                    </a>
+                    <a href="https://instagram.com/" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Instagram">
+                        <!--Instagram SVG Icon-->  
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M7.8 2h8.4C17.61 2 19 3.39 19 5.06v13.88C19 20.61 17.61 22 15.6 22H7.8C5.79 22 4.4 20.61 4.4 18.94V5.06C4.4 3.39 5.79 2 7.8 2zm10.79 4.31c.42 0 .7.28.7.7s-.28.7-.7.7h-1.4c-.42 0-.7-.28-.7-.7s.28-.7.7-.7h1.4zM12.1 8c2.2 0 4 1.8 4 4s-1.8 4-4 4-4-1.8-4-4 1.8-4 4-4zm0 6.6c1.43 0 2.6-1.17 2.6-2.6s-1.17-2.6-2.6-2.6-2.6 1.17-2.6 2.6 1.17 2.6 2.6 2.6z"/></svg>
+                    </a>
+                </div>
 
-    <!-- Bootstrap JavaScript: Required for Bootstrap interactive components -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    
-</body>
+                <!--Copyright and Project Disclaimer Text-->  
+                <div class="footer-text">
+                    <p>
+                        &copy; 2025 ABI INSIGHT. BY MMARCUSMACHADO ALL RIGHTS RESERVED. NOT AFFILIATED WITH TENCENT GAMES OR MOREFUN STUDIOS.
+                    </p>
+                    <p class="project-note"><span class="warning-icon">⚠️</span>
+                        THIS IS A SCHOOL PROJECT UTILIZING THIRD-PARTY GAME IMAGES AND VIDEOS FOR SKILL/PURPOSES ONLY WITH FAN MADE<span class="warning-icon">⚠️</span> <span class="warning-icon">⚠️</span>DESIGN. IT IS INTENDED USE ON GITHUB ONLY.<span class="warning-icon">⚠️</span>
+                    </p>
+                </div>
+            </div>
+        </footer>
+
+        <!--Bootstrap JavaScript (part of Bootstrap framework)-->  
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+        
+    </body>
 </html>
