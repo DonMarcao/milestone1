@@ -1,21 +1,37 @@
+<!-- 
+    Best Weapons Page - ABI Insight Gaming Website
+    This page displays detailed weapon statistics, specifications, and recommendations for Arena Breakout Infinite
+    Developed by Marcus Machado as part of Level 5 Full Stack Web Development portfolio
+    Features: Horizontal scrolling cards, weapon stats tables, responsive design, detailed specifications
+-->
 <!DOCTYPE html>
+<!-- HTML root element with lang attribute for accessibility and internationalization -->
 <html lang="en">
+<!-- HEAD SECTION: Contains metadata, external resources, and page configuration -->
 <head>
+    <!-- Character encoding for proper text rendering across all browsers -->
     <meta charset="UTF-8">
+    <!-- Responsive viewport configuration for mobile-first design approach -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Descriptive page title for browser tabs and search engine results -->
     <title>Best Weapons - ABI Insight</title>
     
-    <!-- FAVICON - Arcade Joystick Icon (Data URI - Inline SVG) -->
+    <!-- FAVICON: Custom joystick SVG icon embedded as data URI for fast loading without additional HTTP requests -->
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2032%2032'%20fill='none'%3E%3Ccircle%20cx='16'%20cy='16'%20r='16'%20fill='%2328a745'/%3E%3Cpath%20d='M7%2020%20L16%2027%20L25%2020'%20fill='none'%20stroke='white'%20stroke-width='2'%20stroke-linejoin='miter'/%3E%3Cpath%20d='M7%2020%20L13%2017'%20fill='none'%20stroke='white'%20stroke-width='2'%20stroke-linejoin='miter'/%3E%3Cpath%20d='M25%2020%20L19%2017'%20fill='none'%20stroke='white'%20stroke-width='2'%20stroke-linejoin='miter'/%3E%3Cellipse%20cx='16'%20cy='20.35'%20rx='2'%20ry='0.9'%20fill='white'%20opacity='0.95'/%3E%3Crect%20x='15.2'%20y='4'%20width='1.6'%20height='16.35'%20fill='white'/%3E%3Ccircle%20cx='16'%20cy='4'%20r='2.875'%20fill='white'/%3E%3Ccircle%20cx='16.9'%20cy='3.2'%20r='0.9'%20fill='rgba(255,255,255,0.5)'/%3E%3C/svg%3E">
     
+    <!-- EXTERNAL STYLESHEET: Bootstrap 5.3.0 CSS framework for responsive grid system and utility classes -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- CUSTOM STYLESHEET: Site-specific styles including navigation, footer, and global design elements -->
     <link rel="stylesheet" href="assets/styles/style.css">
+    <!-- EMBEDDED CSS: Page-specific styling for weapon cards, stats tables, and horizontal scrolling layout -->
     <style>
+        /* Weapon Detail Section: Container for individual weapon information with consistent spacing */
         .weapon-detail-section {
             padding: 3rem 1rem;
             border-bottom: 1px solid #2a2a2a;
         }
 
+        /* Weapon Header: Flexbox layout for weapon icon and title block with responsive wrapping */
         .weapon-header {
             display: flex;
             align-items: center;
@@ -24,6 +40,7 @@
             flex-wrap: wrap;
         }
 
+        /* Weapon Icon: Square container with gradient background and brand-colored border for weapon emoji */
         .weapon-icon {
             width: 100px;
             height: 100px;
@@ -36,6 +53,7 @@
             border: 2px solid #28a745;
         }
 
+        /* Weapon Title: Large, bold, uppercase heading with letter spacing for emphasis */
         .weapon-title-block h2 {
             font-size: 2rem;
             font-weight: 800;
@@ -45,6 +63,7 @@
             letter-spacing: 2px;
         }
 
+        /* Weapon Category Badge: Brand-colored text label identifying weapon type (Assault Rifle, SMG, etc.) */
         .weapon-category {
             color: #28a745;
             font-size: 0.9rem;
@@ -53,6 +72,7 @@
             font-weight: 600;
         }
 
+        /* Stats Grid: CSS Grid with responsive columns for displaying weapon statistics cards */
         .stats-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -60,6 +80,7 @@
             margin: 2rem 0;
         }
 
+        /* Stat Card: Individual statistic container with gradient background and hover effect */
         .stat-card {
             background: linear-gradient(145deg, #252525 0%, #1f1f1f 100%);
             padding: 1.5rem;
@@ -68,11 +89,13 @@
             transition: all 0.3s ease;
         }
 
+        /* Stat Card Hover: Brand color border and glow effect for interactivity */
         .stat-card:hover {
             border-color: #28a745;
             box-shadow: 0 4px 15px rgba(40, 167, 69, 0.2);
         }
 
+        /* Stat Label: Uppercase descriptor for statistic type (damage, fire rate, etc.) */
         .stat-label {
             color: #b0b0b0;
             font-size: 0.85rem;
@@ -82,12 +105,14 @@
             font-weight: 600;
         }
 
+        /* Stat Value: Large numeric display for the statistic value */
         .stat-value {
             color: #ffffff;
             font-size: 1.5rem;
             font-weight: 700;
         }
 
+        /* Stat Progress Bar Container: Background track for visual representation of stat values */
         .stat-bar {
             height: 8px;
             background: #2a2a2a;
@@ -96,6 +121,7 @@
             overflow: hidden;
         }
 
+        /* Stat Progress Bar Fill: Gradient-filled bar with animated width transition */
         .stat-bar-fill {
             height: 100%;
             background: linear-gradient(90deg, #28a745 0%, #34ce57 100%);
@@ -103,6 +129,7 @@
             transition: width 0.5s ease;
         }
 
+        /* Weapon Description Container: Styled text box with gradient background and accent border for weapon overview */
         .weapon-description {
             background: linear-gradient(145deg, #1a1a1a 0%, #252525 100%);
             padding: 1.5rem;
@@ -175,6 +202,7 @@
             margin: 0;
         }
 
+        /* RESPONSIVE DESIGN - Tablet Breakpoint (768px and above): Increased padding and icon sizes for medium screens */
         @media (min-width: 768px) {
             .weapon-detail-section {
                 padding: 3rem 2rem;
@@ -191,6 +219,7 @@
             }
         }
 
+        /* RESPONSIVE DESIGN - Desktop Breakpoint (1024px and above): Maximum padding and optimized grid layout */
         @media (min-width: 1024px) {
             .weapon-detail-section {
                 padding: 4rem;
@@ -202,21 +231,23 @@
         }
     </style>
 </head>
+<!-- BODY SECTION: Main content container including disclaimer banner, navigation, weapon details, and footer -->
 <body>
+    <!-- DISCLAIMER BANNER: Educational project notice displayed prominently at page top for transparency -->
     <div class="top-disclaimer-banner">
         <p>
             <span class="warning-icon">⚠️</span> 
             THIS IS A SCHOOL PROJECT UTILIZING THIRD-PARTY GAME IMAGES AND VIDEOS FOR SKILL/PURPOSES ONLY, WITH FAN MADE DESIGN. IT IS INTENDED USE ON GITHUB ONLY.<span class="warning-icon">⚠️</span>
         </p>
     </div>
-    <!-- Hidden checkbox for CSS-only menu toggle -->
+    <!-- MENU TOGGLE CHECKBOX: CSS-only mobile menu implementation using checkbox hack to avoid JavaScript dependency -->
     <input type="checkbox" id="menu-toggle" class="menu-checkbox">
 
-    <!-- Navigation -->
+    <!-- NAVIGATION BAR: Bootstrap navbar with brand logo, site title, and hamburger menu for mobile navigation -->
     <nav class="navbar navbar-dark">
         <div class="container-fluid">
             <a class="navbar-brand" href="index.html">
-                <!-- ARCADE JOYSTICK ICON - Inline SVG -->
+                <!-- BRAND ICON: Inline SVG joystick graphic matching favicon for consistent branding across site -->
                 <span class="brand-icon">
                     <svg width="24" height="24" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <!-- Green circular background -->
@@ -238,7 +269,7 @@
                 ABI INSIGHT
             </a>
             <div class="nav-icons">
-                <!-- Hamburger menu icon (label for checkbox) -->
+                <!-- HAMBURGER MENU ICON: Label element connected to checkbox for CSS-based menu toggle with ARIA label for screen readers -->
                 <label for="menu-toggle" class="btn-icon hamburger-icon" aria-label="Toggle menu">
                     <svg width="28" height="28" fill="currentColor" viewBox="0 0 16 16">
                         <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
@@ -248,19 +279,21 @@
         </div>
     </nav>
 
-    <!-- Hero Section -->
+    <!-- HERO SECTION: Video background header with overlay text, reduced height (40vh) for content page context -->
     <section class="hero-section" style="height: 40vh;">
+        <!-- VIDEO ELEMENT: Autoplay background video with muted audio, loop, and mobile playsinline attribute. Poster image serves as fallback -->
         <video class="hero-video" autoplay muted loop playsinline poster="assets/media/images/gallery/abi-poster.jpg">
             <source src="assets/media/video/abi-video.webm" type="video/webm">
             Your browser does not support the video tag.
         </video>
+        <!-- HERO OVERLAY CONTENT: Centered text content positioned above video background for page title and description -->
         <div class="hero-content">
             <h1 class="hero-title">BEST WEAPONS</h1>
             <p class="hero-subtitle">ARSENAL BREAKDOWN & STATS</p>
         </div>
     </section>
 
-    <!--HOME BUTTON - INVERTED COLORS (White BG, Green Joystick) -->
+    <!-- FLOATING HOME BUTTON: Fixed-position navigation with inverted color scheme (white background, green joystick) for visual contrast against dark page theme -->
     <a href="index.html" class="icon-btn-home" title="Back to Home">
         <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
             <!-- White background circle -->
@@ -280,7 +313,7 @@
         </svg>
     </a>
 
-    <!-- Weapon 1: HK416-CARBINE -->
+    <!-- WEAPON 1 - HK416 CARBINE: Detailed specifications and statistics for assault rifle with optimized images -->
     <section class="weapon-detail-section" id="hk416-carbine">
         <div class="weapon-header">
             <div class="weapon-icon">
@@ -378,7 +411,7 @@
         </div>
     </section>
 
-    <!-- Weapon 2: M110 SAAS -->
+    <!-- WEAPON 2 - M110 SAAS: Marksman rifle specifications with detailed damage and accuracy statistics -->
     <section class="weapon-detail-section" id="M110-SASS">
         <div class="weapon-header">
             <div class="weapon-icon">
@@ -476,7 +509,7 @@
         </div>
     </section>
 
-    <!-- Weapon 3: MK14 -->
+    <!-- WEAPON 3 - MK14: Battle rifle with balanced stats for medium-range engagements -->
     <section class="weapon-detail-section" id="Mk14">
         <div class="weapon-header">
             <div class="weapon-icon">
@@ -573,7 +606,7 @@
             </div>
         </div>
     </section>
-    <!-- Weapon 4: FN FAL -->
+    <!-- WEAPON 4 - FN FAL: High-damage assault rifle with excellent stopping power -->
     <section class="weapon-detail-section" id="fn-fal">
         <div class="weapon-header">
             <div class="weapon-icon">
@@ -670,7 +703,7 @@
             </div>
         </div>
     </section>
-    <!-- Weapon 5: MPX  -->
+    <!-- WEAPON 5 - MPX: Submachine gun optimized for close-quarters combat with high fire rate -->
     <section class="weapon-detail-section" id="mpx">
         <div class="weapon-header">
             <div class="weapon-icon">
@@ -767,7 +800,7 @@
             </div>
         </div>
     </section>
-    <!-- Weapon 6: MOSIN  -->
+    <!-- WEAPON 6 - MOSIN: Bolt-action sniper rifle with maximum damage and range -->
     <section class="weapon-detail-section" id="mosin-nagant">
         <div class="weapon-header">
             <div class="weapon-icon">
@@ -864,7 +897,7 @@
             </div>
         </div>
     </section>
-    <!-- Weapon 7: SVTU -->
+    <!-- WEAPON 7 - SVTU: Semi-automatic designated marksman rifle for precision shooting -->
     <section class="weapon-detail-section" id="svtu">
         <div class="weapon-header">
             <div class="weapon-icon">
@@ -961,7 +994,7 @@
             </div>
         </div>
     </section>
-    <!-- Weapon 7: F57 Pistol -->
+    <!-- WEAPON 8 - F57 PISTOL: Sidearm with high magazine capacity and reliability -->
     <section class="weapon-detail-section" id="F57-pistol">
         <div class="weapon-header">
             <div class="weapon-icon">
@@ -1054,7 +1087,7 @@
             </div>
         </div>
     </section>
-    <!-- Weapon 9: SJ16 -->
+    <!-- WEAPON 9 - SJ16: Light machine gun with sustained fire capability -->
     <section class="weapon-detail-section" id="sj16">
         <div class="weapon-header">
             <div class="weapon-icon">
@@ -1152,16 +1185,17 @@
         </div>
     </section>
 
-    <!-- Menu Overlay (clicking closes menu via label) -->
+    <!-- MENU OVERLAY: Full-screen clickable backdrop that closes mobile menu when clicked (connected to checkbox via label) -->
     <label for="menu-toggle" class="menu-overlay" id="menu-overlay"></label>
     
-    <!-- Mobile Menu -->
+    <!-- MOBILE MENU: Slide-out navigation panel for mobile devices, toggled via CSS checkbox hack -->
     <div class="mobile-menu" id="mobile-menu">
         <div class="mobile-menu-header">
             <div class="mobile-menu-title">MENU</div>
-            <!-- Close button as label for checkbox -->
+            <!-- Close Button: Label element styled as X button, unchecks menu toggle when clicked -->
             <label for="menu-toggle" class="mobile-menu-close">×</label>
         </div>
+        <!-- Mobile Navigation Links: Complete site navigation with active state on current page -->
         <nav class="mobile-menu-nav">
             <a href="index.html">Home</a>
             <a href="best-weapons.html" class="active">Best Weapons</a>
@@ -1171,8 +1205,10 @@
             <a href="media-gallery.html">Media Gallery</a>
         </nav>
     </div>
+    <!-- SITE FOOTER: Contains social media links and copyright/disclaimer information -->
     <footer class="site-footer">
         <div class="footer-content">
+            <!-- Social Media Icons: External links to gaming community platforms with accessibility labels and security attributes -->
             <div class="social-icons">
                 <a href="https://discord.com/" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Discord">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M20.211 4.223A.954.954 0 0 0 19.38 4H4.62a.954.954 0 0 0-.83 4.887c.21 1.77 1.05 3.3 2.37 4.542 1.32 1.242 3.018 1.933 4.84 2.124v3.193l.02.046a.5.5 0 0 0 .82 0l.02-.046v-3.193c1.822-.191 3.52-.882 4.84-2.124 1.32-1.242 2.16-2.772 2.37-4.542a.954.954 0 0 0-.17-4.887zm-4.322 3.86a1.59 1.59 0 0 1-1.6 1.6c-.88 0-1.6-.72-1.6-1.6s.72-1.6 1.6-1.6c.88 0 1.6.72 1.6 1.6zm-8.58 0a1.59 1.59 0 0 1-1.6 1.6c-.88 0-1.6-.72-1.6-1.6s.72-1.6 1.6-1.6c.88 0 1.6.72 1.6 1.6z"/></svg>
@@ -1191,6 +1227,7 @@
                 </a>
             </div>
 
+            <!-- Footer Text: Copyright notice, authorship credit, and educational project disclaimer -->
             <div class="footer-text">
                 <p>
                     &copy; 2025 ABI INSIGHT. BY MMARCUSMACHADO ALL RIGHTS RESERVED. NOT AFFILIATED WITH TENCENT GAMES OR MOREFUN STUDIOS.
@@ -1202,8 +1239,10 @@
         </div>
     </footer>
 
-    <!-- Bootstrap JavaScript (part of Bootstrap framework) -->
+    <!-- BOOTSTRAP JAVASCRIPT: Bootstrap 5.3.0 bundle including Popper.js for interactive components (modals, tooltips, dropdowns) -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     
+<!-- END OF BODY: All visible page content and scripts loaded -->
 </body>
+<!-- END OF HTML DOCUMENT -->
 </html>

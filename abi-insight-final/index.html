@@ -1,22 +1,36 @@
+<!-- 
+    Home Page - ABI Insight Gaming Website
+    This is the landing page featuring hero video, navigation cards, and site overview
+    Developed by Marcus Machado as part of Level 5 Full Stack Web Development portfolio
+    Features: Responsive design, semantic HTML5, custom CSS styling, Bootstrap integration
+-->
+<!-- HTML5 DOCTYPE declaration ensures modern browser rendering and standards compliance -->
 <!DOCTYPE html>
+<!-- HTML root element with lang attribute for accessibility and internationalization -->
 <html lang="en">
     <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>ABI Insight - Arena Breakout Infinite</title>
+        <!-- Character encoding for proper text rendering across all browsers -->
+    <meta charset="UTF-8">
+        <!-- Responsive viewport configuration for mobile-first design approach -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- Descriptive page title for browser tabs and search engine results -->
+    <title>ABI Insight - Arena Breakout Infinite</title>
         
         <!--FAVICON - Arcade Joystick Icon (Data URI - Inline SVG)--> 
         <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2032%2032'%20fill='none'%3E%3Ccircle%20cx='16'%20cy='16'%20r='16'%20fill='%2328a745'/%3E%3Cpath%20d='M7%2020%20L16%2027%20L25%2020'%20fill='none'%20stroke='white'%20stroke-width='2'%20stroke-linejoin='miter'/%3E%3Cpath%20d='M7%2020%20L13%2017'%20fill='none'%20stroke='white'%20stroke-width='2'%20stroke-linejoin='miter'/%3E%3Cpath%20d='M25%2020%20L19%2017'%20fill='none'%20stroke='white'%20stroke-width='2'%20stroke-linejoin='miter'/%3E%3Cellipse%20cx='16'%20cy='20.35'%20rx='2'%20ry='0.9'%20fill='white'%20opacity='0.95'/%3E%3Crect%20x='15.2'%20y='4'%20width='1.6'%20height='16.35'%20fill='white'/%3E%3Ccircle%20cx='16'%20cy='4'%20r='2.875'%20fill='white'/%3E%3Ccircle%20cx='16.9'%20cy='3.2'%20r='0.9'%20fill='rgba(255,255,255,0.5)'/%3E%3C/svg%3E">
         
         <!--Bootstrap CSS CDN Link-->
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+        <!-- EXTERNAL STYLESHEET: Bootstrap 5.3.0 CSS framework for responsive grid system and utility classes -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
         <!--Custom Project Stylesheet-->
-        <link rel="stylesheet" href="assets/styles/style.css">
+        <!-- CUSTOM STYLESHEET: Site-specific styles including navigation, footer, and global design elements -->
+    <link rel="stylesheet" href="assets/styles/style.css">
     </head>
     <body>
         
         <!--Project Disclaimer Banner (Fixed at Top)-->
-        <div class="top-disclaimer-banner">
+        <!-- DISCLAIMER BANNER: Educational project notice displayed prominently at page top for transparency -->
+    <div class="top-disclaimer-banner">
             <p>
                 <span class="warning-icon">⚠️</span> 
                 THIS IS A SCHOOL PROJECT UTILIZING THIRD-PARTY GAME IMAGES AND VIDEOS FOR SKILL/PURPOSES ONLY, WITH FAN MADE DESIGN. IT IS INTENDED USE ON GITHUB ONLY.<span class="warning-icon">⚠️</span>
@@ -69,12 +83,14 @@
         <!--Hero Section (Full-width video background)-->  
         <section class="hero-section" style="height: 40vh;">
             <!--Background Video Element-->  
-            <video class="hero-video" autoplay muted loop playsinline poster="assets/media/images/gallery/abi-poster.jpg">
+            <!-- VIDEO ELEMENT: Autoplay background video with muted audio, loop, and mobile playsinline attribute -->
+        <video class="hero-video" autoplay muted loop playsinline poster="assets/media/images/gallery/abi-poster.jpg">
                 <source src="assets/media/video/abi-video.webm" type="video/webm">
                 Your browser does not support the video tag.
             </video>
             <!--Content Overlay-->  
-            <div class="hero-content">
+            <!-- HERO OVERLAY CONTENT: Centered text content positioned above video background -->
+        <div class="hero-content">
                 <h1 class="hero-title">ARENA BREAKOUT<br>INFINITE</h1>
                 <p class="hero-subtitle">MASTER THE TACTICAL EXTRACTION</p>
                 <!--Call to Action Button-->  
@@ -375,7 +391,8 @@
                 <!--Close button as label for checkbox-->  
                 <label for="menu-toggle" class="mobile-menu-close">×</label>
             </div>
-            <nav class="mobile-menu-nav">
+            <!-- Mobile Navigation Links: Complete site navigation with active state on current page -->
+        <nav class="mobile-menu-nav">
                 <!--Mobile Menu Links-->  
                 <a href="index.html" class="active">Home</a>
                 <a href="best-weapons.html">Best Weapons</a>
@@ -387,10 +404,12 @@
         </div>
         
         <!--Site Footer-->  
-        <footer class="site-footer">
+        <!-- SITE FOOTER: Contains social media links and copyright/disclaimer information -->
+    <footer class="site-footer">
             <div class="footer-content">
                 <!--Social Media Icons Container-->  
-                <div class="social-icons">
+                <!-- Social Media Icons: External links to gaming community platforms with accessibility labels -->
+            <div class="social-icons">
                     <a href="https://discord.com/" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Discord">
                         <!--Discord SVG Icon-->  
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M20.211 4.223A.954.954 0 0 0 19.38 4H4.62a.954.954 0 0 0-.83 4.887c.21 1.77 1.05 3.3 2.37 4.542 1.32 1.242 3.018 1.933 4.84 2.124v3.193l.02.046a.5.5 0 0 0 .82 0l.02-.046v-3.193c1.822-.191 3.52-.882 4.84-2.124 1.32-1.242 2.16-2.772 2.37-4.542a.954.954 0 0 0-.17-4.887zm-4.322 3.86a1.59 1.59 0 0 1-1.6 1.6c-.88 0-1.6-.72-1.6-1.6s.72-1.6 1.6-1.6c.88 0 1.6.72 1.6 1.6zm-8.58 0a1.59 1.59 0 0 1-1.6 1.6c-.88 0-1.6-.72-1.6-1.6s.72-1.6 1.6-1.6c.88 0 1.6.72 1.6 1.6z"/></svg>
@@ -414,7 +433,8 @@
                 </div>
 
                 <!--Copyright and Project Disclaimer Text-->  
-                <div class="footer-text">
+                <!-- Footer Text: Copyright notice, authorship credit, and educational project disclaimer -->
+            <div class="footer-text">
                     <p>
                         &copy; 2025 ABI INSIGHT. BY MMARCUSMACHADO ALL RIGHTS RESERVED. NOT AFFILIATED WITH TENCENT GAMES OR MOREFUN STUDIOS.
                     </p>
@@ -429,4 +449,5 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
         
     </body>
+<!-- END OF HTML DOCUMENT -->
 </html>

@@ -1,25 +1,41 @@
+<!-- 
+    Latest Intel Page - ABI Insight Gaming Website
+    This page displays news articles, patch notes, and strategic guides for Arena Breakout Infinite
+    Developed by Marcus Machado as part of Level 5 Full Stack Web Development portfolio
+    Features: Responsive design, semantic HTML5, custom CSS styling, Bootstrap integration
+-->
 <!DOCTYPE html>
 <html lang="en">
+<!-- HEAD SECTION: Contains metadata, styles, and external resource links -->
 <head>
+    <!-- UTF-8 encoding ensures proper display of special characters and symbols -->
     <meta charset="UTF-8">
+    <!-- Viewport meta enables responsive scaling for mobile devices and tablets -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Page title appears in browser tab and search engine results -->
     <title>Latest Intel - ABI Insight</title>
     
-    <!-- FAVICON - Joystick Icon -->
+    <!-- FAVICON: Custom joystick SVG icon embedded as data URI for fast loading without additional HTTP requests -->
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2032%2032'%20fill='none'%3E%3Ccircle%20cx='16'%20cy='16'%20r='16'%20fill='%2328a745'/%3E%3Cpath%20d='M7%2020%20L16%2027%20L25%2020'%20fill='none'%20stroke='white'%20stroke-width='2'%20stroke-linejoin='miter'/%3E%3Cpath%20d='M7%2020%20L13%2017'%20fill='none'%20stroke='white'%20stroke-width='2'%20stroke-linejoin='miter'/%3E%3Cpath%20d='M25%2020%20L19%2017'%20fill='none'%20stroke='white'%20stroke-width='2'%20stroke-linejoin='miter'/%3E%3Cellipse%20cx='16'%20cy='20.35'%20rx='2'%20ry='0.9'%20fill='white'%20opacity='0.95'/%3E%3Crect%20x='15.2'%20y='4'%20width='1.6'%20height='16.35'%20fill='white'/%3E%3Ccircle%20cx='16'%20cy='4'%20r='2.875'%20fill='white'/%3E%3Ccircle%20cx='16.9'%20cy='3.2'%20r='0.9'%20fill='rgba(255,255,255,0.5)'/%3E%3C/svg%3E">
     
+    <!-- EXTERNAL STYLESHEET: Bootstrap 5.3.0 CSS framework for responsive grid system and utility classes -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- CUSTOM STYLESHEET: Site-specific styles including navigation, footer, and global design elements -->
     <link rel="stylesheet" href="assets/styles/style.css">
+    <!-- EMBEDDED CSS: Page-specific styling for article layout, typography, and responsive behavior -->
     <style>
+        /* Article Section Container: Provides consistent spacing and visual separation between news articles */
         .intel-article-section {
             padding: 3rem 1rem;
             border-bottom: 1px solid #2a2a2a;
         }
 
+        /* Article Header: Container for metadata and title elements with bottom spacing */
         .article-header {
             margin-bottom: 2rem;
         }
 
+        /* Article Metadata: Flexbox layout for date and category tags with responsive wrapping */
         .article-meta {
             display: flex;
             gap: 1.5rem;
@@ -27,6 +43,7 @@
             margin-bottom: 1rem;
         }
 
+        /* Article Date: Styled timestamp with brand color and uppercase formatting for visual consistency */
         .article-date {
             color: #28a745;
             font-size: 0.85rem;
@@ -35,6 +52,7 @@
             letter-spacing: 1px;
         }
 
+        /* Category Badge: Gradient background pill design to categorize article types (Patch Notes, Strategy, etc.) */
         .article-category {
             background: linear-gradient(90deg, #28a745 0%, #34ce57 100%);
             color: #ffffff;
@@ -45,6 +63,7 @@
             text-transform: uppercase;
         }
 
+        /* Article Title (H2): Large, bold, uppercase heading with letter spacing for dramatic impact */
         .article-header h2 {
             font-size: 2rem;
             font-weight: 800;
@@ -54,6 +73,7 @@
             letter-spacing: 2px;
         }
 
+        /* Article Content Container: Gradient background card with border accent for visual depth and hierarchy */
         .article-content {
             background: linear-gradient(145deg, #1a1a1a 0%, #252525 100%);
             padding: 2rem;
@@ -62,6 +82,7 @@
             margin: 1.5rem 0;
         }
 
+        /* Article Paragraphs: Optimized line height and spacing for improved readability */
         .article-content p {
             color: #d0d0d0;
             line-height: 1.8;
@@ -69,6 +90,7 @@
             font-size: 1rem;
         }
 
+        /* Article Subheadings (H3): Section dividers with uppercase styling and generous top margin */
         .article-content h3 {
             color: #ffffff;
             font-size: 1.3rem;
@@ -78,18 +100,21 @@
             letter-spacing: 1px;
         }
 
+        /* Unordered Lists: Remove default bullets to prepare for custom styling with pseudo-elements */
         .article-content ul {
             list-style: none;
             padding-left: 0;
             margin-bottom: 1.5rem;
         }
 
+        /* List Items: Each item separated by subtle border for clear visual hierarchy */
         .article-content li {
             padding: 0.7rem 0;
             color: #b0b0b0;
             border-bottom: 1px solid #2a2a2a;
         }
 
+        /* Custom List Bullet: Green arrow using CSS pseudo-element ::before for brand consistency */
         .article-content li::before {
             content: "▶";
             color: #28a745;
@@ -97,6 +122,7 @@
             font-size: 0.8rem;
         }
 
+        /* Highlight Box: Emphasized content container with gradient and border for important information */
         .highlight-box {
             background: linear-gradient(145deg, #2a2a2a 0%, #1f1f1f 100%);
             padding: 1.5rem;
@@ -105,6 +131,7 @@
             margin: 2rem 0;
         }
 
+        /* Highlight Box Heading: Brand-colored H4 title for callout sections */
         .highlight-box h4 {
             color: #28a745;
             font-size: 1.1rem;
@@ -113,6 +140,7 @@
             text-transform: uppercase;
         }
 
+        /* Back Button: Navigation link styled as button with gradient background and hover effects */
         .back-button {
             display: inline-block;
             margin: 2rem 1rem;
@@ -129,6 +157,7 @@
             transition: all 0.3s ease;
         }
 
+        /* Back Button Hover State: Brand color gradient with lift animation and glow effect for interactivity */
         .back-button:hover {
             background: linear-gradient(145deg, #28a745 0%, #34ce57 100%);
             border-color: #28a745;
@@ -137,6 +166,7 @@
             box-shadow: 0 4px 12px rgba(40, 167, 69, 0.3);
         }
 
+        /* RESPONSIVE DESIGN - Tablet Breakpoint (768px and above): Increased padding and font sizes for medium screens */
         @media (min-width: 768px) {
             .intel-article-section {
                 padding: 3rem 2rem;
@@ -147,6 +177,7 @@
             }
         }
 
+        /* RESPONSIVE DESIGN - Desktop Breakpoint (1024px and above): Maximum padding and optimal content width for large screens */
         @media (min-width: 1024px) {
             .intel-article-section {
                 padding: 4rem;
@@ -158,21 +189,23 @@
         }
     </style>
 </head>
+<!-- BODY SECTION: Main content container including disclaimer banner, navigation, articles, and footer -->
 <body>
+    <!-- DISCLAIMER BANNER: Educational project notice displayed prominently at page top for transparency -->
     <div class="top-disclaimer-banner">
         <p>
             <span class="warning-icon">⚠️</span> 
             THIS IS A SCHOOL PROJECT UTILIZING THIRD-PARTY GAME IMAGES AND VIDEOS FOR SKILL/PURPOSES ONLY, WITH FAN MADE DESIGN. IT IS INTENDED USE ON GITHUB ONLY.<span class="warning-icon">⚠️</span>
         </p>
     </div>
-    <!-- Hidden checkbox for CSS-only menu toggle -->
+    <!-- MENU TOGGLE CHECKBOX: CSS-only mobile menu implementation using checkbox hack to avoid JavaScript dependency -->
     <input type="checkbox" id="menu-toggle" class="menu-checkbox">
 
-    <!-- Navigation -->
+    <!-- NAVIGATION BAR: Bootstrap navbar with brand logo, site title, and hamburger menu for mobile navigation -->
     <nav class="navbar navbar-dark">
         <div class="container-fluid">
             <a class="navbar-brand" href="index.html">
-                <!-- ARCADE JOYSTICK ICON (matching favicon) -->
+                <!-- BRAND ICON: Inline SVG joystick graphic matching favicon for consistent branding across site -->
                 <span class="brand-icon">
                     <svg width="24" height="24" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <circle cx="16" cy="16" r="16" fill="#28a745"/>
@@ -193,7 +226,7 @@
                 ABI INSIGHT
             </a>
             <div class="nav-icons">
-                <!-- Hamburger menu icon (label for checkbox) -->
+                <!-- HAMBURGER MENU ICON: Label element connected to checkbox for CSS-based menu toggle with ARIA label for screen readers -->
                 <label for="menu-toggle" class="btn-icon hamburger-icon" aria-label="Toggle menu">
                     <svg width="28" height="28" fill="currentColor" viewBox="0 0 16 16">
                         <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
@@ -203,19 +236,21 @@
         </div>
     </nav>
 
-    <!-- Hero Section -->
+    <!-- HERO SECTION: Video background header with overlay text, reduced height (40vh) for article page context -->
     <section class="hero-section" style="height: 40vh;">
+        <!-- VIDEO ELEMENT: Autoplay background video with muted audio, loop, and mobile playsinline attribute. Poster image serves as fallback -->
         <video class="hero-video" autoplay muted loop playsinline poster="assets/media/images/gallery/abi-poster.jpg">
             <source src="assets/media/video/abi-video.webm" type="video/webm">
             Your browser does not support the video tag.
         </video>
+        <!-- HERO OVERLAY CONTENT: Centered text content positioned above video background for page title and description -->
         <div class="hero-content">
             <h1 class="hero-title">LATEST INTEL</h1>
             <p class="hero-subtitle">NEWS, UPDATES & STRATEGIES</p>
         </div>
     </section>
 
-    <!-- HOME BUTTON - INVERTED COLORS (White BG, Green Joystick) -->
+    <!-- FLOATING HOME BUTTON: Fixed-position navigation with inverted color scheme (white background, green joystick) for visual contrast against dark page theme -->
     <a href="index.html" class="icon-btn-home" title="Back to Home">
         <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
             <!-- White background circle -->
@@ -235,8 +270,9 @@
         </svg>
     </a>
 
-    <!-- Article 1: Extraction Guide -->
+    <!-- ARTICLE 1 - EXTRACTION GUIDE: Strategic gameplay guide teaching safe extraction routes and timing principles -->
     <section class="intel-article-section">
+        <!-- Article Header: Metadata container with publication date and content category badge -->
         <div class="article-header">
             <div class="article-meta" id="extraction-guide-card">
                 <span class="article-date">November 8, 2025</span>
@@ -245,6 +281,7 @@
             <h2>EXTRACTION GUIDE: MASTER YOUR EXFIL ROUTES</h2>
         </div>
 
+        <!-- Article Body: Main content including introduction, subheadings, lists, and highlighted tips -->
         <div class="article-content">
             <p>Successful extraction is the difference between profit and total loss in Arena Breakout Infinite. This comprehensive guide covers everything you need to know about extracting safely with your hard-earned loot.</p>
 
@@ -257,6 +294,7 @@
                 <li>The last 5 minutes of a raid are the most dangerous for extraction</li>
             </ul>
 
+            <!-- CALLOUT BOX: Highlighted pro tip for counter-strategy against extraction camping -->
             <div class="highlight-box">
                 <h4>Pro Tip: Exit Camping Counter-Strategy</h4>
                 <p style="color: #d0d0d0; margin: 0;">Never rush directly to extraction. Instead, approach from an unexpected angle, use grenades to clear common camping spots, and consider waiting 1-2 minutes before final approach to let other players draw out campers.</p>
@@ -275,8 +313,9 @@
         </div>
     </section>
 
-    <!-- Article 2: Update 2.0 -->
+    <!-- ARTICLE 2 - UPDATE 2.0: Latest patch notes detailing new weapons, balance changes, and bug fixes -->
     <section class="intel-article-section">
+        <!-- Article Header: Metadata and title for game update announcement -->
         <div class="article-header">
             <div class="article-meta" id="update-2-card">
                 <span class="article-date">November 5, 2025</span>
@@ -285,6 +324,7 @@
             <h2>UPDATE 2.0: LATEST PATCH NOTES</h2>
         </div>
 
+        <!-- Article Content: Comprehensive patch notes with categorized updates and balance changes -->
         <div class="article-content">
             <p>Arena Breakout Infinite's major Update 2.0 brings significant changes to weapon balance, introduces a new map, and implements quality-of-life improvements that the community has been requesting.</p>
 
@@ -306,6 +346,7 @@
                 <li>Rampage LMG: Movement speed while equipped reduced by 15%</li>
             </ul>
 
+            <!-- CALLOUT BOX: Community feedback section highlighting player reception to update -->
             <div class="highlight-box">
                 <h4>Community Reaction</h4>
                 <p style="color: #d0d0d0; margin: 0;">Players are generally positive about Update 2.0, particularly praising the armor durability changes which add more strategic depth to gear selection. The new Industrial District map is already becoming a favorite for its balanced mix of CQB and mid-range engagements.</p>
@@ -321,8 +362,9 @@
         </div>
     </section>
 
-    <!-- Article 3: Group Tactics -->
+    <!-- ARTICLE 3 - GROUP TACTICS: Strategic guide for team coordination, roles, and squad-based gameplay -->
     <section class="intel-article-section">
+        <!-- Article Header: Metadata and title for tactical team strategy guide -->
         <div class="article-header">
             <div class="article-meta" id="group-tactics-card">
                 <span class="article-date">November 1, 2025</span>
@@ -331,6 +373,7 @@
             <h2>GROUP TACTICS: TEAM STRATEGIES</h2>
         </div>
 
+        <!-- Article Content: Team coordination guide with role definitions and tactical procedures -->
         <div class="article-content">
             <p>Squad play in Arena Breakout Infinite requires coordination, communication, and clearly defined roles. A well-organized team will consistently outperform individual players, even if those players are more skilled.</p>
 
@@ -342,6 +385,7 @@
                 <li><strong>Flex:</strong> Adapts to current needs, can fill any role as situation demands</li>
             </ul>
 
+            <!-- CALLOUT BOX: Communication protocol guidelines for effective team coordination -->
             <div class="highlight-box">
                 <h4>Communication Protocol</h4>
                 <p style="color: #d0d0d0; margin: 0;">Use compass bearings for callouts (e.g., "Enemy at 270, 50 meters"). Keep comms clear during combat - only call essential information. Establish code words for common situations like "Contact" for enemy spotted, "Moving" when changing position, and "Reloading" when vulnerable.</p>
@@ -359,8 +403,9 @@
         </div>
     </section>
 
-    <!-- Article 4: Meta Weapons -->
+    <!-- ARTICLE 4 - META WEAPONS: Loadout optimization guide with budget-conscious weapon and gear recommendations -->
     <section class="intel-article-section">
+        <!-- Article Header: Metadata and title for weapon meta analysis -->
         <div class="article-header">
             <div class="article-meta" id="meta-weapons-card">
                 <span class="article-date">October 28, 2025</span>
@@ -369,6 +414,7 @@
             <h2>META WEAPONS: TOP TIER LOADOUTS</h2>
         </div>
 
+        <!-- Article Content: Loadout guide organized by budget tiers with strategic investment advice -->
         <div class="article-content">
             <p>The current meta favors versatility and reliability over raw damage output. Here are the loadouts dominating high-level play in the current season.</p>
 
@@ -390,6 +436,7 @@
                 <li>Meds: 3x bandages, 2x medkits, 2x painkillers, 1x surgical kit</li>
             </ul>
 
+            <!-- CALLOUT BOX: Economic strategy advice for cost-effective loadout investment -->
             <div class="highlight-box">
                 <h4>Investment Strategy</h4>
                 <p style="color: #d0d0d0; margin: 0;">The best cost-to-performance ratio comes from mid-tier loadouts around 100-150K credits. Going full budget often means dying to better-equipped players, while max-tier loadouts have diminishing returns and hurt more when you inevitably die.</p>
@@ -409,16 +456,17 @@
         </div>
         </section>
 
-        <!-- Menu Overlay (clicking closes menu via label) -->
+        <!-- MENU OVERLAY: Full-screen clickable backdrop that closes mobile menu when clicked (connected to checkbox via label) -->
         <label for="menu-toggle" class="menu-overlay" id="menu-overlay"></label>
         
-        <!-- Mobile Menu -->
+        <!-- MOBILE MENU: Slide-out navigation panel for mobile devices, toggled via CSS checkbox hack -->
         <div class="mobile-menu" id="mobile-menu">
             <div class="mobile-menu-header">
                 <div class="mobile-menu-title">MENU</div>
-                <!-- Close button as label for checkbox -->
+                <!-- Close Button: Label element styled as X button, unchecks menu toggle when clicked -->
                 <label for="menu-toggle" class="mobile-menu-close">×</label>
             </div>
+            <!-- Mobile Navigation Links: Complete site navigation with active state on current page -->
             <nav class="mobile-menu-nav">
                 <a href="index.html">Home</a>
                 <a href="best-weapons.html">Best Weapons</a>
@@ -428,8 +476,10 @@
                 <a href="media-gallery.html">Media Gallery</a>
             </nav>
         </div>
+        <!-- SITE FOOTER: Contains social media links and copyright/disclaimer information -->
         <footer class="site-footer">
             <div class="footer-content">
+                <!-- Social Media Icons: External links to gaming community platforms with accessibility labels and security attributes -->
                 <div class="social-icons">
                     <a href="https://discord.com/" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Discord">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M20.211 4.223A.954.954 0 0 0 19.38 4H4.62a.954.954 0 0 0-.83 4.887c.21 1.77 1.05 3.3 2.37 4.542 1.32 1.242 3.018 1.933 4.84 2.124v3.193l.02.046a.5.5 0 0 0 .82 0l.02-.046v-3.193c1.822-.191 3.52-.882 4.84-2.124 1.32-1.242 2.16-2.772 2.37-4.542a.954.954 0 0 0-.17-4.887zm-4.322 3.86a1.59 1.59 0 0 1-1.6 1.6c-.88 0-1.6-.72-1.6-1.6s.72-1.6 1.6-1.6c.88 0 1.6.72 1.6 1.6zm-8.58 0a1.59 1.59 0 0 1-1.6 1.6c-.88 0-1.6-.72-1.6-1.6s.72-1.6 1.6-1.6c.88 0 1.6.72 1.6 1.6z"/></svg>
@@ -448,6 +498,7 @@
                     </a>
                 </div>
 
+                <!-- Footer Text: Copyright notice, authorship credit, and educational project disclaimer -->
                 <div class="footer-text">
                     <p>
                         &copy; 2025 ABI INSIGHT. BY MMARCUSMACHADO ALL RIGHTS RESERVED. NOT AFFILIATED WITH TENCENT GAMES OR MOREFUN STUDIOS.
@@ -459,8 +510,10 @@
             </div>
         </footer>
 
-        <!-- Bootstrap JavaScript (part of Bootstrap framework) -->
+        <!-- BOOTSTRAP JAVASCRIPT: Bootstrap 5.3.0 bundle including Popper.js for interactive components (modals, tooltips, dropdowns) -->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     
+    <!-- END OF BODY: All visible page content and scripts loaded -->
     </body>
+<!-- END OF HTML DOCUMENT -->
 </html>
