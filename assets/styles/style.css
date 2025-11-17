@@ -998,3 +998,43 @@ iframe {
         padding: 0.7rem 1.2rem;
     }
 }
+/* Desktop Navigation */
+.desktop-nav {
+    display: none; /* Hidden on mobile */
+}
+
+@media (min-width: 992px) {
+    /* Show desktop nav */
+    .desktop-nav {
+        display: flex;
+        gap: 2rem;
+        align-items: center;
+    }
+    
+    .desktop-nav .nav-link {
+        color: #ffffff;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 0.9rem;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        padding: 0.5rem 1rem;
+        transition: all 0.3s ease;
+        border-bottom: 2px solid transparent;
+    }
+    
+    .desktop-nav .nav-link:hover {
+        color: #28a745;
+        border-bottom-color: #28a745;
+    }
+    
+    .desktop-nav .nav-link.active {
+        color: #28a745;
+        border-bottom-color: #28a745;
+    }
+    
+    /* Hide hamburger on desktop */
+    .hamburger-icon {
+        display: none !important;
+    }
+}
