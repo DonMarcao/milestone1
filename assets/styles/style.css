@@ -46,7 +46,7 @@
 
 /* Variable for the fixed top disclaimer height (Used to push the body content down) */
 :root {
-    --disclaimer-height: 22px; /* Ultra-compact height for mobile disclaimer banner */
+    --disclaimer-height: 50px;  /* Was 22px, now 50px - Ultra-compact height for mobile disclaimer banner */
 }
 
 body {
