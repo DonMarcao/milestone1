@@ -553,6 +553,7 @@ body {
     transition: right 0.3s ease; /* Slide transition */
     overflow-y: auto;
     box-shadow: -5px 0 20px rgba(0, 0, 0, 0.5);
+    padding-top: 32px; /* 22px disclaimer + 10px spacing */
 }
 
 /* MAGIC: When checkbox is checked, slide menu into view */
