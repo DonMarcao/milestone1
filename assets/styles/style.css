@@ -978,3 +978,23 @@ iframe {
     max-width: 100%;
     height: auto;
 }
+/* Mobile CTA fix */
+@media (max-width: 767px) {
+    .btn-cta {
+        padding: 0.8rem 1.5rem;
+        font-size: 0.75rem;
+        letter-spacing: 1px;
+        max-width: 90%;
+        margin: 0 auto;
+        display: block;
+        text-align: center;
+    }
+}
+
+/* Extra small screens */
+@media (max-width: 375px) {
+    .btn-cta {
+        font-size: 0.7rem;
+        padding: 0.7rem 1.2rem;
+    }
+}
