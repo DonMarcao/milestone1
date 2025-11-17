@@ -96,59 +96,59 @@ User stories define the core functionality and value proposition of the website 
 
 | ID | User Story | Acceptance Criteria | Implementation | Status | Screenshot |
 |----|------------|---------------------|----------------|--------|------------|
-| **US-01** | As a new player, I want to quickly understand what Arena Breakout Infinite is about, so that I can learn the game concept without playing first | Homepage clearly explains game premise with video and title | Hero section with autoplay video and clear "ARENA BREAKOUT INFINITE" title | ✅ Complete | [View](#) |
-| **US-02** | As a new player, I want to see which weapons are best for beginners, so that I can make informed choices for my first loadout | Weapon stats clearly displayed with tier system (3-6) | Best Weapons page with tier badges and performance bars | ✅ Complete | [View](#) |
-| **US-03** | As a new player, I want to understand map layouts before my first raid, so that I don't get lost and can find extraction points | Map guides show extraction points and safe routes | Extraction Maps page with detailed guides per map | ✅ Complete | [View](#) |
-| **US-04** | As a new player, I want to know what gear I need, so that I can prioritize equipment purchases | Gear categorized by importance with tier system | Tactical Gear page with tier badges and specs | ✅ Complete | [View](#) |
-| **US-05** | As a new player, I want to access information on my phone while playing, so that I can reference guides during gameplay | Website fully responsive on mobile devices | Mobile-first design with Bootstrap 5 grid system | ✅ Complete | [View](#) |
+| **US-01** | As a new player, I want to quickly understand what Arena Breakout Infinite is about, so that I can learn the game concept without playing first | Homepage clearly explains game premise with video and title | Hero section with autoplay video and clear "ARENA BREAKOUT INFINITE" title | ✅ Complete | [View](assets/media/images/screenshots/user-story-01.png) |
+| **US-02** | As a new player, I want to see which weapons are best for beginners, so that I can make informed choices for my first loadout | Weapon stats clearly displayed with tier system (3-6) | Best Weapons page with tier badges and performance bars | ✅ Complete | [View](assets/media/images/screenshots/user-story-02.png) |
+| **US-03** | As a new player, I want to understand map layouts before my first raid, so that I don't get lost and can find extraction points | Map guides show extraction points and safe routes | Extraction Maps page with detailed guides per map | ✅ Complete | [View](assets/media/images/screenshots/user-story-03.png) |
+| **US-04** | As a new player, I want to know what gear I need, so that I can prioritize equipment purchases | Gear categorized by importance with tier system | Tactical Gear page with tier badges and specs | ✅ Complete | [View](assets/media/images/screenshots/user-story-04.png) |
+| **US-05** | As a new player, I want to access information on my phone while playing, so that I can reference guides during gameplay | Website fully responsive on mobile devices | Mobile-first design with Bootstrap 5 grid system | ✅ Complete | [View](assets/media/images/screenshots/user-story-05.png) |
 
 #### 🎮 Intermediate Player Stories
 
 | ID | User Story | Acceptance Criteria | Implementation | Status | Screenshot |
 |----|------------|---------------------|----------------|--------|------------|
-| **US-06** | As an intermediate player, I want to compare weapon statistics, so that I can choose the best weapon for my playstyle | Detailed stats with visual bars for easy comparison | Performance stat cards with 6 metrics per weapon | ✅ Complete | [View](#) |
-| **US-07** | As an intermediate player, I want to learn advanced extraction strategies, so that I can improve my survival rate | Each map has detailed extraction guides | Extraction routes with high-value loot and danger zones | ✅ Complete | [View](#) |
-| **US-08** | As an intermediate player, I want to find high-value loot locations, so that I can maximize profit per raid | Loot spots clearly marked and described | "High-Value Loot Spots" section on each map guide | ✅ Complete | [View](#) |
-| **US-09** | As an intermediate player, I want to read strategy articles, so that I can learn from experienced players | In-depth articles covering tactical topics | Latest Intel page with 4 strategy guides | ✅ Complete | [View](#) |
-| **US-10** | As an intermediate player, I want to watch gameplay examples, so that I can see tactics in action | Video gallery with gameplay highlights | Media Gallery with 4 YouTube embedded videos and 10+ optimized images | ✅ Complete | [View](#) |
+| **US-06** | As an intermediate player, I want to compare weapon statistics, so that I can choose the best weapon for my playstyle | Detailed stats with visual bars for easy comparison | Performance stat cards with 6 metrics per weapon | ✅ Complete | [View](assets/media/images/screenshots/user-story-06.png) |
+| **US-07** | As an intermediate player, I want to learn advanced extraction strategies, so that I can improve my survival rate | Each map has detailed extraction guides | Extraction routes with high-value loot and danger zones | ✅ Complete | [View](assets/media/images/screenshots/user-story-07.png) |
+| **US-08** | As an intermediate player, I want to find high-value loot locations, so that I can maximize profit per raid | Loot spots clearly marked and described | "High-Value Loot Spots" section on each map guide | ✅ Complete | [View](assets/media/images/screenshots/user-story-08.png) |
+| **US-09** | As an intermediate player, I want to read strategy articles, so that I can learn from experienced players | In-depth articles covering tactical topics | Latest Intel page with 4 strategy guides | ✅ Complete | [View](assets/media/images/screenshots/user-story-09.png) |
+| **US-10** | As an intermediate player, I want to watch gameplay examples, so that I can see tactics in action | Video gallery with gameplay highlights | Media Gallery with 4 YouTube embedded videos and 10+ optimized images | ✅ Complete | [View](assets/media/images/screenshots/user-story-10.png) |
 
 #### 🏆 Competitive Player Stories
 
 | ID | User Story | Acceptance Criteria | Implementation | Status | Screenshot |
 |----|------------|---------------------|----------------|--------|------------|
-| **US-11** | As a competitive player, I want to access meta weapon information, so that I can stay competitive with top-tier loadouts | Tier 6 weapons clearly marked and explained | Weapon tier badges (3-6) with detailed builds | ✅ Complete | [View](#) |
-| **US-12** | As a competitive player, I want to learn optimal weapon attachments, so that I can maximize weapon performance | Recommended attachments listed for each weapon | "Recommended Attachments" section per weapon | ✅ Complete | [View](#) |
-| **US-13** | As a competitive player, I want to understand armor protection levels, so that I can make informed gear investment decisions | Detailed armor class and protection stats | Armor specs with class ratings (III-VI) | ✅ Complete | [View](#) |
-| **US-14** | As a competitive player, I want to study danger zones on maps, so that I can avoid or prepare for high-risk areas | Danger zones clearly identified on map guides | "Danger Zones" cards on Extraction Maps page | ✅ Complete | [View](#) |
-| **US-15** | As a competitive player, I want to access information quickly during gameplay, so that I don't waste time navigating | Intuitive navigation and fast load times | CSS-only menu, clear structure, optimized assets | ✅ Complete | [View](#) |
+| **US-11** | As a competitive player, I want to access meta weapon information, so that I can stay competitive with top-tier loadouts | Tier 6 weapons clearly marked and explained | Weapon tier badges (3-6) with detailed builds | ✅ Complete | [View](assets/media/images/screenshots/user-story-11.png) |
+| **US-12** | As a competitive player, I want to learn optimal weapon attachments, so that I can maximize weapon performance | Recommended attachments listed for each weapon | "Recommended Attachments" section per weapon | ✅ Complete | [View](assets/media/images/screenshots/user-story-12.png) |
+| **US-13** | As a competitive player, I want to understand armor protection levels, so that I can make informed gear investment decisions | Detailed armor class and protection stats | Armor specs with class ratings (III-VI) | ✅ Complete | [View](assets/media/images/screenshots/user-story-13.png) |
+| **US-14** | As a competitive player, I want to study danger zones on maps, so that I can avoid or prepare for high-risk areas | Danger zones clearly identified on map guides | "Danger Zones" cards on Extraction Maps page | ✅ Complete | [View](assets/media/images/screenshots/user-story-14.png) |
+| **US-15** | As a competitive player, I want to access information quickly during gameplay, so that I don't waste time navigating | Intuitive navigation and fast load times | CSS-only menu, clear structure, optimized assets | ✅ Complete | [View](assets/media/images/screenshots/user-story-15.png) |
 
 #### 🎬 Content Creator Stories
 
 | ID | User Story | Acceptance Criteria | Implementation | Status | Screenshot |
 |----|------------|---------------------|----------------|--------|------------|
-| **US-16** | As a content creator, I want to find high-quality gameplay footage, so that I can use it for analysis or tutorials | Media gallery with organized video content | Media Gallery with YouTube embeds and WebP optimized images (lightbox enabled) | ✅ Complete | [View](#) |
-| **US-17** | As a content creator, I want to reference accurate weapon statistics, so that I can create reliable guides for my audience | Detailed weapon specs and performance metrics | Complete specifications table for each weapon | ✅ Complete | [View](#) |
-| **US-18** | As a content creator, I want to share specific weapon or map information, so that my followers can quickly access info I'm discussing | Direct links to specific weapons/maps work | Anchor links (#rampage-lmg, #farm, etc.) | ✅ Complete | [View](#) |
+| **US-16** | As a content creator, I want to find high-quality gameplay footage, so that I can use it for analysis or tutorials | Media gallery with organized video content | Media Gallery with YouTube embeds and WebP optimized images (lightbox enabled) | ✅ Complete | [View](assets/media/images/screenshots/user-story-16.png) |
+| **US-17** | As a content creator, I want to reference accurate weapon statistics, so that I can create reliable guides for my audience | Detailed weapon specs and performance metrics | Complete specifications table for each weapon | ✅ Complete | [View](assets/media/images/screenshots/user-story-17.png) |
+| **US-18** | As a content creator, I want to share specific weapon or map information, so that my followers can quickly access info I'm discussing | Direct links to specific weapons/maps work | Anchor links (#rampage-lmg, #farm, etc.) | ✅ Complete | [View](assets/media/images/screenshots/user-story-18.png) |
 
 #### 🌐 General User Stories (All Users)
 
 | ID | User Story | Acceptance Criteria | Implementation | Status | Screenshot |
 |----|------------|---------------------|----------------|--------|------------|
-| **US-19** | As any user, I want to navigate the site easily on any device, so that I can access information wherever I am | Responsive design works on mobile, tablet, desktop | Bootstrap 5 grid + custom media queries (768px, 1024px, 1280px) | ✅ Complete | [View](#) |
-| **US-20** | As any user, I want to find information quickly, so that I don't waste time searching | Clear menu structure and intuitive navigation | CSS-only mobile menu, fixed home button, clear sections | ✅ Complete | [View](#) |
-| **US-21** | As any user, I want to read content that's visually appealing, so that the experience is enjoyable | Modern design with consistent branding | Dark theme (#1a1a1a), green accents (#28a745), custom joystick icon | ✅ Complete | [View](#) |
-| **US-22** | As any user, I want to trust the information is accurate, so that I can rely on it for gameplay decisions | Professional presentation and detailed specs | Clean validated HTML/CSS, detailed statistics, tier system | ✅ Complete | [View](#) |
-| **US-23** | As any user, I want to access the site without JavaScript errors, so that it works reliably | Core functionality works without JavaScript | CSS-only navigation menu (checkbox hack) | ✅ Complete | [View](#) |
-| **US-24** | As any user, I want to view images and videos in full screen, so that I can see details clearly | Lightbox opens media in full screen | Lightbox with ESC key support on Media Gallery | ✅ Complete | [View](#) |
-| **US-25** | As any user, I want to read the site on a screen reader, so that visually impaired users can access information | Semantic HTML and proper ARIA labels | `<nav>`, `<section>`, `<footer>` tags, alt text, aria-labels | ✅ Complete | [View](#) |
+| **US-19** | As any user, I want to navigate the site easily on any device, so that I can access information wherever I am | Responsive design works on mobile, tablet, desktop | Bootstrap 5 grid + custom media queries (768px, 1024px, 1280px) | ✅ Complete | [View](assets/media/images/screenshots/user-story-19.png) |
+| **US-20** | As any user, I want to find information quickly, so that I don't waste time searching | Clear menu structure and intuitive navigation | CSS-only mobile menu, fixed home button, clear sections | ✅ Complete | [View](assets/media/images/screenshots/user-story-20.png) |
+| **US-21** | As any user, I want to read content that's visually appealing, so that the experience is enjoyable | Modern design with consistent branding | Dark theme (#1a1a1a), green accents (#28a745), custom joystick icon | ✅ Complete | [View](assets/media/images/screenshots/user-story-21.png) |
+| **US-22** | As any user, I want to trust the information is accurate, so that I can rely on it for gameplay decisions | Professional presentation and detailed specs | Clean validated HTML/CSS, detailed statistics, tier system | ✅ Complete | [View](assets/media/images/screenshots/user-story-22.png) |
+| **US-23** | As any user, I want to access the site without JavaScript errors, so that it works reliably | Core functionality works without JavaScript | CSS-only navigation menu (checkbox hack) | ✅ Complete | [View](assets/media/images/screenshots/user-story-23.png) |
+| **US-24** | As any user, I want to view images and videos in full screen, so that I can see details clearly | Lightbox opens media in full screen | Lightbox with ESC key support on Media Gallery | ✅ Complete | [View](assets/media/images/screenshots/user-story-24.png) |
+| **US-25** | As any user, I want to read the site on a screen reader, so that visually impaired users can access information | Semantic HTML and proper ARIA labels | `<nav>`, `<section>`, `<footer>` tags, alt text, aria-labels | ✅ Complete | [View](assets/media/images/screenshots/user-story-25.png) |
 
 #### ♿ Accessibility User Stories
 
 | ID | User Story | Acceptance Criteria | Implementation | Status | Screenshot |
 |----|------------|---------------------|----------------|--------|------------|
-| **US-26** | As a user with disabilities, I want to navigate with keyboard only, so that I can use the site without a mouse | All interactive elements keyboard-accessible | Tab navigation, Enter to activate, ESC to close | ✅ Complete | [View](#) |
-| **US-27** | As a user with disabilities, I want to read text clearly, so that I can understand content despite visual impairments | High contrast ratios meet WCAG AA standards | White text (#ffffff) on dark backgrounds (#1a1a1a) = 17:1 ratio | ✅ Complete | [View](#) |
-| **US-28** | As a user with disabilities, I want to use a screen reader, so that I can access all information audibly | Semantic HTML and alt text on all images | Proper heading hierarchy (H1→H2→H3), alt attributes, ARIA labels | ✅ Complete | [View](#) |
+| **US-26** | As a user with disabilities, I want to navigate with keyboard only, so that I can use the site without a mouse | All interactive elements keyboard-accessible | Tab navigation, Enter to activate, ESC to close | ✅ Complete | [View](assets/media/images/screenshots/user-story-26.png) |
+| **US-27** | As a user with disabilities, I want to read text clearly, so that I can understand content despite visual impairments | High contrast ratios meet WCAG AA standards | White text (#ffffff) on dark backgrounds (#1a1a1a) = 17:1 ratio | ✅ Complete | [View](assets/media/images/screenshots/user-story-27.png) |
+| **US-28** | As a user with disabilities, I want to use a screen reader, so that I can access all information audibly | Semantic HTML and alt text on all images | Proper heading hierarchy (H1→H2→H3), alt attributes, ARIA labels | ✅ Complete | [View](assets/media/images/screenshots/user-story-28.png) |
 
 ### User Story Implementation Summary
 
