@@ -822,7 +822,7 @@ body:has(.menu-checkbox:checked) .menu-overlay {
 
 @media (min-width: 1024px) {
     .hero-section {
-        height: 70vh;
+        height: calc(70vh - var(--disclaimer-height)); /* Compensa disclaimer */
     }
 
     .hero-title {
@@ -874,7 +874,7 @@ body:has(.menu-checkbox:checked) .menu-overlay {
 
 @media (min-width: 1280px) {
     .hero-section {
-        height: 75vh;
+        height: calc(75vh - var(--disclaimer-height));
     }
 
     .hero-title {
@@ -1036,5 +1036,15 @@ iframe {
     /* Hide hamburger on desktop */
     .hamburger-icon {
         display: none !important;
+    }
+}
+@media (min-width: 992px) and (max-width: 1279px) {
+    .desktop-nav {
+        gap: 1rem; /* Menos espaço */
+    }
+    
+    .desktop-nav .nav-link {
+        font-size: 0.8rem; /* Fonte menor */
+        padding: 0.5rem 0.7rem; /* Padding menor */
     }
 }
