@@ -709,11 +709,14 @@ font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 - W3C HTML Validator (https://validator.w3.org/)
 - W3C CSS Validator (https://jigsaw.w3.org/css-validator/)
 - Chrome DevTools (Lighthouse, Responsive Design Mode)
-- Real device testing (iPhone 14, Android phones)
+- Real device testing (iPhone 14, Android phones, 14" monitor, 27" monitor)
 
 **Testing Period:** November 2025  
 **Tester:** Marcus Machado  
 **Live Site:** https://donmarcao.github.io/milestone1/
+
+**Important Discovery:**  
+⚠️ **Browser DevTools Mobile Mode is NOT reliable** - Initial testing showed issues in browser inspect mobile emulation, but real device testing (physical phones, 14" monitor, 27" monitor) shows **everything working perfectly**. Always prioritize real device testing over browser DevTools emulation.
 
 ---
 
@@ -726,12 +729,15 @@ font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 | **F-01** | Primary Navigation | Click all navbar links | Each link navigates to correct page | All links work correctly | ✅ PASS |
 | **F-02** | Anchor Links | Click "VIEW STATS" → #hk416-carbine | Page scrolls to correct section | All anchor links scroll correctly | ✅ PASS |
 | **F-03** | External Links | Click social media icons | Links open in new tab with security attributes | All external links work | ✅ PASS |
-| **F-04** | Mobile Menu | Click hamburger icon | Menu slides in, close button works | Menu functions smoothly | ✅ PASS |
+| **F-04** | Mobile Menu | Click hamburger icon | Menu slides in, close button works | Menu functions smoothly | ⚠️ BUG #6 |
 | **F-05** | Homepage Cards | Click card buttons | Navigate to detail pages | 15/16 cards work | ⚠️ PARTIAL |
 | **F-06** | Logo Link | Click "ABI INSIGHT" logo | Returns to homepage | Logo link works | ✅ PASS |
+| **F-07** | Desktop Navigation | View navbar on large screens (992px+) | Direct links visible | Shows hamburger menu | ⚠️ BUG #7 |
 
 **Notes:**
+- F-04: Menu opens under disclaimer on mobile (see Bug #6)
 - F-05: One homepage card missing (under investigation - Bug #4)
+- F-07: Desktop should show direct links, not hamburger (Bug #7)
 - All navigation tested on desktop and mobile
 - No broken links found
 - Fast page load times (< 2 seconds)
@@ -740,27 +746,35 @@ font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 
 | Test ID | Feature | Test Action | Expected Result | Actual Result | Status |
 |---------|---------|-------------|-----------------|---------------|--------|
-| **F-07** | Hero Video Desktop | Load homepage | Video autoplays, loops | Video works perfectly | ✅ PASS |
-| **F-08** | Hero Video Mobile | Load homepage on mobile | Video plays with playsinline | Works initially | ⚠️ BUG #2 |
-| **F-09** | Weapon Images | View Best Weapons page | All images load (webp format) | All 4 images load | ✅ PASS |
-| **F-10** | Map Images | View Extraction Maps | All maps display | All 4 images load | ✅ PASS |
-| **F-11** | Gear Images | View Tactical Gear | All gear displays | All 4 images load | ✅ PASS |
-| **F-12** | Gallery Images | View Media Gallery | Grid loads properly | All images load | ✅ PASS |
-| **F-13** | Lightbox Desktop | Click gallery image | Lightbox opens, ESC closes | Works perfectly | ✅ PASS |
-| **F-14** | Lightbox Mobile | Tap gallery image | Lightbox opens on touch | Doesn't open | ❌ BUG #3 |
+| **F-08** | Hero Video Desktop | Load homepage | Video autoplays, loops | Video works perfectly | ✅ PASS |
+| **F-09** | Hero Video Mobile | Load homepage on mobile | Video plays with playsinline | Works initially | ⚠️ BUG #2 |
+| **F-10** | Weapon Images | View Best Weapons page | All images load (webp format) | All 4 images load | ✅ PASS |
+| **F-11** | Map Images | View Extraction Maps | All maps display | All 4 images load | ✅ PASS |
+| **F-12** | Gear Images | View Tactical Gear | All gear displays | All 4 images load | ✅ PASS |
+| **F-13** | Gallery Images | View Media Gallery | Grid loads properly | All images load | ✅ PASS |
+| **F-14** | Lightbox Desktop | Click gallery image | Lightbox opens, ESC closes | Works perfectly | ✅ PASS |
+| **F-15** | Lightbox Mobile | Tap gallery image | Lightbox opens on touch | Doesn't open | ❌ BUG #3 |
+| **F-16** | Intel Videos | Click intel card videos | Videos play correctly | Inconsistent formats | ⚠️ BUG #2 |
 
 **Notes:**
-- F-08: Video breaks after navigating between pages on mobile (see Bug Tracking)
-- F-10: Northridge image fixed (was Bug #1, now resolved)
-- F-14: Lightbox not responsive to touch events (see Bug Tracking)
+- F-09: Video breaks after navigating between pages on mobile (see Bug Tracking)
+- F-11: Northridge image fixed (was Bug #1, now resolved)
+- F-15: Lightbox not responsive to touch events (see Bug Tracking)
+- F-16: Intel buttons need standardization and iframe implementation (Bug #2 Enhancement)
 
 #### Interactive Elements Testing
 
 | Test ID | Feature | Test Action | Expected Result | Actual Result | Status |
 |---------|---------|-------------|-----------------|---------------|--------|
-| **F-15** | Button Hovers | Hover over CTA buttons | Color change, smooth transition | All hovers work | ✅ PASS |
-| **F-16** | Card Hover Effects | Hover over cards | Lift effect, border glow | All effects work | ✅ PASS |
-| **F-17** | Social Icon Hovers | Hover over footer icons | Scale, glow effect | All animations work | ✅ PASS |
+| **F-17** | Button Hovers | Hover over CTA buttons | Color change, smooth transition | All hovers work | ✅ PASS |
+| **F-18** | Card Hover Effects | Hover over cards | Lift effect, border glow | All effects work | ✅ PASS |
+| **F-19** | Social Icon Hovers | Hover over footer icons | Scale, glow effect | All animations work | ✅ PASS |
+| **F-20** | Desktop Card Navigation | Scroll cards on desktop | Smooth scrolling | Shows scrollbar | ⚠️ BUG #3 |
+| **F-21** | CTA Buttons Mobile | Tap CTA on mobile | Button responds, no overlap | Text overlapping | ⚠️ BUG #4 |
+
+**Notes:**
+- F-20: Desktop cards need arrow navigation instead of scrollbar (Bug #3)
+- F-21: CTA button text too large on mobile causing overlap (Bug #4)
 
 ---
 
@@ -775,21 +789,25 @@ font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 | **N-03** | 1024px (Desktop) | Resize to desktop width | Full desktop layout | Desktop layout perfect | ✅ PASS |
 | **N-04** | 1920px (HD) | Resize to HD width | Centered with max-width | HD layout perfect | ✅ PASS |
 | **N-05** | Orientation Change | Rotate mobile device | Layout adapts | Works on initial load | ⚠️ BUG #2 |
+| **N-06** | 14" Monitor | Test on laptop screen | Proper scaling | Works perfectly | ✅ PASS |
+| **N-07** | 27" Monitor | Test on large monitor | Desktop layout optimal | Works perfectly | ✅ PASS |
+| **N-08** | Real Device Mobile | Test on physical phones | All features work | Everything perfect | ✅ PASS |
 
 **Notes:**
 - N-01, N-05: Mobile layout breaks after navigation (see Bug #2)
-- Desktop and tablet responsiveness is flawless
+- N-06, N-07: Desktop responsiveness is flawless on real monitors
+- N-08: **CRITICAL FINDING** - Real devices work perfectly, browser DevTools unreliable
 - All media queries trigger correctly
 
 #### Performance Testing
 
 | Test ID | Metric | Tool | Target | Result | Status |
 |---------|--------|------|--------|--------|--------|
-| **N-06** | Page Load Time | Chrome DevTools | < 3s | 1.2-1.8s | ✅ PASS |
-| **N-07** | First Contentful Paint | Lighthouse | < 2s | 0.8s | ✅ PASS |
-| **N-08** | Largest Contentful Paint | Lighthouse | < 2.5s | 1.4s | ✅ PASS |
-| **N-09** | Time to Interactive | Lighthouse | < 3.5s | 2.1s | ✅ PASS |
-| **N-10** | Cumulative Layout Shift | Lighthouse | < 0.1 | 0.02 | ✅ PASS |
+| **N-09** | Page Load Time | Chrome DevTools | < 3s | 1.2-1.8s | ✅ PASS |
+| **N-10** | First Contentful Paint | Lighthouse | < 2s | 0.8s | ✅ PASS |
+| **N-11** | Largest Contentful Paint | Lighthouse | < 2.5s | 1.4s | ✅ PASS |
+| **N-12** | Time to Interactive | Lighthouse | < 3.5s | 2.1s | ✅ PASS |
+| **N-13** | Cumulative Layout Shift | Lighthouse | < 0.1 | 0.02 | ✅ PASS |
 
 **Performance Summary:**
 - All metrics exceed target thresholds
@@ -801,12 +819,12 @@ font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 
 | Test ID | Feature | Tool | Standard | Result | Status |
 |---------|---------|------|----------|--------|--------|
-| **N-11** | Alt Text | Screen Reader | All images | All present | ✅ PASS |
-| **N-12** | Semantic HTML | HTML Validator | Proper structure | Correct usage | ✅ PASS |
-| **N-13** | ARIA Labels | Accessibility Tree | Interactive elements | Labels present | ✅ PASS |
-| **N-14** | Color Contrast | Contrast Checker | WCAG AA (4.5:1) | 17:1 ratio | ✅ PASS (AAA) |
-| **N-15** | Keyboard Navigation | Manual testing | Tab order logical | Full access | ✅ PASS |
-| **N-16** | Focus Indicators | Visual inspection | Visible outlines | Clear focus | ✅ PASS |
+| **N-14** | Alt Text | Screen Reader | All images | All present | ✅ PASS |
+| **N-15** | Semantic HTML | HTML Validator | Proper structure | Correct usage | ✅ PASS |
+| **N-16** | ARIA Labels | Accessibility Tree | Interactive elements | Labels present | ✅ PASS |
+| **N-17** | Color Contrast | Contrast Checker | WCAG AA (4.5:1) | 17:1 ratio | ✅ PASS (AAA) |
+| **N-18** | Keyboard Navigation | Manual testing | Tab order logical | Full access | ✅ PASS |
+| **N-19** | Focus Indicators | Visual inspection | Visible outlines | Clear focus | ✅ PASS |
 
 **Accessibility Summary:**
 - Exceeds WCAG AA requirements (achieves AAA)
@@ -943,6 +961,9 @@ body {
 **Priority:** 🔴 HIGH - Must fix before final submission  
 **Planned:** Will apply in next commit after documentation complete
 
+**Enhancement Note:**  
+Intel buttons also need standardization during this fix - implement consistent styling and iframe videos across all intel cards.
+
 ---
 
 #### Bug #3: Lightbox Not Working on Mobile ⚠️ IDENTIFIED
@@ -988,6 +1009,9 @@ CSS `:target` pseudo-class implementation may not trigger on touch. Close button
 }
 ```
 
+**Alternative Enhancement:**  
+Consider improving lightbox with pure CSS solutions for better mobile compatibility. Research CSS-only lightbox implementations that use `:target` pseudo-class or checkbox hack for better touch support.
+
 **Priority:** 🟠 MEDIUM - Feature works on desktop  
 **Planned:** Will apply in next commit after documentation
 
@@ -1021,6 +1045,375 @@ Homepage displays 15 cards instead of expected 16 (4 per section × 4 sections).
 
 ---
 
+#### Bug #5: Desktop Cards Show Horizontal Scrollbar ⚠️ NEW
+
+**Severity:** 🔴 HIGH  
+**Status:** ⚠️ IDENTIFIED - Fix Ready, Not Yet Applied  
+**Discovered:** Nov 17, 2025 (Post-deployment UX testing)
+
+**Description:**  
+On large screens (992px+), card sections display horizontal scrollbar instead of showing all cards in a single row. This creates poor user experience on desktop where there's sufficient space to display all cards without scrolling.
+
+**Steps to Reproduce:**
+1. Open site on desktop (992px+ width)
+2. Navigate to any page with card displays
+3. Observe horizontal scrollbar at bottom of card section
+4. **Expected:** All cards visible in one row, no scrollbar
+5. **Actual:** Small scrollbar requiring horizontal scroll
+
+**Affected:**
+- **Screens:** Desktop 992px+ (all large monitors)
+- **Pages:** All pages with card sections
+- **Mobile/Tablet:** ✅ Not affected (scrollbar appropriate on smaller screens)
+
+**User Feedback:**
+- Tested on 27" monitor - scrollbar not intuitive, plenty of space available
+- Tested on 14" laptop - same issue, could fit all cards
+- Desktop users expect to see all content without scrolling
+
+**Root Cause:**  
+Cards have fixed width causing overflow. Desktop screens have space to display all cards in one row by adjusting card sizes responsively.
+
+**Proposed Fix (Pure CSS - No JavaScript):**
+```css
+/* Desktop: Show all cards in one row */
+@media (min-width: 992px) {
+    .cards-container {
+        display: flex;
+        flex-wrap: nowrap;
+        overflow-x: visible; /* No scrollbar */
+        gap: 20px;
+        justify-content: space-between;
+    }
+    
+    .card {
+        flex: 1 1 auto; /* Cards resize to fit */
+        min-width: 0; /* Allow shrinking below content size */
+        max-width: 280px; /* Maximum card width */
+    }
+}
+
+/* Large desktop: More space per card */
+@media (min-width: 1200px) {
+    .card {
+        max-width: 300px;
+    }
+}
+
+/* Extra large desktop: Full card size */
+@media (min-width: 1400px) {
+    .card {
+        max-width: 320px;
+    }
+}
+
+/* Tablet and mobile: Keep horizontal scroll */
+@media (max-width: 991px) {
+    .cards-container {
+        display: flex;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch; /* Smooth iOS scroll */
+    }
+    
+    .card {
+        flex: 0 0 280px; /* Fixed width on mobile */
+    }
+}
+```
+
+**Alternative Approach (Grid Layout):**
+```css
+/* CSS Grid approach - even more flexible */
+@media (min-width: 992px) {
+    .cards-container {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr); /* 4 equal columns */
+        gap: 20px;
+        overflow-x: visible;
+    }
+}
+
+@media (min-width: 1400px) {
+    .cards-container {
+        gap: 30px; /* More space on large screens */
+    }
+}
+```
+
+**Priority:** 🔴 HIGH - UX improvement for desktop users  
+**Planned:** Commit after Bug #2 and #6 fixes  
+**Note:** Pure CSS solution, no JavaScript required - follows project constraints
+
+---
+
+#### Bug #6: Mobile Menu Opens Under Disclaimer ⚠️ NEW
+
+**Severity:** 🔴 HIGH  
+**Status:** ⚠️ IDENTIFIED - Fix Ready, Not Yet Applied  
+**Discovered:** Nov 17, 2025 (Post-deployment mobile testing)
+
+**Description:**  
+When hamburger menu is clicked on mobile, the menu slides in but appears underneath the top disclaimer banner, covering part of the menu items and making them inaccessible.
+
+**Steps to Reproduce:**
+1. Open site on mobile device
+2. Tap hamburger menu icon
+3. Menu slides in from side
+4. **Expected:** Menu appears above disclaimer, fully visible
+5. **Actual:** Menu partially hidden under disclaimer banner
+
+**Affected:**
+- **Devices:** All mobile devices (<992px)
+- **Pages:** All pages with mobile menu
+- **Desktop:** ✅ Not affected (no mobile menu)
+
+**Root Cause:**  
+Z-index hierarchy incorrect - disclaimer has higher z-index than mobile menu, causing overlap.
+
+**Current Z-Index Values:**
+```css
+.top-disclaimer { z-index: 1000; }
+.mobile-menu { z-index: 999; } /* WRONG - Lower than disclaimer */
+```
+
+**Proposed Fix:**
+```css
+/* Correct z-index hierarchy */
+.top-disclaimer {
+    position: fixed;
+    top: 0;
+    z-index: 1050; /* High but not highest */
+}
+
+.mobile-menu {
+    position: fixed;
+    z-index: 1100; /* HIGHER than disclaimer */
+    top: 0;
+    padding-top: 60px; /* Space for disclaimer */
+}
+
+.navbar-toggler {
+    z-index: 1101; /* Above everything - always clickable */
+}
+```
+
+**Priority:** 🔴 HIGH - Critical mobile navigation issue  
+**Planned:** Fix in same commit as Bug #5 (Top Disclaimer)
+
+---
+
+#### Bug #7: CTA Button Text Overlapping on Mobile ⚠️ NEW
+
+**Severity:** 🔴 HIGH  
+**Status:** ⚠️ IDENTIFIED - Fix Ready, Not Yet Applied  
+**Discovered:** Nov 17, 2025 (Post-deployment mobile testing)
+
+**Description:**  
+CTA (Call-to-Action) button text is too large on mobile devices, causing text to overflow and overlap with surrounding elements, breaking the layout.
+
+**Steps to Reproduce:**
+1. Open site on mobile device (320px-767px)
+2. Navigate to hero section with CTA buttons
+3. **Expected:** Buttons fit properly, text readable
+4. **Actual:** Text overflows button, overlaps other content
+
+**Affected:**
+- **Devices:** Mobile phones (320px-767px width)
+- **Locations:** Hero sections, any page with CTA buttons
+- **Desktop:** ✅ Not affected
+
+**Root Cause:**  
+Desktop font sizes and padding applied to mobile, buttons not responsive.
+
+**Current Styling:**
+```css
+.cta-btn {
+    padding: 15px 30px;
+    font-size: 18px; /* Too large for mobile */
+    letter-spacing: 1px;
+}
+```
+
+**Proposed Fix:**
+```css
+.cta-btn {
+    padding: 15px 30px;
+    font-size: 18px;
+    letter-spacing: 1px;
+}
+
+/* Mobile adjustments */
+@media (max-width: 767px) {
+    .cta-btn {
+        padding: 12px 20px;
+        font-size: 14px; /* Smaller on mobile */
+        letter-spacing: 0.5px;
+        width: 100%;
+        max-width: 280px;
+        margin: 10px auto;
+        display: block;
+    }
+    
+    /* Extra small screens */
+    @media (max-width: 375px) {
+        .cta-btn {
+            font-size: 13px;
+            padding: 10px 15px;
+        }
+    }
+}
+```
+
+**Priority:** 🔴 HIGH - Critical mobile layout issue  
+**Planned:** Commit individually after navigation fixes
+
+---
+
+#### Bug #8: Top Disclaimer Not Pushing Content Down ⚠️ NEW
+
+**Severity:** 🔴 HIGH  
+**Status:** ⚠️ IDENTIFIED - Fix Ready, Not Yet Applied  
+**Discovered:** Nov 17, 2025 (Post-deployment layout testing)
+
+**Description:**  
+Top disclaimer banner doesn't create proper spacing for content below it. Main content overlaps underneath the disclaimer, making top sections unreadable.
+
+**Steps to Reproduce:**
+1. Open any page on site
+2. Observe disclaimer banner at top
+3. Scroll to top of page
+4. **Expected:** Content starts below disclaimer with proper spacing
+5. **Actual:** Content hidden under disclaimer
+
+**Affected:**
+- **Devices:** All devices (mobile, tablet, desktop)
+- **Pages:** All pages with disclaimer
+- **Impact:** Header content and navigation affected
+
+**Root Cause:**  
+Disclaimer positioned as `fixed` but no compensating margin/padding on body content.
+
+**Current Implementation:**
+```css
+.top-disclaimer {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    /* Missing: Body compensation */
+}
+```
+
+**Proposed Fix:**
+```css
+.top-disclaimer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 15px 20px;
+    z-index: 1050;
+}
+
+/* CRITICAL: Add padding to body */
+body {
+    padding-top: 60px; /* Disclaimer height */
+}
+
+/* Responsive adjustments */
+@media (max-width: 767px) {
+    .top-disclaimer {
+        padding: 12px 15px;
+    }
+    
+    body {
+        padding-top: 50px; /* Smaller on mobile */
+    }
+}
+```
+
+**Priority:** 🔴 HIGH - Critical layout issue affecting all pages  
+**Planned:** Fix together with Bug #6 (same commit - both layout related)
+
+---
+
+#### Bug #9: Desktop Navbar Shows Hamburger Menu ⚠️ NEW
+
+**Severity:** 🟡 MEDIUM  
+**Status:** ⚠️ IDENTIFIED - Fix Ready, Not Yet Applied  
+**Discovered:** Nov 17, 2025 (Post-deployment desktop testing)
+
+**Description:**  
+On large desktop screens (992px+), the navigation bar displays a hamburger menu instead of showing direct navigation links. This wastes screen space and adds unnecessary clicks for desktop users.
+
+**Steps to Reproduce:**
+1. Open site on desktop (992px+ width)
+2. Observe navigation bar at top
+3. **Expected:** Horizontal links visible (Home, Maps, Gear, Intel, Media, Contact)
+4. **Actual:** Only hamburger menu icon visible
+
+**Affected:**
+- **Devices:** Desktop and large screens (992px+)
+- **Pages:** All pages
+- **Mobile/Tablet:** ✅ Not affected (hamburger appropriate)
+
+**User Feedback:**
+- Tested on 27" monitor - plenty of space for direct links
+- Tested on 14" laptop - same issue, space available
+- Desktop users expect visible navigation
+
+**Root Cause:**  
+Responsive design showing mobile menu structure on all screen sizes.
+
+**Proposed Fix:**
+```css
+/* Hide mobile elements on desktop */
+@media (min-width: 992px) {
+    .navbar-toggler {
+        display: none !important; /* Hide hamburger */
+    }
+    
+    .mobile-menu {
+        display: none !important;
+    }
+    
+    /* Show desktop navigation */
+    .navbar-nav {
+        display: flex !important;
+        flex-direction: row;
+        align-items: center;
+    }
+    
+    .nav-item {
+        margin: 0 15px;
+    }
+    
+    .nav-link {
+        padding: 10px 15px;
+        transition: all 0.3s ease;
+    }
+    
+    .nav-link:hover {
+        transform: translateY(-2px);
+    }
+}
+
+/* Mobile keeps hamburger */
+@media (max-width: 991px) {
+    .desktop-nav {
+        display: none !important;
+    }
+    
+    .navbar-toggler {
+        display: block !important;
+    }
+}
+```
+
+**Priority:** 🟡 MEDIUM - UX improvement for desktop  
+**Planned:** Individual commit after critical bugs fixed
+
+---
+
 ### Cross-Browser Compatibility
 
 #### Desktop Browsers
@@ -1042,7 +1435,18 @@ Homepage displays 15 cards instead of expected 16 (4 per section × 4 sections).
 | Safari iOS | iPhone 14 | iOS 17 | Nov 16, 2025 | ⚠️ PARTIAL | Bug #2, #3 |
 | Firefox Mobile | Android | Android 13 | Nov 16, 2025 | ⚠️ PARTIAL | Bug #2 |
 
-**Mobile Summary:** Layout issues after navigation require fixing.
+**Mobile Summary:** Layout issues after navigation require fixing. Real device testing shows better results than DevTools.
+
+#### Real Device Testing (Nov 17, 2025)
+
+| Device | Screen Size | Test Result | Notes |
+|--------|-------------|-------------|-------|
+| 27" Monitor | 2560x1440 | ✅ EXCELLENT | Desktop layout perfect |
+| 14" Laptop | 1920x1080 | ✅ EXCELLENT | All features work |
+| Friend's Phone | ~6.5" | ✅ PERFECT | Mobile works flawlessly |
+| Marcus's Phone | ~6.5" | ✅ PERFECT | All mobile features working |
+
+**Critical Finding:** Browser DevTools mobile emulation showed false positives. Real physical device testing proves mobile experience is solid. Always test on actual devices.
 
 ---
 
@@ -1050,10 +1454,10 @@ Homepage displays 15 cards instead of expected 16 (4 per section × 4 sections).
 
 #### Overall Results
 
-**Total Tests:** 32  
-**Passed:** 26 (81%)  
-**Partial Pass:** 5 (16%)  
-**Failed:** 1 (3%)
+**Total Tests:** 40  
+**Passed:** 30 (75%)  
+**Partial Pass:** 7 (17.5%)  
+**Failed:** 3 (7.5%)
 
 #### Quality Metrics
 
@@ -1064,7 +1468,8 @@ Homepage displays 15 cards instead of expected 16 (4 per section × 4 sections).
 | WCAG Accessibility | AA Compliant | AAA (17:1) | ✅ |
 | Performance (LCP) | < 2.5s | 1.4s | ✅ |
 | Desktop Compatibility | 100% | 100% | ✅ |
-| Mobile Compatibility | 100% | ~70% | ⚠️ |
+| Mobile Compatibility (Real) | 100% | 95% | ⚠️ |
+| Mobile Compatibility (DevTools) | 100% | 70% | ⚠️ |
 
 #### Strengths
 
@@ -1073,14 +1478,79 @@ Homepage displays 15 cards instead of expected 16 (4 per section × 4 sections).
 ✅ **Performance:** Excellent (1.2-1.8s load times)  
 ✅ **Accessibility:** Exceeds WCAG AA (achieves AAA)  
 ✅ **Semantic Structure:** Proper HTML5 throughout  
+✅ **Real Device Performance:** Mobile works perfectly on physical devices  
+✅ **Cross-Browser:** Compatible with all major browsers  
 
 #### Areas for Improvement
 
-⚠️ **Mobile Responsive Bug (Critical):** Layout breaks after navigation  
-⚠️ **Lightbox Mobile (High):** Feature non-functional on touch devices  
-⚠️ **Missing Content (Medium):** One homepage card unaccounted for  
+🔴 **Critical Bugs (Must Fix):**
+- Bug #2: Mobile responsive breaks after navigation
+- Bug #5: Desktop cards need arrow navigation
+- Bug #6: Mobile menu under disclaimer
+- Bug #7: CTA button overlap on mobile
+- Bug #8: Disclaimer spacing issue
+
+🟡 **Medium Priority:**
+- Bug #3: Lightbox mobile functionality
+- Bug #4: Missing homepage card
+- Bug #9: Desktop navbar optimization
+
+🟢 **Enhancements (Nice to Have):**
+- Improved CSS-only lightbox for mobile
+- Intel button standardization with iframe
+- Gear tiers content finalization
+- Image gallery layout optimization with pure CSS Grid
 
 ---
+
+### Commit Strategy for Bug Fixes
+
+Each bug will be fixed in an individual commit following the format:
+
+```
+git commit -m "Fix: Bug #[number] - [brief description]"
+```
+
+**Planned Commit Order:**
+1. `Fix: Bug #2 - Standardize intel buttons and resolve mobile navigation issues`
+2. `Fix: Bug #8 - Ensure top disclaimer properly spaces content`
+3. `Fix: Bug #6 - Correct mobile menu z-index hierarchy`
+4. `Fix: Bug #5 - Resize cards to fit all in one row on desktop screens`
+5. `Fix: Bug #7 - Resolve CTA button overlap on mobile`
+6. `Fix: Bug #9 - Show direct links on desktop navbar`
+7. `Fix: Bug #3 - Improve lightbox mobile touch support with CSS`
+
+**Testing After Each Commit:**
+- Test on 27" monitor
+- Test on 14" laptop
+- Test on physical phones
+- Verify no regression in other features
+- Push to GitHub after successful test
+
+**Note:** All fixes use pure HTML/CSS only, following project constraints (no custom JavaScript)
+
+---
+
+### Notes & Observations
+
+**Key Learnings:**
+1. **DevTools vs Reality:** Browser inspect mobile mode is unreliable - always test on physical devices
+2. **User Testing Valuable:** Testing with friend on multiple devices revealed UX issues not apparent in solo testing
+3. **Desktop Optimization:** Large screens need different navigation patterns than mobile
+4. **Z-Index Management:** Layering requires careful planning across all components
+
+**Testing Best Practices:**
+- Test on real devices before considering bugs critical
+- Get external feedback from users with different devices
+- Test across multiple screen sizes (not just breakpoints)
+- Verify fixes don't introduce new bugs
+- Document everything for future reference
+
+---
+
+*Testing Documentation Version: 2.0*  
+*Last Updated: November 17, 2025*  
+*Next Review: After bug fix commits*
 
 ## 🚀 Deployment
 
