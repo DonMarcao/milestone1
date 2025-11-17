@@ -53,7 +53,7 @@
 - **Extraction Map Guides:** Strategic routes, loot locations, and danger zones
 - **Tactical Gear Recommendations:** Armor and equipment optimization
 - **Latest Game Intel:** Patch notes, meta updates, and community strategies
-- **Media Gallery:** Gameplay highlights and tactical screenshots
+- **Media Gallery:** YouTube gameplay highlights with embedded videos and optimized image gallery with lightbox
 
 ### Project Purpose
 
@@ -110,7 +110,7 @@ User stories define the core functionality and value proposition of the website 
 | **US-07** | As an intermediate player, I want to learn advanced extraction strategies, so that I can improve my survival rate | Each map has detailed extraction guides | Extraction routes with high-value loot and danger zones | ✅ Complete | [View](#) |
 | **US-08** | As an intermediate player, I want to find high-value loot locations, so that I can maximize profit per raid | Loot spots clearly marked and described | "High-Value Loot Spots" section on each map guide | ✅ Complete | [View](#) |
 | **US-09** | As an intermediate player, I want to read strategy articles, so that I can learn from experienced players | In-depth articles covering tactical topics | Latest Intel page with 4 strategy guides | ✅ Complete | [View](#) |
-| **US-10** | As an intermediate player, I want to watch gameplay examples, so that I can see tactics in action | Video gallery with gameplay highlights | Media Gallery with 6 gameplay videos | ✅ Complete | [View](#) |
+| **US-10** | As an intermediate player, I want to watch gameplay examples, so that I can see tactics in action | Video gallery with gameplay highlights | Media Gallery with 4 YouTube embedded videos and 10+ optimized images | ✅ Complete | [View](#) |
 
 #### 🏆 Competitive Player Stories
 
@@ -126,7 +126,7 @@ User stories define the core functionality and value proposition of the website 
 
 | ID | User Story | Acceptance Criteria | Implementation | Status | Screenshot |
 |----|------------|---------------------|----------------|--------|------------|
-| **US-16** | As a content creator, I want to find high-quality gameplay footage, so that I can use it for analysis or tutorials | Media gallery with organized video content | Media Gallery with 6 gameplay videos and lightbox | ✅ Complete | [View](#) |
+| **US-16** | As a content creator, I want to find high-quality gameplay footage, so that I can use it for analysis or tutorials | Media gallery with organized video content | Media Gallery with YouTube embeds and WebP optimized images (lightbox enabled) | ✅ Complete | [View](#) |
 | **US-17** | As a content creator, I want to reference accurate weapon statistics, so that I can create reliable guides for my audience | Detailed weapon specs and performance metrics | Complete specifications table for each weapon | ✅ Complete | [View](#) |
 | **US-18** | As a content creator, I want to share specific weapon or map information, so that my followers can quickly access info I'm discussing | Direct links to specific weapons/maps work | Anchor links (#rampage-lmg, #farm, etc.) | ✅ Complete | [View](#) |
 
@@ -494,12 +494,23 @@ font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 
 #### 8. Media Gallery with Lightbox
 
-**Gallery Features:**
-- CSS Grid layout (responsive columns)
-- 6 gameplay videos
-- 6 tactical screenshots
-- Hover overlay with title
-- Click to open full-screen lightbox
+**Video Highlights Section:**
+- YouTube iframe embeds for gameplay videos
+- Responsive 16:9 aspect ratio maintained
+- 4 featured gameplay highlight videos
+- No autoplay (user-initiated playback)
+
+**Images Gallery Section:**
+- 10+ optimized WebP images (80% quality)
+- 2MB+ total file size reduction from JPG conversion
+- Grid layout with auto-fit responsive columns
+- Click to view full-size in lightbox modal
+
+**Technical Implementation:**
+- Pure CSS grid layout (no JavaScript for layout)
+- Lightbox modal with ESC key support
+- Touch-friendly for mobile devices
+- Lazy loading not required (all images optimized)
 
 **Lightbox Implementation:**
 - CSS-only (`:target` pseudo-class)
@@ -807,9 +818,16 @@ font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 
 **Performance Summary:**
 - All metrics exceed target thresholds
-- WebP images significantly reduce load times
+- WebP images significantly reduce load times (2MB+ optimization)
 - Minimal JavaScript improves TTI
 - CSS-only menu eliminates JS parse time
+- Image optimization: All gallery images converted to WebP at 80% quality
+
+**Google Lighthouse Audit Results (Nov 17, 2025):**
+- 🟢 **Performance: 98/100** - Excellent load times and optimization
+- 🟢 **Accessibility: 98/100** - Near-perfect WCAG AAA compliance
+- 🟢 **Best Practices: 93/100** - Industry-standard implementation
+- 🟢 **SEO: 100/100** - Perfect search engine optimization
 
 #### Accessibility Testing
 
@@ -837,11 +855,11 @@ font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 | File | Validation Date | Errors | Warnings | Status |
 |------|----------------|---------|----------|--------|
 | index.html | Nov 17, 2025 | 0 | 0 | ✅ PASS |
-| best-weapons.html | Nov 16, 2025 | 0 | 0 | ✅ PASS |
-| extraction-maps.html | Nov 16, 2025 | 0 | 0 | ✅ PASS |
-| tactical-gear.html | Nov 16, 2025 | 0 | 0 | ✅ PASS |
-| latest-intel.html | Nov 16, 2025 | 0 | 0 | ✅ PASS |
-| media-gallery.html | Nov 16, 2025 | 0 | 0 | ✅ PASS |
+| best-weapons.html | Nov 17, 2025 | 0 | 0 | ✅ PASS |
+| extraction-maps.html | Nov 17, 2025 | 0 | 0 | ✅ PASS |
+| tactical-gear.html | Nov 17, 2025 | 0 | 0 | ✅ PASS |
+| latest-intel.html | Nov 17, 2025 | 0 | 0 | ✅ PASS |
+| media-gallery.html | Nov 17, 2025 | 0 | 0 | ✅ PASS |
 
 **Validation URL:** https://validator.w3.org/
 
@@ -1513,8 +1531,12 @@ Inline style `style="height: 40vh;"` on `<section class="hero-section">` was har
 | WCAG Accessibility | AA Compliant | AAA (17:1) | ✅ |
 | Performance (LCP) | < 2.5s | 1.4s | ✅ |
 | Desktop Compatibility | 100% | 100% | ✅ |
+| Mobile Compatibility (DevTools) | 100% | 100% | ✅ |
 | Mobile Compatibility (Real) | 100% | 100% | ✅ |
-| Mobile Compatibility (DevTools) | 100% | 70% | ⚠️ |
+| Lighthouse Performance | 90+ | 98 | ✅ |
+| Lighthouse Accessibility | 90+ | 98 | ✅ |
+| Lighthouse Best Practices | 85+ | 93 | ✅ |
+| Lighthouse SEO | 90+ | 100 | ✅ |
 
 #### Strengths
 
@@ -1948,40 +1970,42 @@ This project is developed for **educational purposes only** as part of the Level
 
 **Planned Features (Post-Submission):**
 
-1. **Apply Bug Fixes:**
-   - Fix mobile responsive layout (Bug #2)
-   - Fix lightbox mobile functionality (Bug #3)
-   - Locate and restore missing homepage card (Bug #4)
-
-2. **Interactive Features:**
+1. **Interactive Features:**
    - Weapon loadout builder (drag-and-drop)
    - Interactive map overlay with clickable zones
    - Loot calculator and inventory tracker
-
-3. **User Features:**
+   
+2. **User Features:**
    - User accounts (save favorites)
    - Custom loadout library
    - Comment system for strategies
 
-4. **Technical Enhancements:**
+3. **Technical Enhancements:**
    - Progressive Web App (PWA) support
    - Offline functionality
    - Service worker for caching
    - Push notifications for game updates
+   - Further image optimization with next-gen formats
 
-5. **Community Features:**
+4. **Community Features:**
    - User-submitted strategies
    - Rating system for guides
    - Discussion forums
    - Screenshot sharing
-
 ---
 
-**README Last Updated:** November 16, 2025  
-**Project Status:** ✅ Complete (pending bug fixes)  
+**README Last Updated:** November 17, 2025  
+**Project Status:** ✅ Complete & Production Ready  
 **Deployment Status:** 🟢 Live on GitHub Pages  
-**Current Version:** 1.0.0
+**Current Version:** 1.1.0  
 
+**Final Metrics:**
+- ✅ 100% Test Pass Rate (40/40 tests)
+- ✅ Lighthouse: 98/98/93/100 scores
+- ✅ 11 Bugs Fixed & Resolved
+- ✅ 2MB+ Image Optimization
+- ✅ W3C Validated (0 errors)
+- ✅ WCAG AAA Accessible
 ---
 
 🎮 **Thank you for reviewing ABI Insight!** 🎮
