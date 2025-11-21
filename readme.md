@@ -2,7 +2,7 @@
 
 ![Project Banner](assets/media/images/screenshots/banner.png)
 
-**Live Site:** https://donmarcao.github.io/milestone1/  
+**Live Site:**<a href="https://donmarcao.github.io/milestone1/" target="_blank">https://donmarcao.github.io/milestone1/</a>
 **Repository:** https://github.com/DonMarcao/milestone1  
 **Developer:** Marcus Machado  
 **Project Type:** Level 5 Full Stack Web Development - Milestone 1  
@@ -96,7 +96,8 @@ User stories define the core functionality and value proposition of the website 
 
 | ID | User Story | Acceptance Criteria | Implementation | Status | Screenshot |
 |----|------------|---------------------|----------------|--------|------------|
-| **US-01** | As a new player, I want to quickly understand what Arena Breakout Infinite is about so that I can learn the game concept without playing first | Homepage clearly explains game premise with video and title | Hero section with autoplay video and clear "ARENA BREAKOUT INFINITE" title | ✅ Complete | [View](assets/media/images/screenshots/user-stories-01.png){target="_blank"} |
+| **US-01** | As a new player, I want to quickly understand what Arena Breakout Infinite is about so that I can learn the game concept without playing first | Homepage clearly explains game premise with video and title | Hero section with autoplay video and clear "ARENA BREAKOUT INFINITE" title | ✅ Complete |<a href="assets/media/images/screenshots/user-stories-01.png" target="_blank">View</a>
+ |
 | **US-02** | As a new player, I want to see which weapons are best for beginners so that I can make informed choices for my first loadout | Weapon stats clearly displayed with tier system (3-6) | Best Weapons page with tier badges and performance bars | ✅ Complete | [View](assets/media/images/screenshots/user-stories-02.png) |
 | **US-03** | As a new player, I want to understand map layouts before my first raid, so that I don't get lost and can find extraction points | Map guides show extraction points and safe routes | Extraction Maps page with detailed guides per map | ✅ Complete | [View](assets/media/images/screenshots/user-stories-03.png) |
 | **US-04** | As a new player, I want to know what gear I need, so that I can prioritize equipment purchases | Gear categorized by importance with tier system | Tactical Gear page with tier badges and specs | ✅ Complete | [View](assets/media/images/screenshots/user-stories-04.png) |
