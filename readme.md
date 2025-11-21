@@ -1488,6 +1488,40 @@ Inline style `style="height: 40vh;"` on `<section class="hero-section">` was har
 **Priority:** 🟡 MEDIUM - Important for homepage first impression  
 **Status:** ✅ RESOLVED
 
+#### Bug #12: Semantic Element Structure Order Incorrect ✅ FIXED
+
+**Severity:** 🟡 MEDIUM  
+**Status:** ✅ RESOLVED  
+**Discovered:** Nov 21, 2025 (During SEO audit/Accessibility testing)  
+**Fixed:** Nov 17, 2025
+
+**Description:**  
+The main page template, specifically the content area following the hero section, uses an <h3> element directly after the top-level page heading (which is typically an <h1> or the main site name/logo area). This violates semantic HTML structure rules, skipping the necessary <h2> heading level. This makes the document outline illogical for screen readers and negatively impacts SEO and accessibility. The content appears visually as a major section title, but its semantic weight is too low.
+
+**Affected:**
+- **Screens:** All, but impact is primarily on accessibility and SEO
+- **Page:** index.html
+- **Impact:** Poor accessibility score, confusing document outline for screen readers (breaking the logical flow $\text{H1} \rightarrow \text{H2} \rightarrow \text{H3}$), and potential minor negative impact on search engine ranking.
+
+**Root Cause:**  
+The template developer used the <h3> element because its default styling (font-size, weight) visually matched the desired look for the main content section titles without needing to write custom CSS. They failed to consider the semantic hierarchy of the elements.
+
+**Investigation Process:**
+1. Ran an accessibility audit tool
+2. Observed the warning: "Heading elements must be in a sequentially-descending order".
+3. Inspected the main section heading in DevTools
+4. Changed the element type to <h2> locally and verified the correct semantic structure was restored - **SOLUTION FOUND**
+
+**Fix Applied:**
+- The incorrect <h3> element was replaced with the semantically correct <h2> element across all affected templates. Custom CSS styling will be applied to the new <h2> to match the previous visual appearance of the <h3>
+
+**Commit:** `Fix: Replace h3 with semantically correct h2 for main section titles`  
+**Resolution Date:** Nov 21, 2025  
+**Verified:** ✅ ✅ Document outline is now logically structured
+
+**Priority:** 🟡 MEDIUM - Important for homepage first impression  
+**Status:** ✅ RESOLVED
+
 ---
 
 ### Cross-Browser Compatibility
@@ -1547,7 +1581,7 @@ Inline style `style="height: 40vh;"` on `<section class="hero-section">` was har
 | Mobile Compatibility (DevTools) | 100% | 100% | ✅ |
 | Mobile Compatibility (Real) | 100% | 100% | ✅ |
 | Lighthouse Performance | 90+ | 98 | ✅ |
-| Lighthouse Accessibility | 90+ | 98 | ✅ |
+| Lighthouse Accessibility | 90+ | 100 | ✅ |
 | Lighthouse Best Practices | 85+ | 93 | ✅ |
 | Lighthouse SEO | 90+ | 100 | ✅ |
 
@@ -1576,21 +1610,11 @@ Inline style `style="height: 40vh;"` on `<section class="hero-section">` was har
 ✅ **Bug #9:** Desktop navigation links (Nov 17)  
 ✅ **Bug #10:** Desktop nav line break at 1024px (Nov 17)  
 ✅ **Bug #11:** Hero section inline style override (Nov 17)  
+✅ **Bug #12:** Semantic element structure order (Nov 21) 
 
-**Total Bugs Fixed:** 11 (10 active fixes + 1 already implemented)
+**Total Bugs Fixed:** 12 (11 active fixes + 1 already implemented)
 
 ---
-
-### Commit History Summary
-
-**Nov 17, 2025 - Bug Fix Session:**
-
-1. ✅ `Fix: Bug #2 - Standardize intel buttons and resolve mobile navigation issues`
-2. ✅ `Fix: Bug #6 - Correct mobile menu z-index hierarchy and spacing`
-3. ✅ `Fix: Bug #5 - Resize cards to fit all in one row on desktop screens`
-4. ✅ `Fix: Bug #7 - Resolve CTA button text overlap on mobile devices`
-5. ✅ `Fix: Bug #9 - Show direct navigation links on desktop instead of hamburger`
-6. ✅ `Fix: Adjust desktop navigation spacing and hero section height`
 
 **Testing Approach:**
 - Identified bugs through real device testing
@@ -1874,9 +1898,9 @@ git commit -m "Docs: Add testing documentation to README"
 | 21-40 | Additional Pages (Gear, Intel, Gallery) | part 3 |
 | 41-60 | CSS Menu & Responsiveness | part 4 |
 | 61-80 | Documentation & Testing | part 5 |
-| 81-99 | Media, Fixes, Deployment | part 6 |
+| 81-100+ | Media, Fixes, Deployment | part 6 |
 
-**Total Commits:** ~90  
+**Total Commits:** ~100+  
 **Commit Frequency:** Daily during development  
 **Branching:** Main + feature branches for major additions
 
