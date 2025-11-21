@@ -53,7 +53,7 @@
 - **Extraction Map Guides:** Strategic routes, loot locations, and danger zones
 - **Tactical Gear Recommendations:** Armor and equipment optimization
 - **Latest Game Intel:** Patch notes, meta updates, and community strategies
-- **Media Gallery:** YouTube gameplay highlights with embedded videos and optimized image gallery with lightbox
+- **Media Gallery:** YouTube gameplay highlights with embedded videos and an optimized image gallery with lightbox
 
 ### Project Purpose
 
@@ -96,8 +96,8 @@ User stories define the core functionality and value proposition of the website 
 
 | ID | User Story | Acceptance Criteria | Implementation | Status | Screenshot |
 |----|------------|---------------------|----------------|--------|------------|
-| **US-01** | As a new player, I want to quickly understand what Arena Breakout Infinite is about, so that I can learn the game concept without playing first | Homepage clearly explains game premise with video and title | Hero section with autoplay video and clear "ARENA BREAKOUT INFINITE" title | ✅ Complete | [View](assets/media/images/screenshots/user-stories-01.png) |
-| **US-02** | As a new player, I want to see which weapons are best for beginners, so that I can make informed choices for my first loadout | Weapon stats clearly displayed with tier system (3-6) | Best Weapons page with tier badges and performance bars | ✅ Complete | [View](assets/media/images/screenshots/user-stories-02.png) |
+| **US-01** | As a new player, I want to quickly understand what Arena Breakout Infinite is about so that I can learn the game concept without playing first | Homepage clearly explains game premise with video and title | Hero section with autoplay video and clear "ARENA BREAKOUT INFINITE" title | ✅ Complete | [View](assets/media/images/screenshots/user-stories-01.png) |
+| **US-02** | As a new player, I want to see which weapons are best for beginners so that I can make informed choices for my first loadout | Weapon stats clearly displayed with tier system (3-6) | Best Weapons page with tier badges and performance bars | ✅ Complete | [View](assets/media/images/screenshots/user-stories-02.png) |
 | **US-03** | As a new player, I want to understand map layouts before my first raid, so that I don't get lost and can find extraction points | Map guides show extraction points and safe routes | Extraction Maps page with detailed guides per map | ✅ Complete | [View](assets/media/images/screenshots/user-stories-03.png) |
 | **US-04** | As a new player, I want to know what gear I need, so that I can prioritize equipment purchases | Gear categorized by importance with tier system | Tactical Gear page with tier badges and specs | ✅ Complete | [View](assets/media/images/screenshots/user-stories-04.png) |
 | **US-05** | As a new player, I want to access information on my phone while playing, so that I can reference guides during gameplay | Website fully responsive on mobile devices | Mobile-first design with Bootstrap 5 grid system | ✅ Complete | [View](assets/media/images/screenshots/user-stories-05.png) |
@@ -110,7 +110,7 @@ User stories define the core functionality and value proposition of the website 
 | **US-07** | As an intermediate player, I want to learn advanced extraction strategies, so that I can improve my survival rate | Each map has detailed extraction guides | Extraction routes with high-value loot and danger zones | ✅ Complete | [View](assets/media/images/screenshots/user-stories-07.png) |
 | **US-08** | As an intermediate player, I want to find high-value loot locations, so that I can maximize profit per raid | Loot spots clearly marked and described | "High-Value Loot Spots" section on each map guide | ✅ Complete | [View](assets/media/images/screenshots/user-stories-08.png) |
 | **US-09** | As an intermediate player, I want to read strategy articles, so that I can learn from experienced players | In-depth articles covering tactical topics | Latest Intel page with 4 strategy guides | ✅ Complete | [View](assets/media/images/screenshots/user-stories-09.png) |
-| **US-10** | As an intermediate player, I want to watch gameplay examples, so that I can see tactics in action | Video gallery with gameplay highlights | Media Gallery with 4 YouTube embedded videos and 10+ optimized images | ✅ Complete | [View](assets/media/images/screenshots/user-stories-10.png) |
+| **US-10** | As an intermediate player, I want to watch gameplay examples, so that I can see tactics in action | Video gallery with gameplay highlights | Media Gallery with 4 embedded YouTube videos and 10+ optimized images | ✅ Complete | [View](assets/media/images/screenshots/user-stories-10.png) |
 
 #### 🏆 Competitive Player Stories
 
@@ -220,8 +220,8 @@ Content Pages (Detail)
 ├── Best Weapons
 │   ├── HK416-Carbine (Tier 6)
 │   ├── SJ16 .338 (Tier 6)
-│   ├── AKM (Tier 5)
-│   └── MP5 (Tier 4)
+│   ├── M110 (Tier 5)
+│   └── F57 (Tier 4)
 ├── Extraction Maps
 │   ├── Farm
 │   ├── Valley
@@ -238,8 +238,8 @@ Content Pages (Detail)
 │   ├── Group Tactics
 │   └── Meta Weapons
 └── Media Gallery
-    ├── Gameplay Videos (6)
-    └── Screenshots (6)
+    ├── Gameplay Videos (4)
+    └── Screenshots (10)
 ```
 
 ---
@@ -254,7 +254,7 @@ Wireframes were created to plan the layout and user flow before development bega
 
 **Key Elements:**
 - Top disclaimer banner (educational project notice)
-- Navigation bar with logo and hamburger menu
+- Navigation bar with logo and intuitive links on desktop
 - Full-width hero video section with overlay text
 - Four content sections with horizontal scrolling cards
 - Footer with social media links
@@ -265,9 +265,9 @@ Wireframes were created to plan the layout and user flow before development bega
 
 **Mobile Adaptations:**
 - Stacked vertical layout
+- Navigation bar with logo and hamburger menu
 - Smaller hero section (40vh)
 - Touch-optimized card scrolling
-- Hamburger menu for navigation
 - Compact footer
 
 #### Best Weapons Page Wireframe
@@ -275,7 +275,7 @@ Wireframes were created to plan the layout and user flow before development bega
 ![Best Weapons Wireframe](assets/media/images/wireframes/best-weapons-page.png)
 
 **Page Structure:**
-- Hero image/title section
+- Hero video/title section
 - Individual weapon cards with:
   - Weapon icon
   - Tier badge
@@ -416,7 +416,7 @@ font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 **Video Specifications:**
 - Format: WebM (VP9 codec)
 - Resolution: 1920x1080
-- File Size: ~4MB
+- File Size: ~11MB
 - Fallback: Static poster image
 
 #### 3. Horizontal Scrolling Card System
@@ -429,18 +429,14 @@ font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 
 **Card Components:**
 - Image/icon section (150px height)
-- Tier badge (Tier 3-6)
+- Tier badge (Tier 3-7)
 - Title and description
 - Call-to-action button
 - Hover animations (lift effect, border glow)
 
 #### 4. Best Weapons Database
 
-**4 Detailed Weapon Profiles:**
-- HK416-Carbine (Tier 6 - Assault Rifle)
-- SJ16 .338 (Tier 6 - Marksman Rifle)
-- AKM (Tier 5 - Assault Rifle)
-- MP5 (Tier 4 - Submachine Gun)
+**9 Detailed Weapon Profiles:**
 
 **Each Weapon Includes:**
 - Performance statistics (visual bars):
@@ -458,10 +454,6 @@ font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 #### 5. Extraction Maps Guide
 
 **4 Complete Map Guides:**
-- Farm (Beginner-friendly)
-- Valley (Intermediate)
-- Armory (High-risk, high-reward)
-- Northridge (Complex urban environment)
 
 **Each Map Includes:**
 - Overview description
@@ -473,10 +465,6 @@ font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 #### 6. Tactical Gear Catalog
 
 **4 Essential Gear Items:**
-- Heavy Armor (Class VI protection)
-- Tactical Helmet (Class VI)
-- Backpack Pro (Large capacity)
-- Night Vision Goggles (Gen 3)
 
 **Each Gear Item Includes:**
 - Protection/capacity specifications
@@ -720,7 +708,7 @@ font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 - W3C HTML Validator (https://validator.w3.org/)
 - W3C CSS Validator (https://jigsaw.w3.org/css-validator/)
 - Chrome DevTools (Lighthouse, Responsive Design Mode)
-- Real device testing (iPhone 14, Android phones, 14" monitor, 27" monitor)
+- Real device testing (Xiaomi 14 Ultra, 14" monitor, 27" monitor, 34" monitor)
 
 **Testing Period:** November 2025  
 **Tester:** Marcus Machado  
@@ -845,6 +833,31 @@ font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 - Full keyboard navigation support
 - Screen reader compatible
 - No accessibility warnings in Lighthouse
+
+#### Usability Testing
+
+**Key Usability Scenarios & Outcomes**
+- Testing focused on core user goals and reference tasks, primarily related to quick access to information (US-15, US-20) and mobile usability (US-05).
+
+| Test ID | Task Description | Friction Point Identified | Usability Metric | Resulting Fix / Status |
+|---------|---------|------|----------|--------|
+| **U-01** | Mobile Reference: Quickly access optimal weapon attachments during gameplay (US-05). | CTA Button Overlap: The primary call-to-action text overlapped the button container on smaller mobile screens. | 100% Success in tapping the CTA button (F-21). |Bug #7 fixed the text overlap. ✅ PASS |
+| **U-02** | Quick Navigation: Navigate directly to a main section (e.g., Best Weapons) from a desktop screen (US-20). | Missing Desktop Navbar: The initial design lacked a persistent horizontal navigation for desktop views. | 0 Clicks Wasted on desktop users searching for main links (F-07). |Bug #9 implemented a proper desktop navigation. ✅ PASS |
+| **U-03** | Information Consistency: View detailed weapon cards on a large monitor (US-22). | Inconsistent Card Sizing: Cards on the Best Weapons page resized disproportionately on wide screens. | Consistent Layout verified on 14" and 27" monitors (F-20, N-07). | Bug #5 resolved inconsistent resizing using flex: 1 1 0. ✅ PASS |
+| **U-04** | Menu Access: Open and close the main navigation menu on a mobile device (US-20). | Menu Spacing: The mobile menu spacing was initially misaligned upon closing. | Menu Functions Smoothly (F-04). | Bug #6 fixed the mobile menu spacing/alignment. ✅ PASS (AAA) |
+|      |      |     |       |      |
+
+**Usability Testing Summary:**
+- The project's usability was tested informally but rigorously through observation and task-based testing involving representatives from the target audience. This process was critical for identifying friction points and directly informed several key fixes documented in the Bug Tracking section.
+
+**Test Participants:**
+- Testing involved three individuals representing the core user personas:
+
+- 1 New Player
+
+- 2 Intermediate/Competitive Players
+
+- Devices Used: Testing confirmed functionality across physical mobile devices (Xiaomi 14 Ultra) and large screens (14",27" and 34" monitors).
 
 ---
 
@@ -1706,15 +1719,15 @@ git push -u origin main
 
 #### Post-Deployment Checklist
 
-- [x] All 6 HTML pages accessible
-- [x] CSS styles loading correctly
-- [x] All images displaying (except Northridge - fixed)
-- [x] Hero video playing
-- [x] Navigation links working
-- [x] External links opening in new tabs
-- [x] Mobile menu functional
-- [ ] Mobile responsive (Bug #2 - pending fix)
-- [ ] Lightbox mobile (Bug #3 - pending fix)
+- [v] All 6 HTML pages accessible
+- [v] CSS styles loading correctly
+- [v] All images displaying (except Northridge - fixed)
+- [v] Hero video playing
+- [v] Navigation links working
+- [v] External links opening in new tabs
+- [v] Mobile menu functional
+- [v] Mobile responsive (Bug #2 - fixed)
+- [v] Lightbox mobile (Bug #3 - fixed)
 
 ---
 
@@ -1856,14 +1869,14 @@ git commit -m "Docs: Add testing documentation to README"
 
 | Commit | Description | Date |
 |--------|-------------|------|
-| 1-10 | Foundation & Homepage | Week 1 |
-| 11-20 | Content Pages (Weapons, Maps) | Week 2 |
-| 21-40 | Additional Pages (Gear, Intel, Gallery) | Week 3 |
-| 41-60 | CSS Menu & Responsiveness | Week 4 |
-| 61-80 | Documentation & Testing | Week 5 |
-| 81-91 | Media, Fixes, Deployment | Week 6 |
+| 1-10 | Foundation & Homepage | part 1 |
+| 11-20 | Content Pages (Weapons, Maps) | part 2 |
+| 21-40 | Additional Pages (Gear, Intel, Gallery) | part 3 |
+| 41-60 | CSS Menu & Responsiveness | part 4 |
+| 61-80 | Documentation & Testing | part 5 |
+| 81-99 | Media, Fixes, Deployment | part 6 |
 
-**Total Commits:** ~70-90  
+**Total Commits:** ~90  
 **Commit Frequency:** Daily during development  
 **Branching:** Main + feature branches for major additions
 
@@ -1881,13 +1894,13 @@ git commit -m "Docs: Add testing documentation to README"
 ### Media
 
 **Images:**
-- **Weapon Images:** Sourced from [official game press kit / community resources]
-- **Map Images:** Generated using Gemini AI based on Arena Breakout Infinite map layouts
-- **Gear Images:** Sourced from [official game assets / screenshot captures]
-- **Gallery Screenshots:** Captured from personal gameplay sessions
+- **Weapon Images:** Sourced from game images / community resources and highlights
+- **Map Images:** Sourced from Arena Breakout Wiki web page
+- **Gear Images:** Sourced from Arena Breakout Wiki web page / screenshot captures
+- **Gallery Screenshots:** Sourced from google image search 
 
 **Video:**
-- **Hero Video:** Gameplay footage captured from personal Arena Breakout Infinite sessions
+- **Hero Video:** Gameplay footage captured from official game launch trailer
 - **Format:** WebM (VP9 codec) for optimal web performance
 
 **Icons:**
@@ -1914,7 +1927,7 @@ This is a **school project** utilizing third-party game images and videos for **
 
 **Original Code:**
 - All HTML structure: Marcus Machado
-- All CSS styling (994 lines): Marcus Machado
+- All CSS styling: Marcus Machado
 - All semantic markup and accessibility features: Marcus Machado
 - All responsive design implementation: Marcus Machado
 
@@ -1929,7 +1942,7 @@ This is a **school project** utilizing third-party game images and videos for **
 **Special Thanks:**
 
 - **Code Institute:** For providing the Level 5 Full Stack Web Development course structure and learning materials
-- **Mentor/Instructor:** [Name if applicable] for guidance and code reviews
+- **Mentor/Instructor:** Andre Beckley for guidance and code reviews
 - **Peer Reviewers:** Fellow students who provided feedback during development
 - **Gaming Community:** Arena Breakout Infinite players who inspired this project
 - **W3C & MDN:** For comprehensive web standards documentation
@@ -1962,7 +1975,7 @@ This project is developed for **educational purposes only** as part of the Level
 
 **For Project Inquiries:**
 - GitHub Issues: https://github.com/DonMarcao/milestone1/issues
-- Email: [your-email if you want to include]
+- Email: [mpamrf@gmail.com]
 
 ---
 
@@ -1971,18 +1984,17 @@ This project is developed for **educational purposes only** as part of the Level
 **Planned Features (Post-Submission):**
 
 1. **Interactive Features:**
-   - Weapon loadout builder (drag-and-drop)
+   - Weapon loadout builder
    - Interactive map overlay with clickable zones
-   - Loot calculator and inventory tracker
+   - Loot calculator
    
 2. **User Features:**
-   - User accounts (save favorites)
+   - User accounts
    - Custom loadout library
    - Comment system for strategies
 
 3. **Technical Enhancements:**
    - Progressive Web App (PWA) support
-   - Offline functionality
    - Service worker for caching
    - Push notifications for game updates
    - Further image optimization with next-gen formats
@@ -1994,10 +2006,10 @@ This project is developed for **educational purposes only** as part of the Level
    - Screenshot sharing
 ---
 
-**README Last Updated:** November 17, 2025  
+**README Last Updated:** November 21, 2025  
 **Project Status:** ✅ Complete & Production Ready  
 **Deployment Status:** 🟢 Live on GitHub Pages  
-**Current Version:** 1.1.0  
+**Current Version:** 1.1.3  
 
 **Final Metrics:**
 - ✅ 100% Test Pass Rate (40/40 tests)
