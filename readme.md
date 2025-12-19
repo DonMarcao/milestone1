@@ -1,12 +1,19 @@
 # 🎮 ABI INSIGHT - Arena Breakout Infinite Tactical Gaming Website
 
-![Project Banner](assets/media/images/screenshots/banner.png)
-
 **Live Site:** https://donmarcao.github.io/milestone1/  
 **Repository:** https://github.com/DonMarcao/milestone1  
 **Developer:** Marcus Machado  
 **Project Type:** Level 5 Full Stack Web Development - Milestone 1  
 **Submission Date:** November 2025
+**Resubmission Date:** December 19th
+
+![Index Banner](assets/media/images/screenshots/banner.png)
+![Weapons Banner](assets/media/images/screenshots/weapons-banner.png)
+![Gallery Banner](assets/media/images/screenshots/media-banner.png)
+![Intel Banner](assets/media/images/screenshots/intel-banner.png)
+![Gear Banner](assets/media/images/screenshots/gear-banner.png)
+![Maps Banner](assets/media/images/screenshots/maps-banner.png)
+
 
 ---
 
@@ -680,16 +687,11 @@ font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 
 #### Image Optimization
 
-**Squoosh** (Google)
-- https://squoosh.app/
+**GIMP**
+- https://gimp.com/
 - WebP conversion
 - Lossless compression
 - Before/after comparison
-
-**TinyPNG** (Optional)
-- https://tinypng.com/
-- PNG/JPEG compression
-- API available
 
 ---
 
@@ -812,10 +814,10 @@ font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 - Image optimization: All gallery images converted to WebP at 80% quality
 
 **Google Lighthouse Audit Results (Nov 17, 2025):**
-- 🟢 **Performance: 88-89/100** - Excellent load times and optimization
-- 🟢 **Accessibility: 100/100** - Near-perfect WCAG AAA compliance
-- 🟢 **Best Practices: 92/100** - Industry-standard implementation
-- 🟢 **SEO: 100/100** - Perfect search engine optimization
+- 🟢 **Performance: 89 to 98/100** - Excellent load times and optimization       (varying heavily depending on my connection speed.)
+- 🟢 **Accessibility: 100/100** - Near-perfect WCAG AAA compliance 
+- 🟢 **Best Practices: 92 to 96/100** - Industry-standard implementation      (varying heavily depending on my connection speed.)
+- 🟢 **SEO: 92 to 100/100** - Perfect search engine optimization              (varying heavily depending on my connection speed.)   
 
 ![Desktop Validation](/assets/media/images/testing/desktop-lighthouse.png)
 ![Mobile Validation](/assets/media/images/testing/mobile-lighthouse.png)
@@ -2041,14 +2043,14 @@ This project is developed for **educational purposes only** as part of the Level
    - Screenshot sharing
 ---
 
-**README Last Updated:** November 21, 2025  
+**README Last Updated:** December 19, 2025  
 **Project Status:** ✅ Complete & Production Ready  
 **Deployment Status:** 🟢 Live on GitHub Pages  
-**Current Version:** 1.1.3  
+**Current Version:** 1.1.5 
 
 **Final Metrics:**
 - ✅ 100% Test Pass Rate (40/40 tests)
-- ✅ Lighthouse: 98/98/93/100 scores
+- ✅ Lighthouse: 98/100/96/100 scores
 - ✅ 11 Bugs Fixed & Resolved
 - ✅ 2MB+ Image Optimization
 - ✅ W3C Validated (0 errors)
