@@ -286,17 +286,17 @@
             </p>
         </div>
         <!-- MENU TOGGLE CHECKBOX: CSS-only mobile menu implementation using checkbox hack to avoid JavaScript dependency -- for CSS-only menu toggle -->
-        <input type="checkbox" id="menu-toggle" class="menu-checkbox">
+        <input type="checkbox" id="menu-toggle" class="menu-checkbox" aria-hidden="true">
 
         <!-- ========================================
          NAVIGATION BAR
          Responsive navbar with logo and hamburger menu
          ======================================== -->
-        <nav class="navbar navbar-dark">
+        <nav class="navbar navbar-dark" aria-label="Main navigation">
             <div class="container-fluid">
-                <a class="navbar-brand" href="index.html">
+                <a class="navbar-brand" href="index.html" aria-label="ABI Insight home page">
                     <!-- ARCADE JOYSTICK ICON - Inline SVG -->
-                    <span class="brand-icon">
+                    <span class="brand-icon" aria-hidden="true">
                         <svg width="24" height="24" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <!-- Green circular background -->
                             <circle cx="16" cy="16" r="16" fill="#28a745"/>
@@ -317,17 +317,18 @@
                     ABI INSIGHT
                 </a>
                 <!-- Desktop Navigation -->
-            <nav class="desktop-nav">
-                <a href="best-weapons.html" class="nav-link">Best Weapons</a>
-                <a href="tactical-gear.html" class="nav-link">Tactical Gear</a>
-                <a href="extraction-maps.html" class="nav-link">Extraction Maps</a>
-                <a href="latest-intel.html" class="nav-link">Latest Intel</a>
-                <a href="media-gallery.html" class="nav-link active">Media Gallery</a>
+            <nav class="desktop-nav" aria-label="Desktop navigation menu">
+                <a href="best-weapons.html" class="nav-link" aria-label="Navigate to Best Weapons page">Best Weapons</a>
+                <a href="tactical-gear.html" class="nav-link active" aria-label="Navigate to Tactical Gear page" aria-current="page">Tactical Gear</a>
+                <a href="extraction-maps.html" class="nav-link" aria-label="Navigate to Extraction Maps page">Extraction Maps</a>
+                <a href="latest-intel.html" class="nav-link" aria-label="Navigate to Latest Intel page">Latest Intel</a>
+                <a href="media-gallery.html" class="nav-link" aria-label="Navigate to Media Gallery page">Media Gallery</a>
             </nav>
                 <div class="nav-icons">
                     <!-- HAMBURGER MENU ICON: Label element connected to checkbox for CSS-based menu toggle with ARIA label for screen readers -- (label for checkbox) -->
-                    <label for="menu-toggle" class="btn-icon hamburger-icon" aria-label="Toggle menu">
-                        <svg width="28" height="28" fill="currentColor" viewBox="0 0 16 16">
+                    <label for="menu-toggle" class="btn-icon hamburger-icon">
+                        <span class="sr-only">Open navigation menu</span>
+                        <svg width="28" height="28" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true">
                             <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
                         </svg>
                     </label>
@@ -336,10 +337,10 @@
         </nav>
 
         <!-- HERO SECTION: Video background header with overlay text, reduced height (40vh) for content page context -->
-        <section class="hero-section" style="height: 40vh;">
+        <section class="hero-section" style="height: 40vh;" aria-label="Tactical Gear page header">
             <!-- Background video with tactical shooter gameplay -->
             <!-- VIDEO ELEMENT: Autoplay background video with muted audio, loop, and mobile playsinline attribute -->
-        <video class="hero-video" autoplay muted loop playsinline poster="assets/media/images/gallery/abi-poster.webp">
+        <video class="hero-video" autoplay muted loop playsinline poster="assets/media/images/gallery/abi-poster.webp" aria-label="Arena Breakout Infinite gameplay background video">
                 <source src="assets/media/video/abi-video.webm" type="video/webm">
                 Your browser does not support the video tag.
             </video>
@@ -352,8 +353,8 @@
         </section>
 
         <!-- HOME BUTTON - INVERTED COLORS (White BG, Green Joystick) -->
-        <a href="index.html" class="icon-btn-home" title="Back to Home">
-            <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <a href="index.html" class="icon-btn-home" aria-label="Return to home page">
+            <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                 <!-- White background circle -->
                 <circle cx="16" cy="16" r="16" fill="white"/>
                 <!-- Green diamond base with open top -->
@@ -372,18 +373,18 @@
         </a>
 
         <!-- Gear 1: HEAVY ARMOR -->
-        <section class="gear-detail-section" id="heavy-armor">
+        <section class="gear-detail-section" id="heavy-armor" aria-labelledby="heavy-armor-title">
             <div class="gear-header">
                 <div class="gear-icon">
                     <img 
-                            src="assets/media/images/gear/BT201_Full_Body_Armor.webp" 
-                            alt="BT201 Heavy Armor Icon" 
+                            src="assets/media/images/gear/body-armor.webp" 
+                            alt="BT201 Heavy Armor full body protection" 
                             class="gear-icon" 
                         >
                 </div>
                 <div class="gear-title-block">
                     <span class="badge-tier">TIER 6</span>
-                    <h2>HEAVY ARMOR</h2>
+                    <h2 id="heavy-armor-title">HEAVY ARMOR</h2>
                     <p class="gear-category">Body Armor - Full Protection</p>
                 </div>
             </div>
@@ -397,42 +398,42 @@
                 <div class="stat-card">
                     <div class="stat-label">Protection Level</div>
                     <div class="stat-value">98</div>
-                    <div class="stat-bar">
+                    <div class="stat-bar" role="progressbar" aria-valuenow="98" aria-valuemin="0" aria-valuemax="100" aria-label="Protection level: 98 out of 100">
                         <div class="stat-bar-fill" style="width: 98%;"></div>
                     </div>
                 </div>
                 <div class="stat-card">
                     <div class="stat-label">Durability</div>
                     <div class="stat-value">95</div>
-                    <div class="stat-bar">
+                    <div class="stat-bar" role="progressbar" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100" aria-label="Durability: 95 out of 100">
                         <div class="stat-bar-fill" style="width: 95%;"></div>
                     </div>
                 </div>
                 <div class="stat-card">
                     <div class="stat-label">Coverage Area</div>
                     <div class="stat-value">92</div>
-                    <div class="stat-bar">
+                    <div class="stat-bar" role="progressbar" aria-valuenow="92" aria-valuemin="0" aria-valuemax="100" aria-label="Coverage area: 92 out of 100">
                         <div class="stat-bar-fill" style="width: 92%;"></div>
                     </div>
                 </div>
                 <div class="stat-card">
                     <div class="stat-label">Mobility Impact</div>
                     <div class="stat-value">35</div>
-                    <div class="stat-bar">
+                    <div class="stat-bar" role="progressbar" aria-valuenow="35" aria-valuemin="0" aria-valuemax="100" aria-label="Mobility impact: 35 out of 100">
                         <div class="stat-bar-fill" style="width: 35%;"></div>
                     </div>
                 </div>
                 <div class="stat-card">
                     <div class="stat-label">Noise Reduction</div>
                     <div class="stat-value">40</div>
-                    <div class="stat-bar">
+                    <div class="stat-bar" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" aria-label="Noise reduction: 40 out of 100">
                         <div class="stat-bar-fill" style="width: 40%;"></div>
                     </div>
                 </div>
                 <div class="stat-card">
                     <div class="stat-label">Repair Cost</div>
                     <div class="stat-value">25</div>
-                    <div class="stat-bar">
+                    <div class="stat-bar" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" aria-label="Repair cost: 25 out of 100">
                         <div class="stat-bar-fill" style="width: 25%;"></div>
                     </div>
                 </div>
@@ -470,14 +471,14 @@
         </section>
 
         <!-- Gear 2: TACTICAL HELMET -->
-        <section class="gear-detail-section" id="tactical-helmet">
+        <section class="gear-detail-section" id="tactical-helmet" aria-labelledby="tactical-helmet-title">
             <div class="gear-header">
                 <div class="gear-icon">
-                    <img src="assets/media/images/gear/IND70_Tactical_Helmet.webp" alt="Tactical Helmet Icon" class="gear-icon">           
+                    <img src="assets/media/images/gear/tactical-helmet.webp" alt="Tactical Helmet with communication system" class="gear-icon">           
                 </div>
                 <div class="gear-title-block">
                     <span class="badge-tier">TIER 5</span>
-                    <h2>TACTICAL HELMET</h2>
+                    <h2 id="tactical-helmet-title">TACTICAL HELMET</h2>
                     <p class="gear-category">Head Protection - Combat Ready</p>
                 </div>
             </div>
@@ -491,42 +492,42 @@
                 <div class="stat-card">
                     <div class="stat-label">Protection Level</div>
                     <div class="stat-value">85</div>
-                    <div class="stat-bar">
+                    <div class="stat-bar" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100" aria-label="Protection level: 85 out of 100">
                         <div class="stat-bar-fill" style="width: 85%;"></div>
                     </div>
                 </div>
                 <div class="stat-card">
                     <div class="stat-label">Durability</div>
                     <div class="stat-value">88</div>
-                    <div class="stat-bar">
+                    <div class="stat-bar" role="progressbar" aria-valuenow="88" aria-valuemin="0" aria-valuemax="100" aria-label="Durability: 88 out of 100">
                         <div class="stat-bar-fill" style="width: 88%;"></div>
                     </div>
                 </div>
                 <div class="stat-card">
                     <div class="stat-label">Audio Quality</div>
                     <div class="stat-value">92</div>
-                    <div class="stat-bar">
+                    <div class="stat-bar" role="progressbar" aria-valuenow="92" aria-valuemin="0" aria-valuemax="100" aria-label="Audio quality: 92 out of 100">
                         <div class="stat-bar-fill" style="width: 92%;"></div>
                     </div>
                 </div>
                 <div class="stat-card">
                     <div class="stat-label">Mobility Impact</div>
                     <div class="stat-value">75</div>
-                    <div class="stat-bar">
+                    <div class="stat-bar" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" aria-label="Mobility impact: 75 out of 100">
                         <div class="stat-bar-fill" style="width: 75%;"></div>
                     </div>
                 </div>
                 <div class="stat-card">
                     <div class="stat-label">Peripheral Vision</div>
                     <div class="stat-value">80</div>
-                    <div class="stat-bar">
+                    <div class="stat-bar" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" aria-label="Peripheral vision: 80 out of 100">
                         <div class="stat-bar-fill" style="width: 80%;"></div>
                     </div>
                 </div>
                 <div class="stat-card">
                     <div class="stat-label">Comfort Rating</div>
                     <div class="stat-value">78</div>
-                    <div class="stat-bar">
+                    <div class="stat-bar" role="progressbar" aria-valuenow="78" aria-valuemin="0" aria-valuemax="100" aria-label="Comfort rating: 78 out of 100">
                         <div class="stat-bar-fill" style="width: 78%;"></div>
                     </div>
                 </div>
@@ -564,16 +565,16 @@
         </section>
 
         <!-- Gear 3: BACKPACK PRO -->
-        <section class="gear-detail-section" id="backpack-pro">
+        <section class="gear-detail-section" id="backpack-pro" aria-labelledby="backpack-pro-title">
             <div class="gear-header">
                 <div class="gear-icon"><img 
-                            src="assets/media/images/gear/Ral.heavy.military.backpack.webp" 
-                            alt="Backpack Pro Icon" 
+                            src="assets/media/images/gear/military.backpack.webp" 
+                            alt="Backpack Pro high capacity storage system" 
                             class="gear-icon" 
                         ></div>
                 <div class="gear-title-block">
                     <span class="badge-tier">TIER 4</span>
-                    <h2>BACKPACK PRO</h2>
+                    <h2 id="backpack-pro-title">BACKPACK PRO</h2>
                     <p class="gear-category">Storage System - High Capacity</p>
                 </div>
             </div>
@@ -587,42 +588,42 @@
                 <div class="stat-card">
                     <div class="stat-label">Storage Capacity</div>
                     <div class="stat-value">96</div>
-                    <div class="stat-bar">
+                    <div class="stat-bar" role="progressbar" aria-valuenow="96" aria-valuemin="0" aria-valuemax="100" aria-label="Storage capacity: 96 out of 100">
                         <div class="stat-bar-fill" style="width: 96%;"></div>
                     </div>
                 </div>
                 <div class="stat-card">
                     <div class="stat-label">Durability</div>
                     <div class="stat-value">82</div>
-                    <div class="stat-bar">
+                    <div class="stat-bar" role="progressbar" aria-valuenow="82" aria-valuemin="0" aria-valuemax="100" aria-label="Durability: 82 out of 100">
                         <div class="stat-bar-fill" style="width: 82%;"></div>
                     </div>
                 </div>
                 <div class="stat-card">
                     <div class="stat-label">Weight Distribution</div>
                     <div class="stat-value">88</div>
-                    <div class="stat-bar">
+                    <div class="stat-bar" role="progressbar" aria-valuenow="88" aria-valuemin="0" aria-valuemax="100" aria-label="Weight distribution: 88 out of 100">
                         <div class="stat-bar-fill" style="width: 88%;"></div>
                     </div>
                 </div>
                 <div class="stat-card">
                     <div class="stat-label">Mobility Impact</div>
                     <div class="stat-value">65</div>
-                    <div class="stat-bar">
+                    <div class="stat-bar" role="progressbar" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100" aria-label="Mobility impact: 65 out of 100">
                         <div class="stat-bar-fill" style="width: 65%;"></div>
                     </div>
                 </div>
                 <div class="stat-card">
                     <div class="stat-label">Organization</div>
                     <div class="stat-value">90</div>
-                    <div class="stat-bar">
+                    <div class="stat-bar" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100" aria-label="Organization: 90 out of 100">
                         <div class="stat-bar-fill" style="width: 90%;"></div>
                     </div>
                 </div>
                 <div class="stat-card">
                     <div class="stat-label">Water Resistance</div>
                     <div class="stat-value">85</div>
-                    <div class="stat-bar">
+                    <div class="stat-bar" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100" aria-label="Water resistance: 85 out of 100">
                         <div class="stat-bar-fill" style="width: 85%;"></div>
                     </div>
                 </div>
@@ -660,16 +661,16 @@
         </section>
 
         <!-- Gear 4: NIGHT VISION -->
-        <section class="gear-detail-section" id="night-vision">
+        <section class="gear-detail-section" id="night-vision" aria-labelledby="night-vision-title">
             <div class="gear-header">
                 <div class="gear-icon"><img 
                             src="assets/media/images/gear/t7.webp" 
-                            alt="T7 thermal imager Icon" 
+                            alt="T7 thermal imaging night vision device" 
                             class="gear-icon" 
                         ></div>
                 <div class="gear-title-block">
                     <span class="badge-tier">TIER 3</span>
-                    <h2>NIGHT VISION</h2>
+                    <h2 id="night-vision-title">NIGHT VISION</h2>
                     <p class="gear-category">Optical Equipment - Night Operations</p>
                 </div>
             </div>
@@ -683,42 +684,42 @@
                 <div class="stat-card">
                     <div class="stat-label">Light Amplification</div>
                     <div class="stat-value">95</div>
-                    <div class="stat-bar">
+                    <div class="stat-bar" role="progressbar" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100" aria-label="Light amplification: 95 out of 100">
                         <div class="stat-bar-fill" style="width: 95%;"></div>
                     </div>
                 </div>
                 <div class="stat-card">
                     <div class="stat-label">Image Clarity</div>
                     <div class="stat-value">88</div>
-                    <div class="stat-bar">
+                    <div class="stat-bar" role="progressbar" aria-valuenow="88" aria-valuemin="0" aria-valuemax="100" aria-label="Image clarity: 88 out of 100">
                         <div class="stat-bar-fill" style="width: 88%;"></div>
                     </div>
                 </div>
                 <div class="stat-card">
                     <div class="stat-label">Detection Range</div>
                     <div class="stat-value">90</div>
-                    <div class="stat-bar">
+                    <div class="stat-bar" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100" aria-label="Detection range: 90 out of 100">
                         <div class="stat-bar-fill" style="width: 90%;"></div>
                     </div>
                 </div>
                 <div class="stat-card">
                     <div class="stat-label">Battery Life</div>
                     <div class="stat-value">75</div>
-                    <div class="stat-bar">
+                    <div class="stat-bar" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" aria-label="Battery life: 75 out of 100">
                         <div class="stat-bar-fill" style="width: 75%;"></div>
                     </div>
                 </div>
                 <div class="stat-card">
                     <div class="stat-label">Durability</div>
                     <div class="stat-value">70</div>
-                    <div class="stat-bar">
+                    <div class="stat-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" aria-label="Durability: 70 out of 100">
                         <div class="stat-bar-fill" style="width: 70%;"></div>
                     </div>
                 </div>
                 <div class="stat-card">
                     <div class="stat-label">Mobility Impact</div>
                     <div class="stat-value">92</div>
-                    <div class="stat-bar">
+                    <div class="stat-bar" role="progressbar" aria-valuenow="92" aria-valuemin="0" aria-valuemax="100" aria-label="Mobility impact: 92 out of 100">
                         <div class="stat-bar-fill" style="width: 92%;"></div>
                     </div>
                 </div>
@@ -756,23 +757,28 @@
         </section>
 
         <!-- MENU OVERLAY: Full-screen clickable backdrop that closes mobile menu when clicked (connected to checkbox via label) -- (clicking closes menu via label) -->
-        <label for="menu-toggle" class="menu-overlay" id="menu-overlay"></label>
+        <label for="menu-toggle" class="menu-overlay" id="menu-overlay">
+            <span class="sr-only">Close navigation menu</span>
+        </label>
         
         <!-- MOBILE MENU: Slide-out navigation panel for mobile devices, toggled via CSS checkbox hack -->
-        <div class="mobile-menu" id="mobile-menu">
+        <div class="mobile-menu" id="mobile-menu" role="navigation" aria-label="Mobile navigation menu">
             <div class="mobile-menu-header">
                 <div class="mobile-menu-title">MENU</div>
                 <!-- Close Button: Label element styled as X button, unchecks menu toggle when clicked -- as label for checkbox -->
-                <label for="menu-toggle" class="mobile-menu-close">×</label>
+                <label for="menu-toggle" class="mobile-menu-close">
+                    <span class="sr-only">Close navigation menu</span>
+                    <span aria-hidden="true">×</span>
+                </label>
             </div>
             <!-- Mobile Navigation Links: Complete site navigation with active state on current page -->
         <nav class="mobile-menu-nav">
-                <a href="index.html">Home</a>
-                <a href="best-weapons.html">Best Weapons</a>
-                <a href="tactical-gear.html" class="active">Tactical Gear</a>
-                <a href="extraction-maps.html">Extraction Maps</a>
-                <a href="latest-intel.html">Latest Intel</a>
-                <a href="media-gallery.html">Media Gallery</a>
+                <a href="index.html" aria-label="Navigate to Home page">Home</a>
+                <a href="best-weapons.html" aria-label="Navigate to Best Weapons page">Best Weapons</a>
+                <a href="tactical-gear.html" class="active" aria-label="Navigate to Tactical Gear page" aria-current="page">Tactical Gear</a>
+                <a href="extraction-maps.html" aria-label="Navigate to Extraction Maps page">Extraction Maps</a>
+                <a href="latest-intel.html" aria-label="Navigate to Latest Intel page">Latest Intel</a>
+                <a href="media-gallery.html" aria-label="Navigate to Media Gallery page">Media Gallery</a>
             </nav>
         </div>
         <!-- SITE FOOTER: Contains social media links and copyright/disclaimer information -->
@@ -780,20 +786,20 @@
             <div class="footer-content">
                 <!-- Social Media Icons: External links to gaming community platforms with accessibility labels -->
             <div class="social-icons">
-                    <a href="https://discord.com/" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Discord">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M20.211 4.223A.954.954 0 0 0 19.38 4H4.62a.954.954 0 0 0-.83 4.887c.21 1.77 1.05 3.3 2.37 4.542 1.32 1.242 3.018 1.933 4.84 2.124v3.193l.02.046a.5.5 0 0 0 .82 0l.02-.046v-3.193c1.822-.191 3.52-.882 4.84-2.124 1.32-1.242 2.16-2.772 2.37-4.542a.954.954 0 0 0-.17-4.887zm-4.322 3.86a1.59 1.59 0 0 1-1.6 1.6c-.88 0-1.6-.72-1.6-1.6s.72-1.6 1.6-1.6c.88 0 1.6.72 1.6 1.6zm-8.58 0a1.59 1.59 0 0 1-1.6 1.6c-.88 0-1.6-.72-1.6-1.6s.72-1.6 1.6-1.6c.88 0 1.6.72 1.6 1.6z"/></svg>
+                    <a href="https://discord.com/" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Visit our Discord community server">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M20.211 4.223A.954.954 0 0 0 19.38 4H4.62a.954.954 0 0 0-.83 4.887c.21 1.77 1.05 3.3 2.37 4.542 1.32 1.242 3.018 1.933 4.84 2.124v3.193l.02.046a.5.5 0 0 0 .82 0l.02-.046v-3.193c1.822-.191 3.52-.882 4.84-2.124 1.32-1.242 2.16-2.772 2.37-4.542a.954.954 0 0 0-.17-4.887zm-4.322 3.86a1.59 1.59 0 0 1-1.6 1.6c-.88 0-1.6-.72-1.6-1.6s.72-1.6 1.6-1.6c.88 0 1.6.72 1.6 1.6zm-8.58 0a1.59 1.59 0 0 1-1.6 1.6c-.88 0-1.6-.72-1.6-1.6s.72-1.6 1.6-1.6c.88 0 1.6.72 1.6 1.6z"/></svg>
                     </a>
-                    <a href="https://x.com/" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="X (Twitter)">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M18.244 2.25h3.308l-7.227 8.25L21.602 22H0V20.13l7.989-8.62L0 2.25h8.34L13.88 9.42l4.364-7.17zM20.29 20h-1.89L7.747 4H9.72L20.29 20z"/></svg>
+                    <a href="https://x.com/" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Follow us on X (Twitter)">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M18.244 2.25h3.308l-7.227 8.25L21.602 22H0V20.13l7.989-8.62L0 2.25h8.34L13.88 9.42l4.364-7.17zM20.29 20h-1.89L7.747 4H9.72L20.29 20z"/></svg>
                     </a>
-                    <a href="https://youtube.com/" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="YouTube">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M21.543 6.486c-.192-.727-.775-1.31-1.502-1.502C18.667 4 12 4 12 4s-6.667 0-8.041.984c-.727.192-1.31.775-1.502 1.502C2 7.84 2 12 2 12s0 4.16.457 5.514c.192.727.775 1.31 1.502 1.502C5.333 20 12 20 12 20s6.667 0 8.041-.984c.727-.192 1.31-.775 1.502-1.502C22 16.16 22 12 22 12s0-4.16-.457-5.514zM10 15.5V8.5l6 3.5-6 3.5z"/></svg>
+                    <a href="https://youtube.com/" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Subscribe to our YouTube channel">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M21.543 6.486c-.192-.727-.775-1.31-1.502-1.502C18.667 4 12 4 12 4s-6.667 0-8.041.984c-.727.192-1.31.775-1.502 1.502C2 7.84 2 12 2 12s0 4.16.457 5.514c.192.727.775 1.31 1.502 1.502C5.333 20 12 20 12 20s6.667 0 8.041-.984c.727-.192 1.31-.775 1.502-1.502C22 16.16 22 12 22 12s0-4.16-.457-5.514zM10 15.5V8.5l6 3.5-6 3.5z"/></svg>
                     </a>
-                    <a href="https://twitch.com/" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Twitch">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M3.504 19.382V2.618H20.49V16.62L16.002 21H5.748L3.504 19.382zM17.027 15.77H17.035V7.23h-2.188v8.54h2.18zM12.87 15.77H12.878V7.23h-2.188v8.54h2.18z"/></svg>
+                    <a href="https://twitch.com/" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Watch our live streams on Twitch">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M3.504 19.382V2.618H20.49V16.62L16.002 21H5.748L3.504 19.382zM17.027 15.77H17.035V7.23h-2.188v8.54h2.18zM12.87 15.77H12.878V7.23h-2.188v8.54h2.18z"/></svg>
                     </a>
-                    <a href="https://instagram.com/" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Instagram">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M7.8 2h8.4C17.61 2 19 3.39 19 5.06v13.88C19 20.61 17.61 22 15.6 22H7.8C5.79 22 4.4 20.61 4.4 18.94V5.06C4.4 3.39 5.79 2 7.8 2zm10.79 4.31c.42 0 .7.28.7.7s-.28.7-.7.7h-1.4c-.42 0-.7-.28-.7-.7s.28-.7.7-.7h1.4zM12.1 8c2.2 0 4 1.8 4 4s-1.8 4-4 4-4-1.8-4-4 1.8-4 4-4zm0 6.6c1.43 0 2.6-1.17 2.6-2.6s-1.17-2.6-2.6-2.6-2.6 1.17-2.6 2.6 1.17 2.6 2.6 2.6z"/></svg>
+                    <a href="https://instagram.com/" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Follow us on Instagram">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M7.8 2h8.4C17.61 2 19 3.39 19 5.06v13.88C19 20.61 17.61 22 15.6 22H7.8C5.79 22 4.4 20.61 4.4 18.94V5.06C4.4 3.39 5.79 2 7.8 2zm10.79 4.31c.42 0 .7.28.7.7s-.28.7-.7.7h-1.4c-.42 0-.7-.28-.7-.7s.28-.7.7-.7h1.4zM12.1 8c2.2 0 4 1.8 4 4s-1.8 4-4 4-4-1.8-4-4 1.8-4 4-4zm0 6.6c1.43 0 2.6-1.17 2.6-2.6s-1.17-2.6-2.6-2.6-2.6 1.17-2.6 2.6 1.17 2.6 2.6 2.6z"/></svg>
                     </a>
                 </div>
 
@@ -803,7 +809,7 @@
                         &copy; 2025 ABI INSIGHT. BY MMARCUSMACHADO ALL RIGHTS RESERVED. NOT AFFILIATED WITH TENCENT GAMES OR MOREFUN STUDIOS.
                     </p>
                     <p class="project-note"><span class="warning-icon">⚠️</span>
-                        THIS IS A SCHOOL PROJECT UTILIZING THIRD-PARTY GAME IMAGES AND VIDEOS FOR SKILL/PURPOSES ONLY WITH FAN MADEDESIGN. IT IS INTENDED USE ON GITHUB ONLY.<span class="warning-icon">⚠️</span>
+                        THIS IS A SCHOOL PROJECT UTILIZING THIRD-PARTY GAME IMAGES AND VIDEOS FOR SKILL/PURPOSES ONLY WITH FAN MADE DESIGN. IT IS INTENDED USE ON GITHUB ONLY.<span class="warning-icon">⚠️</span>
                     </p>
                 </div>
             </div>

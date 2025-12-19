@@ -39,16 +39,16 @@
         </div>
         
         <!--Hidden checkbox for CSS-only menu toggle (Mobile/Hamburger)-->
-        <input type="checkbox" id="menu-toggle" class="menu-checkbox">
+        <input type="checkbox" id="menu-toggle" class="menu-checkbox" aria-hidden="true">
 
         <!--Navigation Bar (Main Header/Nav)-->
-        <nav class="navbar navbar-dark">
+        <nav class="navbar navbar-dark" aria-label="Main navigation">
             
             <div class="container-fluid">
                 <!--Navbar Brand/Logo Link-->
-                <a class="navbar-brand" href="index.html">
+                <a class="navbar-brand" href="index.html" aria-label="ABI Insight home page">
                     <!--ARCADE JOYSTICK ICON - Inline SVG-->
-                    <span class="brand-icon">
+                    <span class="brand-icon" aria-hidden="true">
                         <svg width="24" height="24" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <!--Green circular background--> 
                             <circle cx="16" cy="16" r="16" fill="#28a745"/>
@@ -69,17 +69,17 @@
                     ABI INSIGHT
                 </a>
                 <!-- Desktop Navigation (hidden on mobile) -->
-                <nav class="desktop-nav">
-                    <a href="best-weapons.html" class="nav-link">Best Weapons</a>
-                    <a href="tactical-gear.html" class="nav-link">Tactical Gear</a>
-                    <a href="extraction-maps.html" class="nav-link">Extraction Maps</a>
-                    <a href="latest-intel.html" class="nav-link">Latest Intel</a>
-                    <a href="media-gallery.html" class="nav-link">Media Gallery</a>
+                <nav class="desktop-nav" aria-label="Desktop navigation menu">
+                    <a href="best-weapons.html" class="nav-link" aria-label="Navigate to Best Weapons page">Best Weapons</a>
+                    <a href="tactical-gear.html" class="nav-link" aria-label="Navigate to Tactical Gear page">Tactical Gear</a>
+                    <a href="extraction-maps.html" class="nav-link" aria-label="Navigate to Extraction Maps page">Extraction Maps</a>
+                    <a href="latest-intel.html" class="nav-link" aria-label="Navigate to Latest Intel page">Latest Intel</a>
+                    <a href="media-gallery.html" class="nav-link" aria-label="Navigate to Media Gallery page">Media Gallery</a>
                 </nav>
                 <div class="nav-icons">
                     <!--Hamburger menu icon (label for checkbox)-->
-                    <label for="menu-toggle" class="btn-icon hamburger-icon" aria-label="Toggle menu">
-                        <svg width="28" height="28" fill="currentColor" viewBox="0 0 16 16">
+                    <label for="menu-toggle" class="btn-icon hamburger-icon">
+                        <svg width="28" height="28" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true">
                             <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
                         </svg>
                     </label>
@@ -88,12 +88,12 @@
         </nav>
 
         <!--MAIN CONTENT START-->  
-
+        <main>
         <!--Hero Section (Full-width video background)-->  
-        <section class="hero-section">
+        <section class="hero-section" aria-label="Hero section with background video">
             <!--Background Video Element-->  
             <!-- VIDEO ELEMENT: Autoplay background video with muted audio, loop, and mobile playsinline attribute -->
-        <video class="hero-video" autoplay muted loop playsinline poster="assets/media/images/gallery/abi-poster.webp">
+        <video class="hero-video" autoplay muted loop playsinline poster="assets/media/images/gallery/abi-poster.webp" aria-label="Arena Breakout Infinite gameplay background video">
                 <source src="assets/media/video/abi-video.webm" type="video/webm">
                 Your browser does not support the video tag.
             </video>
@@ -103,29 +103,29 @@
                 <h1 class="hero-title">ARENA BREAKOUT<br>INFINITE</h1>
                 <p class="hero-subtitle">MASTER THE TACTICAL EXTRACTION</p>
                 <!--Call to Action Button-->  
-                <a href="media-gallery.html" style="text-decoration: none;" class="btn-cta">CHECK THE LATEST BEST GAMEPLAYS</a>
+                <a href="media-gallery.html" style="text-decoration: none;" class="btn-cta" aria-label="View latest best gameplays in media gallery">CHECK THE LATEST BEST GAMEPLAYS</a>
             </div>
         </section>
 
         <!--Weapons Section (Horizontal Card Grid)-->  
-        <section class="content-section">
+        <section class="content-section" aria-labelledby="weapons-section-title">
             <!--Section Title Button Link-->  
-            <a href="best-weapons.html" class="btn btn-outline-success section-title-btn">BEST WEAPONS</a>
+            <a href="best-weapons.html" class="btn btn-outline-success section-title-btn" id="weapons-section-title" aria-label="View all best weapons">BEST WEAPONS</a>
             <div class="cards-container">
                 <!--Card 1: HK416-CARBINE-->  
                 <div class="card-horizontal">
                     <div class="card-image map-image">
                         
                         <img 
-                            src="assets/media/images/weapons/H416.webp" 
-                            alt="HK416-CARBINE Icon">
+                            src="assets/media/images/weapons/h416.webp" 
+                            alt="HK416-CARBINE assault rifle">
                         <span class="badge-new">NEW</span>
                     </div>
                     <div class="card-body-custom">
                         <span class="badge-tier">TIER 6</span>
-                        <h2 class="card-title-custom">HK416-CARBINE</h3>
+                        <h2 class="card-title-custom">HK416-CARBINE</h2>
                         <p class="card-text-custom">Reliable assault rifle for all combat situations.</p>
-                        <a href="best-weapons.html#hk416-carbine" style="text-decoration: none;" class="btn-card">VIEW STATS</a>
+                        <a href="best-weapons.html#hk416-carbine" style="text-decoration: none;" class="btn-card" aria-label="View HK416-CARBINE detailed stats and specifications">VIEW STATS</a>
                     </div>
                 </div>
 
@@ -133,15 +133,15 @@
                 <div class="card-horizontal">
                     <div class="card-image map-image">
                         <img 
-                            src="assets/media/images/weapons/SJ16.webp" 
-                            alt="SJ16 .338 Icon">
+                            src="assets/media/images/weapons/sj16.webp" 
+                            alt="SJ16 .338 heavy weapon">
                         <span class="badge-new">NEW</span>
                     </div>
                     <div class="card-body-custom">
                         <span class="badge-tier">TIER 7</span>
                         <h2 class="card-title-custom">SJ 16 .338</h2>
                         <p class="card-text-custom">Unleash devastating firepower with the strongest gun ever.</p>
-                        <a href="best-weapons.html#sj16" style="text-decoration: none;" class="btn-card">VIEW STATS></a>
+                        <a href="best-weapons.html#sj16" style="text-decoration: none;" class="btn-card" aria-label="View SJ 16 .338 detailed stats and specifications">VIEW STATS</a>
                     </div>
                 </div>
 
@@ -149,15 +149,15 @@
                 <div class="card-horizontal">
                     <div class="card-image map-image">
                         <img 
-                            src="assets/media/images/weapons/F57.webp" 
-                            alt="FN 57 Pistol Icon">
+                            src="assets/media/images/weapons/f57.webp" 
+                            alt="FN 57 Pistol sidearm">
                     </div>
 
                     <div class="card-body-custom">
                         <span class="badge-tier">TIER 5</span>
                         <h2 class="card-title-custom">FN 57 Pistol</h2>
                         <p class="card-text-custom">Known for its excellent armor penetration, making it a threat against players.</p>
-                        <a href="best-weapons.html#F57-pistol" style="text-decoration: none;" class="btn-card">VIEW STATS</a>
+                        <a href="best-weapons.html#F57-pistol" style="text-decoration: none;" class="btn-card" aria-label="View FN 57 Pistol detailed stats and specifications">VIEW STATS</a>
                     </div>
                 </div>
 
@@ -165,92 +165,92 @@
                 <div class="card-horizontal">
                     <div class="card-image map-image">
                         <img 
-                            src="assets/media/images/weapons/M110.webp" 
-                            alt="M110-SASS Icon">
+                            src="assets/media/images/weapons/m110.webp" 
+                            alt="M110-SASS sniper rifle">
                     </div>
                     <div class="card-body-custom">
                         <span class="badge-tier">TIER 6</span>
                         <h2 class="card-title-custom">M110-SASS</h2>
                         <p class="card-text-custom">The pinnacle of semi-automatic precision, excelling in overwatch and suppressive fire.</p>
-                        <a href="best-weapons.html#M110-SASS" style="text-decoration: none;" class="btn-card">VIEW STATS</a>
+                        <a href="best-weapons.html#M110-SASS" style="text-decoration: none;" class="btn-card" aria-label="View M110-SASS detailed stats and specifications">VIEW STATS</a>
                     </div>
                 </div>
             </div>
         </section>
 
         <!--Maps Section (Extraction Guides)-->  
-        <section class="content-section">
+        <section class="content-section" aria-labelledby="maps-section-title">
             <!--Section Title Button Link-->  
-            <a href="extraction-maps.html" class="btn btn-outline-success section-title-btn">EXTRACTION MAPS</a>
+            <a href="extraction-maps.html" class="btn btn-outline-success section-title-btn" id="maps-section-title" aria-label="View all extraction maps">EXTRACTION MAPS</a>
             <div class="cards-container">
                 <!--Card 1: Farm Map-->  
                 <div class="card-horizontal">
                     <div class="card-image map-image">
-                        <img src="assets/media/images/maps/farm-map-card.webp" alt="Farm map icon">
+                        <img src="assets/media/images/maps/farm-map-card.webp" alt="Farm map tactical overview">
                         <span class="badge-new">NEW</span>
                     </div>
                     <div class="card-body-custom">
                         <h2 class="card-title-custom">FARM - EXTRACTION GUIDE</h2>
                         <p class="card-text-custom">Master your exfil routes and high-value loot spots.</p>
-                        <a href="extraction-maps.html#farm" style="text-decoration: none;" class="btn-card">VIEW MAP STRATS</a>
+                        <a href="extraction-maps.html#farm" style="text-decoration: none;" class="btn-card" aria-label="View Farm map tactical strategies and extraction routes">VIEW MAP STRATS</a>
                     </div>
                 </div>
 
                 <!--Card 2: Valley Map --> 
                 <div class="card-horizontal">
                     <div class="card-image map-image">
-                        <img src="assets/media/images/maps/valley-map-card.webp" alt="Valley map icon">
+                        <img src="assets/media/images/maps/valley-map-card.webp" alt="Valley map tactical overview">
                     </div>
                     <div class="card-body-custom">
                         <h2 class="card-title-custom">VALLEY - TACTICAL GUIDE</h2>
                         <p class="card-text-custom">Navigate dangerous terrain effectively and safely.</p>
-                        <a href="extraction-maps.html#valley" style="text-decoration: none;" class="btn-card">VIEW MAP STRATS</a>
+                        <a href="extraction-maps.html#valley" style="text-decoration: none;" class="btn-card" aria-label="View Valley map tactical strategies and navigation routes">VIEW MAP STRATS</a>
                     </div>
                 </div>
 
                 <!--Card 3: Armory Map-->  
                 <div class="card-horizontal">
                     <div class="card-image map-image">
-                        <img src="assets/media/images/maps/armory-map-card.webp" alt="Armory map icon">
+                        <img src="assets/media/images/maps/armory-map-card.webp" alt="Armory map tactical overview">
                     </div>
                     <div class="card-body-custom">
                         <h2 class="card-title-custom">ARMORY - HOT ZONES</h2>
                         <p class="card-text-custom">High risk, high reward combat locations.</p>
-                        <a href="extraction-maps.html#armory" style="text-decoration: none;" class="btn-card">VIEW MAP STRATS</a>
+                        <a href="extraction-maps.html#armory" style="text-decoration: none;" class="btn-card" aria-label="View Armory map hot zones and combat strategies">VIEW MAP STRATS</a>
                     </div>
                 </div>
 
                 <!--Card 4: Northridge Map -->
                 <div class="card-horizontal">
                     <div class="card-image map-image">
-                        <img src="assets/media/images/maps/Northridge-map-card.webp" alt="Northridge map icon">
+                        <img src="assets/media/images/maps/northridge-map-card.webp" alt="Northridge map tactical overview">
                     </div>
                     <div class="card-body-custom">
                         <h2 class="card-title-custom">NORTHRIDGE - ROUTES</h2>
                         <p class="card-text-custom">Optimal paths for successful extraction.</p>
-                        <a href="extraction-maps.html#northridge" style="text-decoration: none;" class="btn-card">VIEW MAP STRATS</a>
+                        <a href="extraction-maps.html#northridge" style="text-decoration: none;" class="btn-card" aria-label="View Northridge map optimal extraction routes">VIEW MAP STRATS</a>
                     </div>
                 </div>
             </div>
         </section>
 
         <!--Gear Section (Armor and Equipment)-->  
-        <section class="content-section">
+        <section class="content-section" aria-labelledby="gear-section-title">
             <!--Section Title Button Link-->  
-            <a href="tactical-gear.html" class="btn btn-outline-success section-title-btn">TACTICAL GEAR</a>
+            <a href="tactical-gear.html" class="btn btn-outline-success section-title-btn" id="gear-section-title" aria-label="View all tactical gear">TACTICAL GEAR</a>
             <div class="cards-container">
                 <!--Card 1: Heavy Armor-->  
                 <div class="card-horizontal">
                     <div class="card-image gear-image">
                         <img 
-                            src="assets/media/images/gear/BT201_Full_Body_Armor.webp" 
-                            alt="BT201 Heavy Armor Icon">
+                            src="assets/media/images/gear/body-armor.webp" 
+                            alt="BT201 Heavy Armor full body protection">
                     </div>
                     <div class="card-body-custom">
                         <span class="badge-tier">TIER 6</span>
                         <h2 class="card-title-custom">HEAVY ARMOR</h2>
                         <p class="card-text-custom">Maximum protection for dangerous raids.</p>
-                        <a href="tactical-gear.html#heavy-armor" style="text-decoration: none;" class="btn-card">VIEW DETAILS</a>
+                        <a href="tactical-gear.html#heavy-armor" style="text-decoration: none;" class="btn-card" aria-label="View Heavy Armor detailed specifications and protection stats">VIEW DETAILS</a>
                     </div>
                 </div>
 
@@ -258,14 +258,14 @@
                 <div class="card-horizontal">
                     <div class="card-image gear-image">
                         <img 
-                            src="assets/media/images/gear/IND70_Tactical_Helmet.webp" 
-                            alt="IND70 Tactical Helmet Icon">
+                            src="assets/media/images/gear/tactical-helmet.webp" 
+                            alt="IND70 Tactical Helmet with integrated comms">
                     </div>
                     <div class="card-body-custom">
                         <span class="badge-tier">TIER 6</span>
                         <h2 class="card-title-custom">TACTICAL HELMET</h2>
                         <p class="card-text-custom">Essential head protection with built-in comms.</p>
-                        <a href="tactical-gear.html#tactical-helmet" style="text-decoration: none;" class="btn-card">VIEW DETAILS</a>
+                        <a href="tactical-gear.html#tactical-helmet" style="text-decoration: none;" class="btn-card" aria-label="View Tactical Helmet detailed specifications and features">VIEW DETAILS</a>
                     </div>
                 </div>
 
@@ -273,14 +273,14 @@
                 <div class="card-horizontal">
                     <div class="card-image gear-image">
                         <img 
-                            src="assets/media/images/gear/Ral.heavy.military.backpack.webp" 
-                            alt="Backpack Pro Icon">
+                            src="assets/media/images/gear/military.backpack.webp" 
+                            alt="Ral heavy military backpack">
                     </div>
                     <div class="card-body-custom">
                         <span class="badge-tier">TIER 6</span>
                         <h2 class="card-title-custom">BACKPACK PRO</h2>
                         <p class="card-text-custom">Maximize your loot carrying capacity.</p>
-                        <a href="tactical-gear.html#backpack-pro" style="text-decoration: none;" class="btn-card">VIEW DETAILS</a>
+                        <a href="tactical-gear.html#backpack-pro" style="text-decoration: none;" class="btn-card" aria-label="View Backpack Pro detailed specifications and capacity">VIEW DETAILS</a>
                     </div>
                 </div>
 
@@ -289,34 +289,34 @@
                     <div class="card-image gear-image">
                         <img 
                             src="assets/media/images/gear/t7.webp" 
-                            alt="T7 thermal imager Icon">
+                            alt="T7 thermal imager night vision device">
                     </div>
                     <div class="card-body-custom">
                         <span class="badge-tier">TIER 7</span>
                         <h2 class="card-title-custom">NIGHT VISION</h2>
                         <p class="card-text-custom">See clearly in complete darkness.</p>
-                        <a href="tactical-gear.html#night-vision" style="text-decoration: none;" class="btn-card">VIEW DETAILS</a>
+                        <a href="tactical-gear.html#night-vision" style="text-decoration: none;" class="btn-card" aria-label="View Night Vision detailed specifications and capabilities">VIEW DETAILS</a>
                     </div>
                 </div>
             </div>
         </section>
 
         <!--Latest Intel Section-->  
-        <section class="content-section">
+        <section class="content-section" aria-labelledby="intel-section-title">
             <!--Section Title Button Link-->  
-            <a href="latest-intel.html" class="btn btn-outline-success section-title-btn">LATEST INTEL</a>
+            <a href="latest-intel.html" class="btn btn-outline-success section-title-btn" id="intel-section-title" aria-label="View all latest intel">LATEST INTEL</a>
             <div class="cards-container">
                 <!--Card 1: Extraction Guide --> 
                 <div class="card-horizontal">
                     <div class="card-image intel-image">
                         <img 
                             src="assets/media/images/intel/extraction-guide-card.webp" 
-                            alt="Extraction Guide Icon">
+                            alt="Extraction guides tactical overview">
                     </div>
                     <div class="card-body-custom">
                         <h2 class="card-title-custom">EXTRACTION GUIDES</h2>
                         <p class="card-text-custom">Master your exfil routes</p>
-                        <a href="latest-intel.html#extraction-guide-card" style="text-decoration: none;" class="btn-card">VIEW GUIDES</a>
+                        <a href="latest-intel.html#extraction-guide-card" style="text-decoration: none;" class="btn-card" aria-label="View comprehensive extraction guides and strategies">VIEW GUIDES</a>
                     </div>
                 </div>
 
@@ -325,12 +325,12 @@
                     <div class="card-image intel-image">
                         <img 
                             src="assets/media/images/intel/update-2-card.webp" 
-                            alt="Update 2.0 Icon">
+                            alt="Update 2.0 patch notes overview">
                     </div>
                     <div class="card-body-custom">
                         <h2 class="card-title-custom">UPDATE 2.0</h2>
                         <p class="card-text-custom">Latest patch notes</p>
-                        <a href="latest-intel.html#update-2-card" aria-label="Read more about Farm Map tactics" style="text-decoration: none;" class="btn-card">Read Full Intel Report</a>
+                        <a href="latest-intel.html#update-2-card" style="text-decoration: none;" class="btn-card" aria-label="Read full Update 2.0 patch notes and changes">READ FULL INTEL REPORT</a>
                     </div>
                 </div>
 
@@ -339,12 +339,12 @@
                     <div class="card-image intel-image">
                         <img 
                             src="assets/media/images/intel/group-tactics-card.webp" 
-                            alt="Group Tactics Icon">
+                            alt="Group tactics team strategies overview">
                     </div>
                     <div class="card-body-custom">
                         <h2 class="card-title-custom">GROUP TACTICS</h2>
                         <p class="card-text-custom">Team strategies</p>
-                        <a href="latest-intel.html#group-tactics-card" aria-label="Learn more about weapon balancing update" style="text-decoration: none;" class="btn-card">Learn About Update</a>
+                        <a href="latest-intel.html#group-tactics-card" style="text-decoration: none;" class="btn-card" aria-label="Learn about group tactics and team coordination strategies">LEARN ABOUT UPDATE</a>
                     </div>
                 </div>
 
@@ -353,24 +353,24 @@
                     <div class="card-image intel-image">
                         <img 
                             src="assets/media/images/intel/meta-weapons-card.webp" 
-                            alt="Meta Weapons Icon">
+                            alt="Meta weapons loadouts overview">
                     </div>
                     <div class="card-body-custom">
                         <h2 class="card-title-custom">META WEAPONS</h2>
                         <p class="card-text-custom">Top tier loadouts</p>
-                        <a href="latest-intel.html#meta-weapons-card" style="text-decoration: none" class="btn-card">VIEW LOADOUTS</a>
+                        <a href="latest-intel.html#meta-weapons-card" style="text-decoration: none" class="btn-card" aria-label="View current meta weapons and top tier loadouts">VIEW LOADOUTS</a>
                     </div>
                 </div>
             </div>
         </section>
-
+        </main>
         <!--MAIN CONTENT END --> 
 
         <!--Menu Overlay (clicking closes menu via label)-->  
         <label for="menu-toggle" class="menu-overlay" id="menu-overlay"></label>
         
         <!--Mobile Menu Container-->  
-        <div class="mobile-menu" id="mobile-menu">
+        <div class="mobile-menu" id="mobile-menu" role="navigation" aria-label="Mobile navigation menu">
             <div class="mobile-menu-header">
                 <div class="mobile-menu-title">MENU</div>
                 <!--Close button as label for checkbox-->  
@@ -379,12 +379,12 @@
             <!-- Mobile Navigation Links: Complete site navigation with active state on current page -->
         <nav class="mobile-menu-nav">
                 <!--Mobile Menu Links-->  
-                <a href="index.html" class="active">Home</a>
-                <a href="best-weapons.html">Best Weapons</a>
-                <a href="tactical-gear.html">Tactical Gear</a>
-                <a href="extraction-maps.html">Extraction Maps</a>
-                <a href="latest-intel.html">Latest Intel</a>
-                <a href="media-gallery.html">Media Gallery</a>
+                <a href="index.html" class="active" aria-label="Navigate to Home page" aria-current="page">Home</a>
+                <a href="best-weapons.html" aria-label="Navigate to Best Weapons page">Best Weapons</a>
+                <a href="tactical-gear.html" aria-label="Navigate to Tactical Gear page">Tactical Gear</a>
+                <a href="extraction-maps.html" aria-label="Navigate to Extraction Maps page">Extraction Maps</a>
+                <a href="latest-intel.html" aria-label="Navigate to Latest Intel page">Latest Intel</a>
+                <a href="media-gallery.html" aria-label="Navigate to Media Gallery page">Media Gallery</a>
             </nav>
         </div>
         
@@ -395,25 +395,25 @@
                 <!--Social Media Icons Container-->  
                 <!-- Social Media Icons: External links to gaming community platforms with accessibility labels -->
             <div class="social-icons">
-                    <a href="https://discord.com/" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Discord">
+                    <a href="https://discord.com/" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Visit our Discord community server">
                         <!--Discord SVG Icon-->  
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M20.211 4.223A.954.954 0 0 0 19.38 4H4.62a.954.954 0 0 0-.83 4.887c.21 1.77 1.05 3.3 2.37 4.542 1.32 1.242 3.018 1.933 4.84 2.124v3.193l.02.046a.5.5 0 0 0 .82 0l.02-.046v-3.193c1.822-.191 3.52-.882 4.84-2.124 1.32-1.242 2.16-2.772 2.37-4.542a.954.954 0 0 0-.17-4.887zm-4.322 3.86a1.59 1.59 0 0 1-1.6 1.6c-.88 0-1.6-.72-1.6-1.6s.72-1.6 1.6-1.6c.88 0 1.6.72 1.6 1.6zm-8.58 0a1.59 1.59 0 0 1-1.6 1.6c-.88 0-1.6-.72-1.6-1.6s.72-1.6 1.6-1.6c.88 0 1.6.72 1.6 1.6z"/></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M20.211 4.223A.954.954 0 0 0 19.38 4H4.62a.954.954 0 0 0-.83 4.887c.21 1.77 1.05 3.3 2.37 4.542 1.32 1.242 3.018 1.933 4.84 2.124v3.193l.02.046a.5.5 0 0 0 .82 0l.02-.046v-3.193c1.822-.191 3.52-.882 4.84-2.124 1.32-1.242 2.16-2.772 2.37-4.542a.954.954 0 0 0-.17-4.887zm-4.322 3.86a1.59 1.59 0 0 1-1.6 1.6c-.88 0-1.6-.72-1.6-1.6s.72-1.6 1.6-1.6c.88 0 1.6.72 1.6 1.6zm-8.58 0a1.59 1.59 0 0 1-1.6 1.6c-.88 0-1.6-.72-1.6-1.6s.72-1.6 1.6-1.6c.88 0 1.6.72 1.6 1.6z"/></svg>
                     </a>
-                    <a href="https://x.com/" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="X (Twitter)">
+                    <a href="https://x.com/" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Follow us on X (Twitter)">
                         <!--X (Twitter) SVG Icon-->  
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M18.244 2.25h3.308l-7.227 8.25L21.602 22H0V20.13l7.989-8.62L0 2.25h8.34L13.88 9.42l4.364-7.17zM20.29 20h-1.89L7.747 4H9.72L20.29 20z"/></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M18.244 2.25h3.308l-7.227 8.25L21.602 22H0V20.13l7.989-8.62L0 2.25h8.34L13.88 9.42l4.364-7.17zM20.29 20h-1.89L7.747 4H9.72L20.29 20z"/></svg>
                     </a>
-                    <a href="https://youtube.com/" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="YouTube">
+                    <a href="https://youtube.com/" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Subscribe to our YouTube channel">
                         <!--YouTube SVG Icon --> 
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M21.543 6.486c-.192-.727-.775-1.31-1.502-1.502C18.667 4 12 4 12 4s-6.667 0-8.041.984c-.727.192-1.31.775-1.502 1.502C2 7.84 2 12 2 12s0 4.16.457 5.514c.192.727.775 1.31 1.502 1.502C5.333 20 12 20 12 20s6.667 0 8.041-.984c.727-.192 1.31-.775 1.502-1.502C22 16.16 22 12 22 12s0-4.16-.457-5.514zM10 15.5V8.5l6 3.5-6 3.5z"/></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M21.543 6.486c-.192-.727-.775-1.31-1.502-1.502C18.667 4 12 4 12 4s-6.667 0-8.041.984c-.727.192-1.31.775-1.502 1.502C2 7.84 2 12 2 12s0 4.16.457 5.514c.192.727.775 1.31 1.502 1.502C5.333 20 12 20 12 20s6.667 0 8.041-.984c.727-.192 1.31-.775 1.502-1.502C22 16.16 22 12 22 12s0-4.16-.457-5.514zM10 15.5V8.5l6 3.5-6 3.5z"/></svg>
                     </a>
-                    <a href="https://twitch.com/" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Twitch">
+                    <a href="https://twitch.com/" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Watch our live streams on Twitch">
                         <!--Twitch SVG Icon-->  
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M3.504 19.382V2.618H20.49V16.62L16.002 21H5.748L3.504 19.382zM17.027 15.77H17.035V7.23h-2.188v8.54h2.18zM12.87 15.77H12.878V7.23h-2.188v8.54h2.18z"/></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M3.504 19.382V2.618H20.49V16.62L16.002 21H5.748L3.504 19.382zM17.027 15.77H17.035V7.23h-2.188v8.54h2.18zM12.87 15.77H12.878V7.23h-2.188v8.54h2.18z"/></svg>
                     </a>
-                    <a href="https://instagram.com/" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Instagram">
+                    <a href="https://instagram.com/" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Follow us on Instagram">
                         <!--Instagram SVG Icon-->  
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M7.8 2h8.4C17.61 2 19 3.39 19 5.06v13.88C19 20.61 17.61 22 15.6 22H7.8C5.79 22 4.4 20.61 4.4 18.94V5.06C4.4 3.39 5.79 2 7.8 2zm10.79 4.31c.42 0 .7.28.7.7s-.28.7-.7.7h-1.4c-.42 0-.7-.28-.7-.7s.28-.7.7-.7h1.4zM12.1 8c2.2 0 4 1.8 4 4s-1.8 4-4 4-4-1.8-4-4 1.8-4 4-4zm0 6.6c1.43 0 2.6-1.17 2.6-2.6s-1.17-2.6-2.6-2.6-2.6 1.17-2.6 2.6 1.17 2.6 2.6 2.6z"/></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M7.8 2h8.4C17.61 2 19 3.39 19 5.06v13.88C19 20.61 17.61 22 15.6 22H7.8C5.79 22 4.4 20.61 4.4 18.94V5.06C4.4 3.39 5.79 2 7.8 2zm10.79 4.31c.42 0 .7.28.7.7s-.28.7-.7.7h-1.4c-.42 0-.7-.28-.7-.7s.28-.7.7-.7h1.4zM12.1 8c2.2 0 4 1.8 4 4s-1.8 4-4 4-4-1.8-4-4 1.8-4 4-4zm0 6.6c1.43 0 2.6-1.17 2.6-2.6s-1.17-2.6-2.6-2.6-2.6 1.17-2.6 2.6 1.17 2.6 2.6 2.6z"/></svg>
                     </a>
                 </div>
 
