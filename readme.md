@@ -812,10 +812,13 @@ font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 - Image optimization: All gallery images converted to WebP at 80% quality
 
 **Google Lighthouse Audit Results (Nov 17, 2025):**
-- 🟢 **Performance: 98/100** - Excellent load times and optimization
-- 🟢 **Accessibility: 98/100** - Near-perfect WCAG AAA compliance
-- 🟢 **Best Practices: 93/100** - Industry-standard implementation
+- 🟢 **Performance: 88-89/100** - Excellent load times and optimization
+- 🟢 **Accessibility: 100/100** - Near-perfect WCAG AAA compliance
+- 🟢 **Best Practices: 92/100** - Industry-standard implementation
 - 🟢 **SEO: 100/100** - Perfect search engine optimization
+
+![Desktop Validation](/assets/media/images/testing/desktop-lighthouse.png)
+![Mobile Validation](/assets/media/images/testing/mobile-lighthouse.png)
 
 #### Accessibility Testing
 
@@ -874,7 +877,13 @@ font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 | latest-intel.html | Nov 17, 2025 | 0 | 0 | ✅ PASS |
 | media-gallery.html | Nov 17, 2025 | 0 | 0 | ✅ PASS |
 
-**Validation URL:** https://validator.w3.org/
+**Validation URLS:** 
+![Index Validation](/assets/media/images/testing/index-validator.png)
+![Weapons Validation](/assets/media/images/testing/weapon-validator.png)
+![Intel Validation](/assets/media/images/testing/intel-validator.png)
+![Media Validation](/assets/media/images/testing/gallery-validator.png)
+![Extraction Validation](/assets/media/images/testing/extraction-validator.png)
+
 
 **Previous Issues Fixed:**
 - ⚠️ **Trailing slashes on void elements** - Fixed in commit 49
@@ -888,7 +897,9 @@ font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 |------|----------------|---------|----------|--------|
 | style.css | Nov 17, 2025 | 0 | 5 | ✅ PASS |
 
-**Validation URL:** https://jigsaw.w3.org/css-validator/
+**Validation URLS:**
+![CSS Validation](/assets/media/images/testing/css-validator.png)
+![CSS Warnings](/assets/media/images/testing/css-alerts.png) 
 
 **CSS Warnings (Acceptable - Vendor-Specific):**
 
